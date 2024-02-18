@@ -1,0 +1,47 @@
+﻿@model PhoneBookRecord
+@{
+    string strTitle = "Создать запись";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <form asp-controller="CreateRecord" asp-action="Create" method="post" enctype="multipart/form-data">
+
+            <div asp-validation-summary="All" class="text-validation"></div>
+            <div class="div-box">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName"/>
+                <span asp-validation-for="LastName" class="text-validation"></span>
+            </div>
+            <div>
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" />
+                <span asp-validation-for="FirstName" class="text-validation"></span>
+            </div>
+            <div>
+                <label asp-for="FathersName"></label>
+                <input asp-for="FathersName"/>
+                <span asp-validation-for="FathersName" class="text-validation"></span>
+            </div>
+            <div>
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" />
+                <span asp-validation-for="PhoneNumber" class="text-validation"></span>
+            </div>
+            <div>
+                <label asp-for="Address"></label>
+                <input asp-for="Address" />
+                <span asp-validation-for="Address" class="text-validation"></span>
+            </div>
+            <div>
+                <label asp-for="Description"></label>
+                <input asp-for="Description" />
+                <span asp-validation-for="Description" class="text-validation"></span>
+            </div>
+            <button type="submit" value="Создать" class="create">Создать</button>
+        </form>
+    </div>
+</div>
+

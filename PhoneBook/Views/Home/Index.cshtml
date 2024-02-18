@@ -1,0 +1,44 @@
+﻿@model IQueryable<PhoneBookRecord>
+<h2>PhoneBook</h2>
+
+<div>
+    <a class="button create" asp-controller="CreateRecord" asp-action="Create">Создать</a>
+</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>LastName</th>
+                <th>FirstName</th>
+                <th>FathresName</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                @foreach (PhoneBookRecord item in Model)
+                {
+            <tr>
+                <td>
+                    <a asp-controller="Details"
+                       asp-action="DetailsShow"
+                       asp-route-id="@item.Id"
+                       title="Просмотреть, Редактировать"
+                       class="linkDetails">@item.Id</a>
+                </td>
+                <td>@item.LastName</td>
+                <td>@item.FirstName</td>
+                <td>@item.FathersName</td>
+                <td>
+                    <button asp-controller="DeleteRecord"
+                       asp-action="Index"
+                       asp-route-id="@item.Id"
+                       title="Удалить">Удалить</button>
+                </td>
+            </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+

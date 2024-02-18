@@ -1,0 +1,32 @@
+﻿@model PhoneBookRecord
+<h2>PhoneBookRecord</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>FathresName</th>
+            <th>PhoneNumber</th>
+            <th>Address</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.LastName</td>
+            <td>@Model.FirstName</td>
+            <td>@Model.FathersName</td>
+            <td>@Model.PhoneNumber</td>
+            <td>@Model.Address</td>
+            <td>@Model.Description</td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <a asp-controller="Home" asp-action="Index" class="button" >Home</a>
+    <a asp-controller="EditRecord" asp-action="Edit" asp-route-id="@Model.Id" class="button ">Редактировать</a>
+    <a asp-controller="DeleteRecord" asp-action="Index" asp-route-id="@Model.Id" class="button">Удалить</a>
+</div>
