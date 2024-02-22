@@ -1,4 +1,5 @@
 ﻿@model PhoneBookRecord
+@inject SignInManager<IdentityUser> SignInManager
 <h2>PhoneBookRecord</h2>
 
 <table class="table">
@@ -26,7 +27,10 @@
     </tbody>
 </table>
 <div>
-    <a asp-controller="Home" asp-action="Index" class="button" >Home</a>
-    <a asp-controller="EditRecord" asp-action="Edit" asp-route-id="@Model.Id" class="button ">Редактировать</a>
-    <a asp-controller="DeleteRecord" asp-action="Index" asp-route-id="@Model.Id" class="button">Удалить</a>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Home</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-primary" asp-controller="EditRecord" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+        <a class="btn btn-primary" asp-controller="DeleteRecord" asp-action="Index" asp-route-id="@Model.Id">Удалить</a>
+    }
 </div>

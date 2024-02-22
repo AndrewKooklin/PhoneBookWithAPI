@@ -16,7 +16,7 @@ namespace PhoneBook.Domain.Repositories.EF
             _context = context;
         }
 
-        public IQueryable<PhoneBookRecord> GetPhoneBookRecords()
+        public IEnumerable<PhoneBookRecord> GetPhoneBookRecords()
         {
             return _context.PhoneBookRecords;
         }

@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model MyIdentityRole
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" asp-controller="Roles" asp-action="CreateRole">
+            <h2>Создать новую роль</h2>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" aria-required="true" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" title="Создать роль">Создать</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

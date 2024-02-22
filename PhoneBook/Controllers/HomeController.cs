@@ -32,5 +32,10 @@ namespace PhoneBook.Controllers
                 return View(_dataManager.PhoneBookRecords.GetPhoneBookRecords());
             }
         }
+
+        public IActionResult Privacy()
+        {
+                return View();
+        }
     }
 }

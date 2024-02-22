@@ -8,7 +8,7 @@ namespace PhoneBook.Domain.Repositories.Abstract
 {
     public interface IPhoneBookRecordRepository
     {
-        IQueryable<PhoneBookRecord> GetPhoneBookRecords();
+        IEnumerable<PhoneBookRecord> GetPhoneBookRecords();
 
         PhoneBookRecord GetPhoneBookRecordById(int id);
 
