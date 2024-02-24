@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBook.Views.Roles
+namespace PhoneBookAPI.Views.Roles
 {
     public class MyIdentityRole : IdentityRole
     {

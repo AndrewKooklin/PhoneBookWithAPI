@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBook.Views.Logout
+namespace PhoneBookAPI.Views.Logout
 {
     public class LogoutModel
     {

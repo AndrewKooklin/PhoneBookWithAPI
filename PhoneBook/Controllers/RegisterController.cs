@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
-using PhoneBook.Views.Register;
+using PhoneBookAPI.Views.Register;
 
-namespace PhoneBook.Controllers
+namespace PhoneBookAPI.Controllers
 {
     public class RegisterController : Controller
     {

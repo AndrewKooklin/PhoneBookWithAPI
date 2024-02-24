@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using PhoneBook.Views.Login;
+using PhoneBookAPI.Views.Login;
 
-namespace PhoneBook.Controllers
+namespace PhoneBookAPI.Controllers
 {
     public class LoginController : Controller
     {

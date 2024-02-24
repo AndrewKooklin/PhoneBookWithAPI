@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using PhoneBook.Views.Roles;
+using PhoneBookAPI.Views.Roles;
 
-namespace PhoneBook.Controllers
+namespace PhoneBookAPI.Controllers
 {
     //[Authorize(Roles = "Admin")]
     public class RolesController : Controller
