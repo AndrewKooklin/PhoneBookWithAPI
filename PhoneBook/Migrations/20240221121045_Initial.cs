@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PhoneBookAPI.Migrations
+namespace PhoneBook.Migrations
 {
     public partial class Initial : Migration
     {

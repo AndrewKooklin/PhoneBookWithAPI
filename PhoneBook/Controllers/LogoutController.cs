@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PhoneBookAPI.Controllers
+namespace PhoneBook.Controllers
 {
     public class LogoutController : Controller
     {

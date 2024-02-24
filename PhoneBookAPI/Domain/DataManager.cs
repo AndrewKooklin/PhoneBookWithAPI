@@ -1,10 +1,10 @@
-﻿using PhoneBookAPI.Domain.Repositories.Abstract;
+﻿using PhoneBook.Domain.Repositories.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBookAPI.Domain
+namespace PhoneBook.Domain
 {
     public class DataManager
     {

@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBookAPI.Views.Register
+namespace PhoneBook.Views.Register
 {
     [AllowAnonymous]
     public class RegisterModel

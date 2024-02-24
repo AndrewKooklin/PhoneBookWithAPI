@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PhoneBookAPI.Domain.Entities;
-using PhoneBookAPI.Domain.Repositories.Abstract;
+using PhoneBook.Domain.Entities;
+using PhoneBook.Domain.Repositories.Abstract;
 
-namespace PhoneBookAPI.Domain.Repositories.API
+namespace PhoneBook.Domain.Repositories.API
 {
     public class APIPhoneBookRecordsRepository: IPhoneBookRecordRepository
     {

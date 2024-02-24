@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PhoneBookAPI.Domain;
+using PhoneBook.Domain;
 
-namespace PhoneBookAPI.Migrations
+namespace PhoneBook.Migrations
 {
     [DbContext(typeof(AppDBContext))]
     [Migration("20240221121045_Initial")]

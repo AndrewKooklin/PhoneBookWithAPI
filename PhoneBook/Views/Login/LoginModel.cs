@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBookAPI.Views.Login
+namespace PhoneBook.Views.Login
 {
     [AllowAnonymous]
     public class LoginModel

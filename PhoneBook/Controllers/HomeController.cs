@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PhoneBookAPI.Domain;
-using PhoneBookAPI.Domain.Entities;
+using PhoneBook.Domain;
+using PhoneBook.Domain.Entities;
 using System.Windows.Input;
 using System.Drawing;
 
-namespace PhoneBookAPI.Controllers
+namespace PhoneBook.Controllers
 {
     public class HomeController : Controller
     {

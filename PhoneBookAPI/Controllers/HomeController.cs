@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PhoneBookAPI.Domain;
-using PhoneBookAPI.Domain.Entities;
+using PhoneBook.Domain;
+using PhoneBook.Domain.Entities;
 
-namespace PhoneBookAPI.Controllers
+namespace PhoneBook.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

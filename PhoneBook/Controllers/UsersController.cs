@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PhoneBookAPI.Controllers
+namespace PhoneBook.Controllers
 {
     //[Authorize(Roles = "Admin")]
     public class UsersController : Controller

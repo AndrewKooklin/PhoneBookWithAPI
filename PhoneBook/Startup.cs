@@ -10,11 +10,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PhoneBookAPI.Domain;
-using PhoneBookAPI.Domain.Repositories.Abstract;
-using PhoneBookAPI.Domain.Repositories.EF;
+using PhoneBook.Domain;
+using PhoneBook.Domain.Repositories.Abstract;
+using PhoneBook.Domain.Repositories.API;
+using PhoneBook.Domain.Repositories.EF;
 
-namespace PhoneBookAPI
+namespace PhoneBook
 {
     public class Startup
     {
@@ -30,7 +31,7 @@ namespace PhoneBookAPI
             Configuration.Bind("PhoneBook", new Config());
 
             //подключаем сервисы
-            services.AddTransient<IPhoneBookRecordRepository, EFPhoneBookRecordsRepository>();
+            services.AddTransient<IPhoneBookRecordRepository, APIPhoneBookRecordsRepository>();
             services.AddTransient<DataManager>();
 
             //подключаем контекст БД

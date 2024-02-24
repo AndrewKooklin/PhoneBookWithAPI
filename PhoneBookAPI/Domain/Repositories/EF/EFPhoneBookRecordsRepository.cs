@@ -1,11 +1,11 @@
-﻿using PhoneBookAPI.Domain.Entities;
-using PhoneBookAPI.Domain.Repositories.Abstract;
+﻿using PhoneBook.Domain.Entities;
+using PhoneBook.Domain.Repositories.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBookAPI.Domain.Repositories.EF
+namespace PhoneBook.Domain.Repositories.EF
 {
     public class EFPhoneBookRecordsRepository : IPhoneBookRecordRepository
     {

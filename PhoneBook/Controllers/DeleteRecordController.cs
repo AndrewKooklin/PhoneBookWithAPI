@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PhoneBookAPI.Domain;
+using PhoneBook.Domain;
 
-namespace PhoneBookAPI.Controllers
+namespace PhoneBook.Controllers
 {
     public class DeleteRecordController : Controller
     {

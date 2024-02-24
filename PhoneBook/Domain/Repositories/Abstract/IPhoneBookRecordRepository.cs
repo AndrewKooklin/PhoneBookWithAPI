@@ -1,10 +1,10 @@
-﻿using PhoneBookAPI.Domain.Entities;
+﻿using PhoneBook.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBookAPI.Domain.Repositories.Abstract
+namespace PhoneBook.Domain.Repositories.Abstract
 {
     public interface IPhoneBookRecordRepository
     {
