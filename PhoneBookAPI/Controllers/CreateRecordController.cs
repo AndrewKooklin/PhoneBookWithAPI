@@ -20,7 +20,7 @@ namespace PhoneBook.Controllers
         }
 
         //[Route("/api/[controller]/CreateRecord/{record:PhoneBookRecord}")]
-        [HttpPost("/api/[controller]/CreateRecord/{record: PhoneBookRecord}")]
+        [HttpPost("/api/[controller]/CreateRecord/{PhoneBookRecord}")]
         public void CreateRecord([FromBody] PhoneBookRecord record)
         {
             _dataManager.PhoneBookRecords.SavePhoneBookRecord(record);

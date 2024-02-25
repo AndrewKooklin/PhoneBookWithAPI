@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PhoneBook.Domain;
+using PhoneBook.Domain.Entities;
 using PhoneBook.Domain.Repositories.Abstract;
 using PhoneBook.Domain.Repositories.EF;
 
@@ -34,6 +37,10 @@ namespace PhoneBook
             services.AddDbContext<AppDBContext>(x => x.UseSqlServer(Config.ConnectionString));
             services.AddControllers();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddRouting(options =>
+            {
+                options.ConstraintMap.Add("PhoneBookRecord", typeof(ProvaRouteConstraint));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,8 +66,18 @@ namespace PhoneBook
                 endpoints.MapControllerRoute(name: "api",
                     pattern: "api/{controller=Home}/{action=GetRecords}/{id?}");
                 endpoints.MapControllerRoute(name: "default", 
-                    pattern: "{area:exists}/{controller=Home}/{action=GetRecords}/{id?}");
+                    pattern: "{controller=Home}/{action=GetRecords}/{id?}");
+                endpoints.MapRazorPages();
             });
+        }
+    }
+
+    internal class ProvaRouteConstraint : IRouteConstraint
+    {
+        public bool Match(HttpContext? httpContext, IRouter? route, string routeKey,
+                          RouteValueDictionary values, RouteDirection routeDirection)
+        {
+            return false;
         }
     }
 }
