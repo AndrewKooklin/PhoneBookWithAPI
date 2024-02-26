@@ -90,7 +90,8 @@ namespace PhoneBook
             //регистрируем маршруты(endpoints)
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(name: "default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "default",
+                    pattern:"{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

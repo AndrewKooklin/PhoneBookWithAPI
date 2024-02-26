@@ -31,7 +31,7 @@ namespace PhoneBook.Controllers
                 _dataManager.PhoneBookRecords.SavePhoneBookRecord(model);
                 return RedirectToAction("Index", "Home");
             }
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

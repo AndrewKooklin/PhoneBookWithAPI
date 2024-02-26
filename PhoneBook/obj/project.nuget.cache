@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BRyNiiLwWcH9TfO4M4McrxLRE1RjqVBjflkPr+N++2h1W7Ki2L44JcLyg6iZ9VwdMAlzrTvtpmB8hwNmONDv1Q==",
+  "dgSpecHash": "SGMvQbb7PX7otmpFza3qiHHOpV6vnER9rJ65pm30gpEOMaRlmvPpoF8rdnNaavFGRkr0kE4NUnSY+S1Gp5B1lw==",
   "success": true,
   "projectFilePath": "C:\\repos\\PhoneBookWithAPI\\PhoneBook\\PhoneBook.csproj",
   "expectedPackageFiles": [
@@ -116,6 +116,7 @@
     "C:\\Users\\bolt9\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
     "C:\\Users\\bolt9\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\bolt9\\.nuget\\packages\\system.net.http\\4.3.0\\system.net.http.4.3.0.nupkg.sha512",
+    "C:\\Users\\bolt9\\.nuget\\packages\\system.net.http.json\\3.2.1\\system.net.http.json.3.2.1.nupkg.sha512",
     "C:\\Users\\bolt9\\.nuget\\packages\\system.net.nameresolution\\4.3.0\\system.net.nameresolution.4.3.0.nupkg.sha512",
     "C:\\Users\\bolt9\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\bolt9\\.nuget\\packages\\system.net.sockets\\4.3.0\\system.net.sockets.4.3.0.nupkg.sha512",
@@ -157,6 +158,7 @@
     "C:\\Users\\bolt9\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
     "C:\\Users\\bolt9\\.nuget\\packages\\system.text.encoding.extensions\\4.3.0\\system.text.encoding.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\bolt9\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
+    "C:\\Users\\bolt9\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
     "C:\\Users\\bolt9\\.nuget\\packages\\system.text.regularexpressions\\4.3.0\\system.text.regularexpressions.4.3.0.nupkg.sha512",
     "C:\\Users\\bolt9\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\bolt9\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",

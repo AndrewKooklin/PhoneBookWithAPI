@@ -67,7 +67,6 @@ namespace PhoneBook
                     pattern: "api/{controller=Home}/{action=GetRecords}/{id?}");
                 endpoints.MapControllerRoute(name: "default", 
                     pattern: "{controller=Home}/{action=GetRecords}/{id?}");
-                endpoints.MapRazorPages();
             });
         }
     }

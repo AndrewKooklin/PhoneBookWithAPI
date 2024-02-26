@@ -29,13 +29,14 @@ namespace PhoneBook.Controllers
             }
             else
             {
+                
                 return View(_dataManager.PhoneBookRecords.GetPhoneBookRecords());
             }
         }
 
         public IActionResult Privacy()
         {
-                return View();
+            return View();
         }
     }
 }
