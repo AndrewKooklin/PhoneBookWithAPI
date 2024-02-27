@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PhoneBook.Domain;
-using PhoneBook.Domain.Entities;
+using PhoneBookAPI.Domain;
+using PhoneBookAPI.Domain.Entities;
 
-namespace PhoneBook.Controllers
+namespace PhoneBookAPI
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -19,7 +19,6 @@ namespace PhoneBook.Controllers
             _dataManager = dataManager;
         }
 
-        //[Route("/api/[controller]/CreateRecord/{record:PhoneBookRecord}")]
         [HttpPost("/api/[controller]/CreateRecord/{PhoneBookRecord?}")]
         public void CreateRecord([FromBody] PhoneBookRecord record)
         {

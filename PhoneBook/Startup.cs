@@ -13,7 +13,6 @@ using Microsoft.Extensions.Hosting;
 using PhoneBook.Domain;
 using PhoneBook.Domain.Repositories.Abstract;
 using PhoneBook.Domain.Repositories.API;
-using PhoneBook.Domain.Repositories.EF;
 
 namespace PhoneBook
 {

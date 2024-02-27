@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PhoneBook.Domain;
+using PhoneBookAPI.Domain;
 
-namespace PhoneBook.Controllers
+namespace PhoneBookAPI
 {
     [ApiController]
     [Route("api/[controller]")]

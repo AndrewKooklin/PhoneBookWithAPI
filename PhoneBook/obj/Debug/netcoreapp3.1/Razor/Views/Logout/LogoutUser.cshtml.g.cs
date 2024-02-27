@@ -28,41 +28,34 @@ using PhoneBook.Domain.Entities;
 #nullable disable
 #nullable restore
 #line 4 "C:\repos\PhoneBookWithAPI\PhoneBook\Views\_ViewImports.cshtml"
-using PhoneBook.Domain.Repositories.EF;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "C:\repos\PhoneBookWithAPI\PhoneBook\Views\_ViewImports.cshtml"
 using PhoneBook.Views.Login;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\repos\PhoneBookWithAPI\PhoneBook\Views\_ViewImports.cshtml"
+#line 5 "C:\repos\PhoneBookWithAPI\PhoneBook\Views\_ViewImports.cshtml"
 using PhoneBook.Views.Register;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\repos\PhoneBookWithAPI\PhoneBook\Views\_ViewImports.cshtml"
+#line 6 "C:\repos\PhoneBookWithAPI\PhoneBook\Views\_ViewImports.cshtml"
 using PhoneBook.Views.Logout;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\repos\PhoneBookWithAPI\PhoneBook\Views\_ViewImports.cshtml"
+#line 7 "C:\repos\PhoneBookWithAPI\PhoneBook\Views\_ViewImports.cshtml"
 using PhoneBook.Views.Roles;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bced6a831086cda04547aa63f663d11b74cdde9b", @"/Views/Logout/LogoutUser.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ce1cdd18820da9cf5fc3ed017c746f5c97a7997d", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"de3ffb1c5c8ca15f8891dd40b320c9b887cd8660", @"/Views/_ViewImports.cshtml")]
     public class Views_Logout_LogoutUser : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

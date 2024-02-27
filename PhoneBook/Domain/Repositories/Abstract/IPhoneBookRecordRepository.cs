@@ -9,7 +9,7 @@ namespace PhoneBook.Domain.Repositories.Abstract
 {
     public interface IPhoneBookRecordRepository
     {
-        IEnumerable<PhoneBookRecord> GetPhoneBookRecords();
+        Task<IEnumerable<PhoneBookRecord>> GetPhoneBookRecords();
 
         PhoneBookRecord GetPhoneBookRecordById(int id);
 

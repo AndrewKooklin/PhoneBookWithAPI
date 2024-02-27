@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PhoneBook.Domain;
-using PhoneBook.Domain.Entities;
+using PhoneBookAPI.Domain;
+using PhoneBookAPI.Domain.Entities;
 
-namespace PhoneBook.Controllers
+namespace PhoneBookAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

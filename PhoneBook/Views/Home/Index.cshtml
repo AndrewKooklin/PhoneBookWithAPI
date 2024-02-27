@@ -11,44 +11,43 @@
         <p>&nbsp;</p>
     </div>
 }
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>LastName</th>
-                <th>FirstName</th>
-                <th>FathresName</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Any())
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>FathresName</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
             {
-                @foreach (PhoneBookRecord item in Model)
+                @foreach (var item in Model)
                 {
-            <tr>
-                <td>
-                    <a asp-controller="Details"
-                       asp-action="DetailsShow"
-                       asp-route-id="@item.Id"
-                       title="Просмотреть"
-                       class="linkDetails">@item.Id</a>
-                </td>
-                <td>@item.LastName</td>
-                <td>@item.FirstName</td>
-                <td>@item.FathersName</td>
-                @if (User.IsInRole("Admin"))
-                {
-                    <td>
-                        <a class="btn btn-dark" asp-controller="DeleteRecord"
-                                                asp-action="Delete"
-                                                asp-route-id="@item.Id"
-                                                title="Удалить">Удалить</a>
-                    </td>
-                }
-                </tr>
+                    <tr>
+                        <td>
+                            <a asp-controller="Details"
+                               asp-action="DetailsShow"
+                               asp-route-id="@item.Id"
+                               title="Просмотреть"
+                               class="linkDetails">@item.Id</a>
+                        </td>
+                        <td>@item.LastName</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.FathersName</td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td>
+                                <a class="btn btn-dark" asp-controller="DeleteRecord"
+                                   asp-action="Delete"
+                                   asp-route-id="@item.Id"
+                                   title="Удалить">Удалить</a>
+                            </td>
+                        }
+                    </tr>
                 }
             }
-        </tbody>
-    </table>
 
-
+    </tbody>
+</table>

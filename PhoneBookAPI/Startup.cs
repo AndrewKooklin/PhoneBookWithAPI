@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PhoneBook.Domain;
-using PhoneBook.Domain.Entities;
-using PhoneBook.Domain.Repositories.Abstract;
-using PhoneBook.Domain.Repositories.EF;
+using PhoneBookAPI.Domain;
+using PhoneBookAPI.Domain.Entities;
+using PhoneBookAPI.Domain.Repositories.Abstract;
+using PhoneBookAPI.Domain.Repositories.EF;
 
-namespace PhoneBook
+namespace PhoneBookAPI
 {
     public class Startup
     {
@@ -37,6 +37,7 @@ namespace PhoneBook
             services.AddDbContext<AppDBContext>(x => x.UseSqlServer(Config.ConnectionString));
             services.AddControllers();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddHttpContextAccessor();
             services.AddRouting(options =>
             {
                 options.ConstraintMap.Add("PhoneBookRecord", typeof(ProvaRouteConstraint));

@@ -1,14 +1,14 @@
-﻿using PhoneBook.Domain.Entities;
+﻿using PhoneBookAPI.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBook.Domain.Repositories.Abstract
+namespace PhoneBookAPI.Domain.Repositories.Abstract
 {
     public interface IPhoneBookRecordRepository
     {
-        IEnumerable<PhoneBookRecord> GetPhoneBookRecords();
+        IEnumerable<PhoneBookRecord> GetPhoneBookRecordsFromAPI();
 
         PhoneBookRecord GetPhoneBookRecordById(int id);
 

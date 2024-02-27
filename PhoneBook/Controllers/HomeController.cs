@@ -29,8 +29,11 @@ namespace PhoneBook.Controllers
             }
             else
             {
-                
-                return View(_dataManager.PhoneBookRecords.GetPhoneBookRecords());
+                IEnumerable<PhoneBookRecord> records = null;
+
+                records = _dataManager.PhoneBookRecords.GetPhoneBookRecords().GetAwaiter().GetResult();
+
+                return View(records);
             }
         }
 

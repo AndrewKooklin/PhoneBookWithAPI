@@ -64,7 +64,7 @@ namespace PhoneBook.Controllers
             else
             {
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                return View();
+                return View(model);
             }
             return RedirectToAction("LogInIndex", "Login");
         }

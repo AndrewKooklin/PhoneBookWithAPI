@@ -14,7 +14,6 @@ namespace PhoneBook.Domain.Repositories.API
 {
     public class APIPhoneBookRecordsRepository : IPhoneBookRecordRepository
     {
-        private HttpClient httpClient { get; set; }
         private HttpClient _httpClient { get; set; }
         private string url = @"https://localhost:44379/api";
         string urlRequest = "";
@@ -23,22 +22,33 @@ namespace PhoneBook.Domain.Repositories.API
         public APIPhoneBookRecordsRepository()
         {
             _httpClient = new HttpClient();
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public IEnumerable<PhoneBookRecord> GetPhoneBookRecords()
+        public async Task<IEnumerable<PhoneBookRecord>> GetPhoneBookRecords()
         {
-            httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             urlRequest = $"{url}" + "/Home/GetRecords";
             IEnumerable<PhoneBookRecord> records = null;
-            HttpResponseMessage response = httpClient.GetAsync(urlRequest).GetAwaiter().GetResult();
 
-            if (response.IsSuccessStatusCode)
+            using (_httpClient)
             {
-                records = response.Content.ReadFromJsonAsync<IEnumerable<PhoneBookRecord>>().GetAwaiter().GetResult();
+                using (HttpResponseMessage response = await _httpClient.GetAsync(urlRequest))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    records = JsonConvert.DeserializeObject<IEnumerable<PhoneBookRecord>>(apiResponse);
+                }
             }
-            return records.AsEnumerable();
+            return records;
+            
+            //IEnumerable<PhoneBookRecord> records = null;
+            //HttpResponseMessage response = _httpClient.GetAsync(urlRequest).GetAwaiter().GetResult();
+
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    records = response.Content.ReadFromJsonAsync<IEnumerable<PhoneBookRecord>>().GetAwaiter().GetResult();
+            //}
+            //return records;
         }
 
         public PhoneBookRecord GetPhoneBookRecordById(int id)

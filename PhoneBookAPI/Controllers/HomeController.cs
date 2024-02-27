@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PhoneBook.Domain;
-using PhoneBook.Domain.Entities;
+using PhoneBookAPI.Domain;
+using PhoneBookAPI.Domain.Entities;
 
-namespace PhoneBook.Controllers
+namespace PhoneBookAPI
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -21,11 +21,10 @@ namespace PhoneBook.Controllers
         }
 
         [HttpGet]
-        [Route("/api/[controller]")]
         [Route("/api/[controller]/GetRecords")]
         public IEnumerable<PhoneBookRecord> GetRecords()
         {
-            return _dataManager.PhoneBookRecords.GetPhoneBookRecords();
+            return _dataManager.PhoneBookRecords.GetPhoneBookRecordsFromAPI();
         }
     }
 }

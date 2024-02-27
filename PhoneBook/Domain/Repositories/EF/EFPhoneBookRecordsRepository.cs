@@ -18,7 +18,7 @@ namespace PhoneBook.Domain.Repositories.EF
 
         public IEnumerable<PhoneBookRecord> GetPhoneBookRecords()
         {
-            return _context.PhoneBookRecords;
+            return _context.PhoneBookRecords.AsEnumerable();
         }
 
         public PhoneBookRecord GetPhoneBookRecordById(int id)

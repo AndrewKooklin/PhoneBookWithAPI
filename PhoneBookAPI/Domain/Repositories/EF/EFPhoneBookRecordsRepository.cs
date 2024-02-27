@@ -1,11 +1,12 @@
-﻿using PhoneBook.Domain.Entities;
-using PhoneBook.Domain.Repositories.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using PhoneBookAPI.Domain.Entities;
+using PhoneBookAPI.Domain.Repositories.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBook.Domain.Repositories.EF
+namespace PhoneBookAPI.Domain.Repositories.EF
 {
     public class EFPhoneBookRecordsRepository : IPhoneBookRecordRepository
     {
@@ -16,9 +17,10 @@ namespace PhoneBook.Domain.Repositories.EF
             _context = context;
         }
 
-        public IEnumerable<PhoneBookRecord> GetPhoneBookRecords()
+        public IEnumerable<PhoneBookRecord> GetPhoneBookRecordsFromAPI()
         {
-            return _context.PhoneBookRecords;
+            //RefreshDbContext.Refresh(_context);
+            return _context.PhoneBookRecords.AsEnumerable();
         }
 
         public PhoneBookRecord GetPhoneBookRecordById(int id)
@@ -30,10 +32,11 @@ namespace PhoneBook.Domain.Repositories.EF
         {
             if (phoneBookRecord.Id == default)
             {
-                _context.Entry(phoneBookRecord).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                //_context.Entry(phoneBookRecord).State = Microsoft.EntityFrameworkCore.EntityState.Added;
                 _context.PhoneBookRecords.Add(phoneBookRecord);
             }
             _context.SaveChanges();
+            _context.Dispose();
         }
 
         public void DeletePhoneBookRecord(int id)
@@ -44,7 +47,7 @@ namespace PhoneBook.Domain.Repositories.EF
 
         public void EditPhoneBookRecord(PhoneBookRecord phoneBookRecord)
         {
-            //_context.Entry(phoneBookRecord).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Entry(phoneBookRecord).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.PhoneBookRecords.Update(phoneBookRecord);
             _context.SaveChanges();
         }
