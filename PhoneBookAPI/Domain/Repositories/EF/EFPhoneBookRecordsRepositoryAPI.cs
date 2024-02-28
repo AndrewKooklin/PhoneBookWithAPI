@@ -8,18 +8,17 @@ using System.Threading.Tasks;
 
 namespace PhoneBookAPI.Domain.Repositories.EF
 {
-    public class EFPhoneBookRecordsRepository : IPhoneBookRecordRepository
+    public class EFPhoneBookRecordsRepositoryAPI : IPhoneBookRecordRepositoryAPI
     {
-        private readonly AppDBContext _context;
+        private readonly AppDBContextAPI _context;
 
-        public EFPhoneBookRecordsRepository(AppDBContext context)
+        public EFPhoneBookRecordsRepositoryAPI(AppDBContextAPI context)
         {
             _context = context;
         }
 
         public IEnumerable<PhoneBookRecord> GetPhoneBookRecordsFromAPI()
         {
-            //RefreshDbContext.Refresh(_context);
             return _context.PhoneBookRecords.AsEnumerable();
         }
 
@@ -51,5 +50,7 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             _context.PhoneBookRecords.Update(phoneBookRecord);
             _context.SaveChanges();
         }
+
+
     }
 }

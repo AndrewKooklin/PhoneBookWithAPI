@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PhoneBookAPI.Domain;
-using PhoneBookAPI.Domain.Entities;
 using PhoneBookAPI.Domain.Repositories.Abstract;
 using PhoneBookAPI.Domain.Repositories.EF;
 
@@ -27,14 +26,14 @@ namespace PhoneBookAPI
         public void ConfigureServices(IServiceCollection services)
         {
             //подключаем Config из appsettings.json для получения connectionString
-            Configuration.Bind("PhoneBook", new Config());
+            Configuration.Bind("PhoneBookAPI", new Config());
 
             //подключаем сервисы
-            services.AddTransient<IPhoneBookRecordRepository, EFPhoneBookRecordsRepository>();
+            services.AddTransient<IPhoneBookRecordRepositoryAPI, EFPhoneBookRecordsRepositoryAPI>();
             services.AddTransient<DataManager>();
 
             //подключаем контекст БД
-            services.AddDbContext<AppDBContext>(x => x.UseSqlServer(Config.ConnectionString));
+            services.AddDbContext<AppDBContextAPI>(x => x.UseSqlServer(Config.ConnectionString));
             services.AddControllers();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddHttpContextAccessor();

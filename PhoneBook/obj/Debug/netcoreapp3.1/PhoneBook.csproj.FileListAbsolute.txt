@@ -164,3 +164,7 @@ C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\repos\PhoneBookWithAPI\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.csproj.CoreCompileInputs.cache
 C:\repos\PhoneBookWithAPI\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.MvcApplicationPartsAssemblyInfo.cs
 C:\repos\PhoneBookWithAPI\PhoneBook\obj\Debug\netcoreapp3.1\PhoneBook.MvcApplicationPartsAssemblyInfo.cache
+C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBookAPI.StaticWebAssets.xml
+C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBookAPI.exe
+C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBookAPI.dll
+C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBookAPI.pdb

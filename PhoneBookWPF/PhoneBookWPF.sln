@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBookWPF", "PhoneBookWPF.csproj", "{86B18663-1875-41DE-BF71-E5630CD7A4DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86B18663-1875-41DE-BF71-E5630CD7A4DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86B18663-1875-41DE-BF71-E5630CD7A4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86B18663-1875-41DE-BF71-E5630CD7A4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86B18663-1875-41DE-BF71-E5630CD7A4DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D88586E2-C71A-4694-B6B3-1F27B5B2DF7A}
+	EndGlobalSection
+EndGlobal

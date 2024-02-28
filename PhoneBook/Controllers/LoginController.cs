@@ -4,19 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using PhoneBook.Domain;
 using PhoneBook.Views.Login;
 
 namespace PhoneBook.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public LoginController(SignInManager<IdentityUser> signInManager,
-                          UserManager<IdentityUser> userManager)
+        public LoginController(SignInManager<IdentityUser> signInManager)
         {
-            _userManager = userManager;
             _signInManager = signInManager;
         }
 
@@ -48,7 +46,7 @@ namespace PhoneBook.Controllers
                     return Redirect("LogInError");
                 }
             }
-            return  RedirectToAction ("LogInIndex", "Login");
+            return  View(model);
         }
     }
 }

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PhoneBookAPI
 {
-    public class AppDBContext : IdentityDbContext
+    public class AppDBContextAPI : IdentityDbContext
     {
-        public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
+        public AppDBContextAPI(DbContextOptions<AppDBContextAPI> options) : base(options) { }
 
         public DbSet<PhoneBookRecord> PhoneBookRecords { get; set; }
 

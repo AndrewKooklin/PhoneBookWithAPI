@@ -30,10 +30,11 @@ namespace PhoneBook.Domain.Repositories.API
         {
             urlRequest = $"{url}" + "/Home/GetRecords";
             IEnumerable<PhoneBookRecord> records = null;
+            HttpResponseMessage response = null;
 
             using (_httpClient)
             {
-                using (HttpResponseMessage response = await _httpClient.GetAsync(urlRequest))
+                using (response = await _httpClient.GetAsync(urlRequest))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     records = JsonConvert.DeserializeObject<IEnumerable<PhoneBookRecord>>(apiResponse);

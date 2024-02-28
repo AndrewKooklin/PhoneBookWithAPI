@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using PhoneBook.Domain;
 using PhoneBook.Domain.Repositories.Abstract;
 using PhoneBook.Domain.Repositories.API;
+using PhoneBook.Views.Login;
 
 namespace PhoneBook
 {
@@ -83,8 +84,6 @@ namespace PhoneBook
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            
 
             //регистрируем маршруты(endpoints)
             app.UseEndpoints(endpoints =>

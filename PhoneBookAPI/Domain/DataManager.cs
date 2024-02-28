@@ -8,9 +8,9 @@ namespace PhoneBookAPI
 {
     public class DataManager
     {
-        public IPhoneBookRecordRepository PhoneBookRecords { get; set; }
+        public IPhoneBookRecordRepositoryAPI PhoneBookRecords { get; set; }
 
-        public DataManager(IPhoneBookRecordRepository phoneBookRecords)
+        public DataManager(IPhoneBookRecordRepositoryAPI phoneBookRecords)
         {
             PhoneBookRecords = phoneBookRecords;
         }

@@ -46,9 +46,8 @@ namespace PhoneBook.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser(RegisterModel model, string returnUrl = null)
+        public async Task<IActionResult> CreateUser(RegisterModel model)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = model.Input.UserName, Email = model.Input.Email };
@@ -66,7 +65,7 @@ namespace PhoneBook.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return View(model);
             }
-            return RedirectToAction("LogInIndex", "Login");
+            return View(model);
         }
     }
 }
