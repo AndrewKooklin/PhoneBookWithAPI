@@ -5,16 +5,16 @@ winexe
 C#
 .cs
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\
-PhoneBookWPF
+PhoneBookWPF_uwdyxzkl_wpftmp
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\App.xaml
-11151548125
+71519829410
 
-4-133303381
+50-1738660846
 347511877223
-MainWindow.xaml;
+MainWindow.xaml;View\AddClientWindow.xaml;View\AddProductWindow.xaml;View\ClientsWindow.xaml;View\ProductsClientWindow.xaml;View\ProductsWindow.xaml;View\RegistrationWindow.xaml;
 
-False
+True
 

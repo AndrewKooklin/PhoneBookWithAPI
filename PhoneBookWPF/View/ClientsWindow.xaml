@@ -1,0 +1,135 @@
+﻿<Window x:Class="PhoneBookWPF.View.ClientsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhoneBookWPF.View"
+        xmlns:viewModel="clr-namespace:PhoneBookWPF.ViewModel"
+        mc:Ignorable="d"
+        Title="ClientsWindow" 
+        Height="450" 
+        Width="650"
+        MinWidth="650"
+        MaxWidth="650"
+        Background="MediumPurple"
+        WindowStartupLocation="CenterScreen" 
+        Loaded="ClientsWindow_Load">
+
+    <Window.Resources>
+
+        <viewModel:ClientsWindowViewModel x:Key="ClientsWindowViewModel">
+        </viewModel:ClientsWindowViewModel>
+
+        <Style x:Key="HeaderGridViewColumn" TargetType="GridViewColumnHeader">
+            <Setter Property="Background" Value="Cyan"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+        <Style x:Key="ClientsButton" TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Width" Value="85"/>
+            <Setter Property="Margin" Value="10 13 0 0"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Background" Value="LightGreen"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid x:Name="gClients">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView x:Name="lvClients"
+                  ItemsSource="{Binding ObservableClients, Source={StaticResource ClientsWindowViewModel}, 
+                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  HorizontalAlignment="Left" 
+                  Height="400" 
+                  Margin="10,10,0,10" 
+                  VerticalAlignment="Top" 
+                  Width="625"
+                  Padding="0">
+            <ListView.View >
+                <GridView >
+                    <GridViewColumn Header="Id" 
+                                    DisplayMemberBinding="{Binding ClientId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    HeaderContainerStyle="{StaticResource HeaderGridViewColumn}"
+                                    Width="40"/>
+                    <GridViewColumn Header="LastName" 
+                                    DisplayMemberBinding="{Binding LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    HeaderContainerStyle="{StaticResource HeaderGridViewColumn}"
+                                    Width="115"/>
+                    <GridViewColumn Header="FirstName" 
+                                    DisplayMemberBinding="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    HeaderContainerStyle="{StaticResource HeaderGridViewColumn}"
+                                    Width="115"/>
+                    <GridViewColumn Header="FathersName" 
+                                    DisplayMemberBinding="{Binding FathersName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    HeaderContainerStyle="{StaticResource HeaderGridViewColumn}"
+                                    Width="115"/>
+                    <GridViewColumn Header="PhoneNumber" 
+                                    DisplayMemberBinding="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    HeaderContainerStyle="{StaticResource HeaderGridViewColumn}"
+                                    Width="115"/>
+                    <GridViewColumn Header="Email" 
+                                    DisplayMemberBinding="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    HeaderContainerStyle="{StaticResource HeaderGridViewColumn}"
+                                    Width="115"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Column="1"
+                    Orientation="Vertical">
+            <Button 
+                Content="Добавить"
+                Style="{StaticResource ClientsButton}"
+                Command="{Binding OpenFormAddClientCommand, Source={StaticResource ClientsWindowViewModel}}"
+                CommandParameter="{Binding ElementName=lvClients, Mode=OneWay}">
+            </Button>
+            <Button
+                Content="Удалить"
+                Style="{StaticResource ClientsButton}"
+                Command="{Binding DeleteClientCommand, Source={StaticResource ClientsWindowViewModel}}"
+                CommandParameter="{Binding ElementName=lvClients, Mode=OneWay}">
+            </Button>
+            <Button
+                Content="Изменить"
+                Style="{StaticResource ClientsButton}"
+                Command="{Binding OpenFormChangeClientWindowCommand, Source={StaticResource ClientsWindowViewModel}}"
+                CommandParameter="{Binding ElementName=lvClients, Mode=OneWay}">
+            </Button>
+            <Button
+                Style="{StaticResource ClientsButton}"
+                Height="45"
+                Command="{Binding OpenProductsWindowCommand, Source={StaticResource ClientsWindowViewModel}}">
+                <Button.Content>
+                    <TextBlock Text="Все покупки" 
+                           TextWrapping="Wrap">
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button
+                Style="{StaticResource ClientsButton}"
+                Height="45"
+                Command="{Binding OpenProductsClientWindowCommand, Source={StaticResource ClientsWindowViewModel}}"
+                CommandParameter="{Binding ElementName=lvClients, Mode=OneWay}">
+                <Button.Content>
+                    <TextBlock Text="Покупки клиента" 
+                           TextWrapping="Wrap">
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        
+    </Grid>
+</Window>

@@ -130,3 +130,10 @@ C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\PhoneBookWPF.cspr
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\PhoneBookWPF.dll
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\PhoneBookWPF.pdb
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\PhoneBookWPF.genruntimeconfig.cache
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\View\AddClientWindow.g.cs
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\View\AddProductWindow.g.cs
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\View\ClientsWindow.g.cs
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\View\ProductsClientWindow.g.cs
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\View\ProductsWindow.g.cs
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\View\RegistrationWindow.g.cs
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs

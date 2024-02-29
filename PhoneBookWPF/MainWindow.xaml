@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhoneBookWPF"
+        xmlns:viewModel="clr-namespace:PhoneBook.ViewModel"
         mc:Ignorable="d"
         Title="PhoneBook LogInForm" 
         Height="360"
@@ -17,10 +18,10 @@
         Loaded="MainWindow_Loaded">
 
     <Window.Resources>
-        <!--<viewModel:MainWindowViewModel x:Key="MainWindowViewModel">
-        </viewModel:MainWindowViewModel>-->
-        <!--<help:MyMultiValueConverter x:Key="MyMultiValueConverter">
-        </help:MyMultiValueConverter>-->
+        <viewModel:MainWindowViewModel x:Key="MainWindowViewModel">
+        </viewModel:MainWindowViewModel>
+        <help:MyMultiValueConverter x:Key="MyMultiValueConverter">
+        </help:MyMultiValueConverter>
 
         <Style x:Key="LogInLabel" TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="20"/>
