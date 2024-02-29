@@ -1,4 +1,5 @@
 ﻿using PhoneBookWPF.HelpMethods;
+using PhoneBookWPF.Model;
 using PhoneBookWPF.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,12 @@ namespace PhoneBookWPF.Commands
         string emailValue = "";
 
         private ObservableCollection<Clients> _observableClients;
-        StoreWithEFDBEntities _context;
+        //StoreWithEFDBEntities _context;
 
-        public AddClientCommand(ObservableCollection<Clients> observableClients, StoreWithEFDBEntities context)
+        public AddClientCommand(ObservableCollection<Clients> observableClients)
         {
             _observableClients = observableClients;
-            _context = context;
+           // _context = context;
         }
 
         public bool CanExecute(object parameter)
@@ -91,15 +92,15 @@ namespace PhoneBookWPF.Commands
                 {
                     phoneNumberError.Content = "";
                 }
-                if(_context.Clients.Any(c => c.PhoneNumber == phoneNumberValue))
-                {
-                    phoneNumberError.Content = "Такой номер уже есть в базе";
-                    return false;
-                }
-                else
-                {
-                    phoneNumberError.Content = "";
-                }
+                //if(_context.Clients.Any(c => c.PhoneNumber == phoneNumberValue))
+                //{
+                //    phoneNumberError.Content = "Такой номер уже есть в базе";
+                //    return false;
+                //}
+                //else
+                //{
+                //    phoneNumberError.Content = "";
+                //}
                 if (!checkInputText.CheckEmail(emailValue))
                 {
                     emailError.Content = "Email в формате name@site.ru";
@@ -120,8 +121,8 @@ namespace PhoneBookWPF.Commands
                 Clients client = new Clients(lastNameValue, firstNameValue, fathersNameValue,
                     phoneNumberValue, emailValue);
                 _observableClients.Add(client);
-                _context.Clients.Add(client);
-                _context.SaveChanges();
+                //_context.Clients.Add(client);
+                //_context.SaveChanges();
                 App.clientsWindow.lvClients.ItemsSource = null;
                 App.clientsWindow.lvClients.ItemsSource = _observableClients;
             }

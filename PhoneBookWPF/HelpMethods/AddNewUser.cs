@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneBookWPF.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,11 @@ namespace PhoneBookWPF.HelpMethods
     {
         GetDBContext getDBContext = new GetDBContext();
         
-        public void Add(Users user)
+        public void Add(User user)
         {
-            var db = getDBContext.GetDB();
-            db.Users.Add(user);
-            db.SaveChanges();
+            //var db = getDBContext.GetDB();
+            //db.Users.Add(user);
+            //db.SaveChanges();
         }
     }
 }

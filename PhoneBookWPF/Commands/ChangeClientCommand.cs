@@ -1,4 +1,5 @@
 ﻿using PhoneBookWPF.HelpMethods;
+using PhoneBookWPF.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,13 +24,12 @@ namespace PhoneBookWPF.Commands
         string emailValue = "";
         Label phoneNumberError;
         private ObservableCollection<Clients> _observableClients;
-        StoreWithEFDBEntities _context;
+        //StoreWithEFDBEntities _context;
 
-        public ChangeClientCommand(ObservableCollection<Clients> observableClients, 
-                                    StoreWithEFDBEntities context)
+        public ChangeClientCommand(ObservableCollection<Clients> observableClients/*, StoreWithEFDBEntities context*/)
         {
             _observableClients = observableClients;
-            _context = context;
+            //_context = context;
         }
 
         public bool CanExecute(object parameter)
@@ -135,22 +135,22 @@ namespace PhoneBookWPF.Commands
                 emailValue = email.Text.ToString();
             }
 
-            Clients client = _context.Clients.First(c => c.ClientId == clientId);
-            client.LastName = lastNameValue;
-            client.FirstName = firstNameValue;
-            client.FathersName = fathersNameValue;
-            if (_context.Clients.Where(c => c.ClientId != clientId).Any(c => c.PhoneNumber == phoneNumberValue))
-            {
-                phoneNumberError.Content = "Такой номер уже есть в базе";
-                return;
-            }
-            else
-            {
-                phoneNumberError.Content = "";
-            }
-            client.PhoneNumber = phoneNumberValue;
-            client.Email = emailValue;
-            _context.SaveChanges();
+            //Clients client = _context.Clients.First(c => c.ClientId == clientId);
+            //client.LastName = lastNameValue;
+            //client.FirstName = firstNameValue;
+            //client.FathersName = fathersNameValue;
+            //if (_context.Clients.Where(c => c.ClientId != clientId).Any(c => c.PhoneNumber == phoneNumberValue))
+            //{
+            //    phoneNumberError.Content = "Такой номер уже есть в базе";
+            //    return;
+            //}
+            //else
+            //{
+            //    phoneNumberError.Content = "";
+            //}
+            //client.PhoneNumber = phoneNumberValue;
+            //client.Email = emailValue;
+            //_context.SaveChanges();
 
             Clients clientWithChange =  _observableClients.First(c => c.ClientId == clientId);
             clientWithChange.LastName = lastNameValue;

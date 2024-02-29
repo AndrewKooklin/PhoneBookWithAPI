@@ -1,5 +1,6 @@
 ﻿using PhoneBookWPF.Commands;
 using PhoneBookWPF.HelpMethods;
+using PhoneBookWPF.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -135,7 +136,7 @@ namespace PhoneBookWPF.ViewModel
             }
             else
             {
-                Users user = new Users(userNameValue, passwordValue);
+                User user = new User(userNameValue, passwordValue);
                 AddNewUser addUser = new AddNewUser();
                 addUser.Add(user);
 

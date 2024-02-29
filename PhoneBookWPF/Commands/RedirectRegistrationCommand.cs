@@ -19,9 +19,8 @@ namespace PhoneBookWPF.Commands
 
         public void Execute(object parameter)
         {
-            if(parameter is MainWindow)
+            if (parameter is MainWindow mainWindow)
             {
-                var mainWindow = (MainWindow)parameter;
                 mainWindow.Hide();
                 RegistrationWindow registrationWindow = new RegistrationWindow();
                 registrationWindow.Show();

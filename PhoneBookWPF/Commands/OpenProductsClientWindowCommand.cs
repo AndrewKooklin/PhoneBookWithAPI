@@ -1,8 +1,8 @@
-﻿using PhoneBookWPF.View;
+﻿using PhoneBookWPF.Model;
+using PhoneBookWPF.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +17,7 @@ namespace PhoneBookWPF.Commands
         ListView listViewClients;
         ObservableCollection<Products> _observableProducts;
         public event EventHandler CanExecuteChanged;
-        StoreWithEFDBEntities _context = new StoreWithEFDBEntities();
+        //StoreWithEFDBEntities _context = new StoreWithEFDBEntities();
 
         public bool CanExecute(object parameter)
         {
@@ -48,15 +48,15 @@ namespace PhoneBookWPF.Commands
 
             _observableProducts = new ObservableCollection<Products>();
 
-            _context.Products.Load();
+            //_context.Products.Load();
 
-            foreach(Products product in _context.Products)
-            {
-                if(product.ClientId == clientId)
-                {
-                    _observableProducts.Add(product);
-                }
-            }
+            //foreach(Products product in _context.Products)
+            //{
+            //    if(product.ClientId == clientId)
+            //    {
+            //        _observableProducts.Add(product);
+            //    }
+            //}
 
             App.productsClientWindow = new ProductsClientWindow();
             App.productsClientWindow.lvProductsClient.ItemsSource = _observableProducts;

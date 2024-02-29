@@ -1,4 +1,5 @@
 ﻿using PhoneBookWPF.HelpMethods;
+using PhoneBookWPF.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,13 +16,13 @@ namespace PhoneBookWPF.Commands
     {
         ObservableCollection<Clients> _observableClients;
         ListView listView;
-        StoreWithEFDBEntities _context;
+        //StoreWithEFDBEntities _context;
         public event EventHandler CanExecuteChanged;
 
-        public DeleteClientCommand(ObservableCollection<Clients> observableClients, StoreWithEFDBEntities context)
+        public DeleteClientCommand(ObservableCollection<Clients> observableClients/*, StoreWithEFDBEntities context*/)
         {
             _observableClients = observableClients;
-            _context = context;
+            //_context = context;
         }
 
         public bool CanExecute(object parameter)
@@ -49,14 +50,14 @@ namespace PhoneBookWPF.Commands
             }
 
             Clients client = (Clients)listView.SelectedItem;
-            foreach (var item in _context.Clients)
-            {
-                if (item.Equals(client))
-                {
-                    _context.Clients.Remove(client);
-                }
-            }
-            _context.SaveChanges();
+            //foreach (var item in _context.Clients)
+            //{
+            //    if (item.Equals(client))
+            //    {
+            //        _context.Clients.Remove(client);
+            //    }
+            //}
+            //_context.SaveChanges();
             _observableClients.Remove(client);
             App.clientsWindow.lvClients.ItemsSource = null;
             App.clientsWindow.lvClients.ItemsSource = _observableClients;

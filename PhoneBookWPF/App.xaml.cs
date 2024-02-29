@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneBookWPF.View;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,8 @@ namespace PhoneBookWPF
     /// </summary>
     public partial class App : Application
     {
+        public static ClientsWindow clientsWindow = new ClientsWindow();
+        public static ProductsWindow productsWindow = new ProductsWindow();
+        public static ProductsClientWindow productsClientWindow = new ProductsClientWindow();
     }
 }

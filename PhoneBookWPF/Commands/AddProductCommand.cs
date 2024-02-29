@@ -1,4 +1,5 @@
 ﻿using PhoneBookWPF.HelpMethods;
+using PhoneBookWPF.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,16 +15,16 @@ namespace PhoneBookWPF.Commands
     {
         public event EventHandler CanExecuteChanged;
         private ObservableCollection<Products> _observableProducts;
-        StoreWithEFDBEntities _context;
+        //StoreWithEFDBEntities _context;
         int clientIdValue;
         int productCodeValue;
         string productNameValue = "";
         string emailValue = "";
 
-        public AddProductCommand(ObservableCollection<Products> observableProducts, StoreWithEFDBEntities context)
+        public AddProductCommand(ObservableCollection<Products> observableProducts)
         {
             _observableProducts = observableProducts;
-            _context = context;
+            //_context = context;
 
         }
 
@@ -57,17 +58,17 @@ namespace PhoneBookWPF.Commands
                 {
                     clientIdError.Content = "";
                 }
-                if (_context.Clients.Any(c => c.ClientId == clientIdValue))
-                {
-                    Clients client = _context.Clients.First(c => c.ClientId == clientIdValue);
-                    emailValue = client.Email;
-                    clientIdError.Content = "";
-                }
-                else
-                {
-                    clientIdError.Content = "Клиента с таким Id нет в базе";
-                    return false;
-                }
+                //if (_context.Clients.Any(c => c.ClientId == clientIdValue))
+                //{
+                //    Clients client = _context.Clients.First(c => c.ClientId == clientIdValue);
+                //    emailValue = client.Email;
+                //    clientIdError.Content = "";
+                //}
+                //else
+                //{
+                //    clientIdError.Content = "Клиента с таким Id нет в базе";
+                //    return false;
+                //}
                 if (!checkInputText.CheckProductCode(productCodeValue))
                 {
                     productCodeError.Content = "Минимум 1 цифра";
@@ -93,8 +94,8 @@ namespace PhoneBookWPF.Commands
                 Products product = new Products(clientIdValue, productCodeValue, 
                     productNameValue, emailValue);
                 _observableProducts.Add(product);
-                _context.Products.Add(product);
-                _context.SaveChanges();
+                //_context.Products.Add(product);
+                //_context.SaveChanges();
                 App.productsWindow.lvProducts.ItemsSource = null;
                 App.productsWindow.lvProducts.ItemsSource = _observableProducts;
             }

@@ -21,8 +21,8 @@
 
     <Window.Resources>
 
-        <viewModel:ClientsWindowViewModel x:Key="ClientsWindowViewModel">
-        </viewModel:ClientsWindowViewModel>
+        <!--<viewModel:ClientsWindowViewModel x:Key="ClientsWindowViewModel">
+        </viewModel:ClientsWindowViewModel>-->
 
         <Style x:Key="LabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="15"/>
@@ -166,25 +166,25 @@
                 Content="Добавить"
                     Style="{StaticResource AddClientButton}"
                     Margin="50,0,0,0"
-                    Command="{Binding AddClientCommand, Source={StaticResource ClientsWindowViewModel}}"
+                    Command="{Binding }"
                     CommandParameter="{Binding ElementName=gAddClient, Mode=OneWay}"/>
             <Button x:Name="btnChangeClient"
                 Content="Изменить" 
                 Style="{StaticResource AddClientButton}"
                 Margin="10,0,0,0"
-                Command="{Binding ChangeClientCommand, Source={StaticResource ClientsWindowViewModel}}"
+                Command="{Binding }"
                 CommandParameter="{Binding ElementName=gAddClient, Mode=OneWay}"/>
             <Button x:Name="btnClearForm"
                 Content="Очистить" 
                 Style="{StaticResource AddClientButton}"
                 Margin="10,0,0,0"
-                Command="{Binding ClearClientCommand, Source={StaticResource ClientsWindowViewModel}}"
+                Command="{Binding }"
                 CommandParameter="{Binding ElementName=gAddClient, Mode=OneWay}"/>
             <Button x:Name="btnCancel"
                 Content="Отменить" 
                 Style="{StaticResource AddClientButton}"
                 Margin="10,0,0,0"
-                Command="{Binding CloseWindowCommand, Source={StaticResource ClientsWindowViewModel}}"
+                Command="{Binding }"
                 CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
         </StackPanel>
 

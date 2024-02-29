@@ -11,11 +11,11 @@ namespace PhoneBookWPF.HelpMethods
     /// </summary>
     public class GetDBContext
     {
-        public StoreWithEFDBEntities GetDB()
-        {
-            StoreWithEFDBEntities storeWithEFDBEntities = new StoreWithEFDBEntities();
+        //public StoreWithEFDBEntities GetDB()
+        //{
+        //    StoreWithEFDBEntities storeWithEFDBEntities = new StoreWithEFDBEntities();
 
-            return storeWithEFDBEntities;
-        }
+        //    return storeWithEFDBEntities;
+        //}
     }
 }

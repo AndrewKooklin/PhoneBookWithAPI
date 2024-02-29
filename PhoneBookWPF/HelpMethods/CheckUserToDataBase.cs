@@ -12,8 +12,8 @@ namespace PhoneBookWPF.HelpMethods
 
         public bool CheckUser(string userName, string password)
         {
-            var db = context.GetDB();
-            bool userExist = db.Users.Any(u => u.UserName == userName && u.Password == password);
+            //var db = context.GetDB();
+            bool userExist = false/*db.Users.Any(u => u.UserName == userName && u.Password == password)*/;
             return userExist;
         }
     }

@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,12 +6,12 @@ using System.ComponentModel;
 using PhoneBookWPF.Commands;
 using PhoneBookWPF.HelpMethods;
 using PhoneBookWPF.View;
+using Microsoft.AspNetCore.Identity;
 
 namespace PhoneBookWPF.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-
         private string userName;
         public string UserName
         {
@@ -46,17 +40,31 @@ namespace PhoneBookWPF.ViewModel
             }
         }
 
-        private string _inputLabelContent = "";
-        public string InputLabelContent
+        private string _labelErrorUserNameContent = "";
+        public string LabelErrorUserNameContent
         {
             get
             {
-                return _inputLabelContent;
+                return _labelErrorUserNameContent;
             }
             set
             {
-                _inputLabelContent = value;
-                OnPropertyChanged(nameof(InputLabelContent));
+                _labelErrorUserNameContent = value;
+                OnPropertyChanged(nameof(LabelErrorUserNameContent));
+            }
+        }
+
+        private string _labelErrorPasswordContent = "";
+        public string LabelErrorPasswordContent
+        {
+            get
+            {
+                return _labelErrorPasswordContent;
+            }
+            set
+            {
+                _labelErrorPasswordContent = value;
+                OnPropertyChanged(nameof(LabelErrorPasswordContent));
             }
         }
 
@@ -104,17 +112,22 @@ namespace PhoneBookWPF.ViewModel
             {
                 return true;
             }
-            if (String.IsNullOrEmpty(userName) || 
-                userName.Length < 3 || passwordValue.Length < 3 ||
-                 String.IsNullOrEmpty(passwordValue))
+            if (String.IsNullOrEmpty(userName) || userName.Length < 3)
             {
-                InputLabelContent = "Имя и пароль не менее 3 символов !";
+                LabelErrorUserNameContent = "Имя не менее 3 символов!";
+                CheckUserLabelContent = "";
+                return false;
+            }
+            if (String.IsNullOrEmpty(passwordValue) || passwordValue.Length < 6)
+            {
+                LabelErrorPasswordContent = "Пароль не менее 6 символов!";
                 CheckUserLabelContent = "";
                 return false;
             }
             else
             {
-                InputLabelContent = "";
+                LabelErrorUserNameContent = "";
+                LabelErrorPasswordContent = "";
                 return true;
             }
         }
@@ -130,6 +143,8 @@ namespace PhoneBookWPF.ViewModel
             PasswordBox passwordBox = (PasswordBox)values[1];
             string passwordValue = passwordBox.Password;
 
+
+
             CheckUserToDataBase checkUserToDB = new CheckUserToDataBase();
 
             if(!checkUserToDB.CheckUser(userNameValue, passwordValue))
@@ -142,7 +157,7 @@ namespace PhoneBookWPF.ViewModel
                 CheckUserLabelContent = "";
                 Application.Current.MainWindow.Hide();
                 App.clientsWindow = new ClientsWindow();
-                App.productsWindow = new ProductsWindow();
+                //App.productsWindow = new ProductsWindow();
                 App.clientsWindow.Show();
             }
         }

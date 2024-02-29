@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneBookWPF.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,13 +15,13 @@ namespace PhoneBookWPF.Commands
     {
         ObservableCollection<Products> _observableProducts;
         ListView listView;
-        StoreWithEFDBEntities _context;
+        //StoreWithEFDBEntities _context;
         public event EventHandler CanExecuteChanged;
 
-        public DeleteProductCommand(ObservableCollection<Products> observableProducts, StoreWithEFDBEntities context)
+        public DeleteProductCommand(ObservableCollection<Products> observableProducts/*, StoreWithEFDBEntities context*/)
         {
             _observableProducts = observableProducts;
-            _context = context;
+            //_context = context;
         }
 
         public bool CanExecute(object parameter)
@@ -48,15 +49,15 @@ namespace PhoneBookWPF.Commands
             }
 
             Products product = (Products)listView.SelectedItem;
-            Products contextProduct = _context.Products.First(p => p.ProductId == product.ProductId);
-            foreach(var item in _context.Products)
-            {
-                if (item.ProductId.Equals(contextProduct.ProductId))
-                {
-                    _context.Products.Remove(item);
-                }
-            }
-            _context.SaveChanges();
+            //Products contextProduct = _context.Products.First(p => p.ProductId == product.ProductId);
+            //foreach(var item in _context.Products)
+            //{
+            //    if (item.ProductId.Equals(contextProduct.ProductId))
+            //    {
+            //        _context.Products.Remove(item);
+            //    }
+            //}
+            //_context.SaveChanges();
             _observableProducts.Remove(product);
             App.productsWindow.lvProducts.ItemsSource = null;
             App.productsWindow.lvProducts.ItemsSource = _observableProducts;

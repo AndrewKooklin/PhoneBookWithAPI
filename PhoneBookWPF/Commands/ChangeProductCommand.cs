@@ -1,4 +1,5 @@
 ﻿using PhoneBookWPF.HelpMethods;
+using PhoneBookWPF.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,17 +15,17 @@ namespace PhoneBookWPF.Commands
     public class ChangeProductCommand : ICommand
     {
         private ObservableCollection<Products> _observableProducts;
-        StoreWithEFDBEntities _context;
+        //StoreWithEFDBEntities _context;
         public event EventHandler CanExecuteChanged;
         int clientIdValue;
         int productIdValue;
         int productCodeValue;
         string productNameValue = "";
 
-        public ChangeProductCommand(ObservableCollection<Products> observableProducts, StoreWithEFDBEntities context)
+        public ChangeProductCommand(ObservableCollection<Products> observableProducts/*, StoreWithEFDBEntities context*/)
         {
             _observableProducts = observableProducts;
-            _context = context;
+            //_context = context;
         }
 
         public bool CanExecute(object parameter)
@@ -82,10 +83,10 @@ namespace PhoneBookWPF.Commands
                 Products observableProduct = _observableProducts.First(p => p.ProductId == productIdValue);
                 observableProduct.ProductCode = productCodeValue;
                 observableProduct.ProductName = productNameValue;
-                Products contextProduct = _context.Products.First(p => p.ProductId == productIdValue);
-                contextProduct.ProductCode = productCodeValue;
-                contextProduct.ProductName = productNameValue;
-                _context.SaveChanges();
+                //Products contextProduct = _context.Products.First(p => p.ProductId == productIdValue);
+                //contextProduct.ProductCode = productCodeValue;
+                //contextProduct.ProductName = productNameValue;
+                //_context.SaveChanges();
                 App.productsWindow.lvProducts.ItemsSource = null;
                 App.productsWindow.lvProducts.ItemsSource = _observableProducts;
             }

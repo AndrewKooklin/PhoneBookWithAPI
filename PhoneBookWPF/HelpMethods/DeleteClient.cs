@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneBookWPF.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,9 @@ namespace PhoneBookWPF.HelpMethods
 
         public void DeleteOneClient(Clients client)
         {
-            var db = getDBContext.GetDB();
-            db.Clients.Remove(client);
-            db.SaveChanges();
+            //var db = getDBContext.GetDB();
+            //db.Clients.Remove(client);
+            //db.SaveChanges();
         }
     }
 }

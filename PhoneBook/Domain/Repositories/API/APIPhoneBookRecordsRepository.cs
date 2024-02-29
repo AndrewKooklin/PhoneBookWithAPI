@@ -80,8 +80,6 @@ namespace PhoneBook.Domain.Repositories.API
             urlRequest = $"{url}" + "EditRecord/EditRecord/";
 
             response = await _httpClient.PostAsJsonAsync(urlRequest, phoneBookRecord);
-
-            //response.EnsureSuccessStatusCode();
         }
     }
 }

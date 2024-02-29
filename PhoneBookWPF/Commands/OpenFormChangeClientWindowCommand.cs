@@ -1,4 +1,5 @@
-﻿using PhoneBookWPF.View;
+﻿using PhoneBookWPF.Model;
+using PhoneBookWPF.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

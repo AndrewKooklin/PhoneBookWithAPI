@@ -1,5 +1,5 @@
 ﻿PhoneBookWPF
-
+1.0.0.0
 
 winexe
 C#
@@ -12,7 +12,7 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\App.xaml
 71519829410
 
-44-1971699660
+46153871495
 232-1066450323
 MainWindow.xaml;View\AddClientWindow.xaml;View\AddProductWindow.xaml;View\ClientsWindow.xaml;View\ProductsClientWindow.xaml;View\ProductsWindow.xaml;View\RegistrationWindow.xaml;
 

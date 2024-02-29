@@ -1,8 +1,8 @@
 ﻿using PhoneBookWPF.Commands;
+using PhoneBookWPF.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,23 +12,23 @@ namespace PhoneBookWPF.ViewModel
 {
     public class ProductsWindowViewModel : BaseViewModel
     {
-        StoreWithEFDBEntities _context = new StoreWithEFDBEntities();
+        //StoreWithEFDBEntities _context = new StoreWithEFDBEntities();
 
         public ProductsWindowViewModel()
         {
             _observableProducts = new ObservableCollection<Products>();
-            _context.Products.Load();
+            //_context.Products.Load();
 
-            foreach (var item in _context.Products)
-            {
-                _observableProducts.Add(item);
-            }
+            //foreach (var item in _context.Products)
+            //{
+            //    _observableProducts.Add(item);
+            //}
 
             OpenFormAddProductWindowCommand = new OpenFormAddProductWindowCommand();
-            AddProductCommand = new AddProductCommand(_observableProducts, _context);
-            DeleteProductCommand = new DeleteProductCommand(_observableProducts, _context);
+            AddProductCommand = new AddProductCommand(_observableProducts/*, _context*/);
+            DeleteProductCommand = new DeleteProductCommand(_observableProducts/*, _context*/);
             OpenFormChangeProductWindowCommand = new OpenFormChangeProductWindowCommand();
-            ChangeProductCommand = new ChangeProductCommand(_observableProducts, _context);
+            ChangeProductCommand = new ChangeProductCommand(_observableProducts/*, _context*/);
             ClearProductCommand = new ClearProductCommand();
             CloseWindowCommand = new CloseWindowCommand();
         }

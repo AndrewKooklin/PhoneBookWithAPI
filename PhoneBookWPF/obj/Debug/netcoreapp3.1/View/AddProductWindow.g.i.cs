@@ -166,7 +166,7 @@ namespace PhoneBookWPF.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PhoneBookWPF;V1.0.0.0;component/view/addproductwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PhoneBookWPF;component/view/addproductwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\AddProductWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
