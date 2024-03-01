@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBook", "PhoneBook.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookAPI", "..\PhoneBookAPI\PhoneBookAPI.csproj", "{9BDF1C59-2A77-4D27-8E1D-9A6970B1693D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBookWPF", "..\PhoneBookWPF\PhoneBookWPF.csproj", "{5F6ECBF1-3BD7-4C2D-B750-39AF54A7A5DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9BDF1C59-2A77-4D27-8E1D-9A6970B1693D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BDF1C59-2A77-4D27-8E1D-9A6970B1693D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BDF1C59-2A77-4D27-8E1D-9A6970B1693D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F6ECBF1-3BD7-4C2D-B750-39AF54A7A5DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F6ECBF1-3BD7-4C2D-B750-39AF54A7A5DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F6ECBF1-3BD7-4C2D-B750-39AF54A7A5DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F6ECBF1-3BD7-4C2D-B750-39AF54A7A5DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
