@@ -116,8 +116,8 @@
         <Label x:Name="lErrorUserNameBox"
                Grid.Row="1"
                Grid.Column="1"
+               Content="{Binding ErrorUserNameBoxLabel, Source={StaticResource MainWindowViewModel}}"
                BindingGroup="{Binding BindingGroupName=Parameters}"
-               Content=""
                Style="{StaticResource LabelInputError}"/>
         <Label Content="UserName"
                Grid.Row="2"
@@ -145,7 +145,7 @@
                Grid.Row="3"
                Grid.Column="1"
                BindingGroup="{Binding BindingGroupName=Parameters}"
-               Content="{Binding }"
+               Content="{Binding ErrorPasswordBoxLabel, Source={StaticResource MainWindowViewModel}}"
                Style="{StaticResource LabelInputError}">
         </Label>
         <PasswordBox x:Name="tbPassword"
@@ -159,7 +159,7 @@
                Grid.Row="5"
                Grid.Column="1"
                BindingGroup="{Binding BindingGroupName=Parameters}"
-               Content=""
+               Content="{Binding CheckUserLabelContent, Source={StaticResource MainWindowViewModel}}"
                VerticalAlignment="Top"
                HorizontalAlignment="Left"
                Width="265"

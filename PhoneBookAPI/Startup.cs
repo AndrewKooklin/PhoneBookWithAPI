@@ -34,6 +34,19 @@ namespace PhoneBookAPI
 
             //подключаем контекст БД
             services.AddDbContext<AppDBContextAPI>(x => x.UseSqlServer(Config.ConnectionString));
+            //настраиваем Identity систему
+            services.AddIdentity<IdentityUser, IdentityRole>(opts =>
+            {
+                opts.User.RequireUniqueEmail = true;
+                opts.Password.RequiredLength = 6;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+            })
+            .AddEntityFrameworkStores<AppDBContextAPI>()
+            .AddDefaultTokenProviders();
+
             services.AddControllers();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddHttpContextAccessor();

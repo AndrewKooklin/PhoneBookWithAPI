@@ -44,6 +44,15 @@ namespace PhoneBook.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "c38e4f0a-51d7-42b8-a90c-297990cab76c",
+                            ConcurrencyStamp = "600b4457-e84c-4fc6-a91b-e3b551d56eca",
+                            Name = "Counter",
+                            NormalizedName = "COUNTER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

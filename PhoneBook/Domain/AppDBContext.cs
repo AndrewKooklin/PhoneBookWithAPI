@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PhoneBook.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PhoneBook.Domain
 {
@@ -49,6 +46,27 @@ namespace PhoneBook.Domain
                 PhoneNumber = "+79154587483",
                 Address = "Rostov, st.Lenina 12 f.13",
                 Description = "3 Sidorov Sidor Sidorovich"
+            });
+
+            builder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Name = "Admin",
+                NormalizedName = "ADMIN",
+                ConcurrencyStamp = "6d5c54e4-667f-4b61-9ac9-d61039cdf950"
+            });
+
+            builder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Name = "User",
+                NormalizedName = "USER",
+                ConcurrencyStamp = "302dc497-bf7b-49fa-af47-cc1123b3fe8e"
+            });
+
+            builder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Name = "Counter",
+                NormalizedName = "COUNTER",
+                ConcurrencyStamp = "600b4457-e84c-4fc6-a91b-e3b551d56eca"
             });
         }
     }
