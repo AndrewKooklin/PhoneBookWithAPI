@@ -30,6 +30,7 @@ namespace PhoneBookAPI
 
             //подключаем сервисы
             services.AddTransient<IPhoneBookRecordRepositoryAPI, EFPhoneBookRecordsRepositoryAPI>();
+            services.AddTransient<IAccountRepositoryAPI, EFAccountRepositoryAPI>();
             services.AddTransient<DataManager>();
 
             //подключаем контекст БД
@@ -53,6 +54,7 @@ namespace PhoneBookAPI
             services.AddRouting(options =>
             {
                 options.ConstraintMap.Add("PhoneBookRecord", typeof(ProvaRouteConstraint));
+                options.ConstraintMap.Add("LoginModel", typeof(ProvaRouteConstraint));
             });
         }
 

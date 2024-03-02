@@ -10,9 +10,13 @@ namespace PhoneBookAPI
     {
         public IPhoneBookRecordRepositoryAPI PhoneBookRecords { get; set; }
 
-        public DataManager(IPhoneBookRecordRepositoryAPI phoneBookRecords)
+        public IAccountRepositoryAPI Accounts { get; set; }
+
+        public DataManager(IPhoneBookRecordRepositoryAPI phoneBookRecords,
+                            IAccountRepositoryAPI accounts)
         {
             PhoneBookRecords = phoneBookRecords;
+            Accounts = accounts;
         }
     }
 }

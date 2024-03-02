@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PhoneBookAPI.Domain.Entities;
 
 namespace PhoneBookAPI.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
         private readonly DataManager _dataManager;
@@ -15,10 +18,10 @@ namespace PhoneBookAPI.Controllers
             _dataManager = dataManager;
         }
 
-        [HttpPost("/api/[controller]/CreateRecord/{PhoneBookRecord?}")]
-        public void CreateRecord([FromBody] PhoneBookRecord record)
+        [HttpPost("/api/[controller]/CreateRecord/{LoginModel?}")]
+        public Task<bool> CheckUserToDB([FromBody] LoginModel model)
         {
-            _dataManager.PhoneBookRecords.SavePhoneBookRecord(record);
+            return _dataManager.Accounts.CheckUserToDB(model);
         }
     }
 }
