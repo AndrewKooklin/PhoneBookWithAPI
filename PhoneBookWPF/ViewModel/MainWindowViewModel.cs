@@ -1,9 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using PhoneBookWPF.Commands;
 using PhoneBookWPF.HelpMethods;
+using PhoneBookWPF.Model;
+using PhoneBookWPF.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +20,12 @@ namespace PhoneBookWPF.ViewModel
 {
     public class MainWindowViewModel
     {
+
+        private HttpClient _httpClient { get; set; }
+        private string url = @"https://localhost:44379/api/";
+        string urlRequest = "";
+        HttpResponseMessage response;
+        bool result;
 
         private string userName;
         public string UserName
@@ -88,6 +100,9 @@ namespace PhoneBookWPF.ViewModel
 
         public MainWindowViewModel()
         {
+            _httpClient = new HttpClient();
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             LogInCommand = new RelayCommand(Execute, CanExecute);
             //RedirectRegistrationCommand = new RedirectRegistrationCommand();
         }
@@ -118,22 +133,27 @@ namespace PhoneBookWPF.ViewModel
             {
                 return true;
             }
-            if (String.IsNullOrEmpty(userName) ||
-                userName.Length < 3 || passwordValue.Length < 3 ||
-                 String.IsNullOrEmpty(passwordValue))
+            if (String.IsNullOrEmpty(userName) || userName.Length < 3)
             {
-                ErrorUserNameBoxLabel = "Имя и пароль не менее 3 символов !";
+                ErrorUserNameBoxLabel = "Имя не менее 3 символов !";
+                CheckUserLabelContent = "";
+                return false;
+            }
+            if (String.IsNullOrEmpty(passwordValue) || passwordValue.Length < 6)
+            {
+                ErrorPasswordBoxLabel = "Пароль не менее 6 символов !";
                 CheckUserLabelContent = "";
                 return false;
             }
             else
             {
                 ErrorUserNameBoxLabel = "";
+                ErrorPasswordBoxLabel = "";
                 return true;
             }
         }
 
-        private void Execute(object param)
+        private async void Execute(object param)
         {
             if (param == null)
             {
@@ -144,21 +164,36 @@ namespace PhoneBookWPF.ViewModel
             PasswordBox passwordBox = (PasswordBox)values[1];
             string passwordValue = passwordBox.Password;
 
-            //CheckUserToDataBase checkUserToDB = new CheckUserToDataBase();
+            LoginModel model = new LoginModel();
+            model.Input.UserName = userNameValue;
+            model.Input.Password = passwordValue;
+            model.ErrorMessage = "";
+            model.ReturnUrl = "";
 
-            //if (!checkUserToDB.CheckUser(userNameValue, passwordValue))
-            //{
-            //    CheckUserLabelContent = "Пользователь не найден, проверьте\nимя и пароль или зарегистрируйтесь !";
-            //    return;
-            //}
-            //else
-            //{
-            //    CheckUserLabelContent = "";
-            //    //Application.Current.MainWindow.Hide();
-            //    //App.clientsWindow = new ClientsWindow();
-            //    //App.productsWindow = new ProductsWindow();
-            //    //App.clientsWindow.Show();
-            //}
+            urlRequest = $"{url}" + "Login/CheckUserToDB/";
+
+            using (_httpClient)
+            {
+                using (response = await _httpClient.PostAsJsonAsync(urlRequest, model))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    result = JsonConvert.DeserializeObject<bool>(apiResponse);
+                }
+            }
+
+            if (!result)
+            {
+                CheckUserLabelContent = "Пользователь не найден, проверьте" +
+                                        "\nимя и пароль или зарегистрируйтесь !";
+                return;
+            }
+            else
+            {
+                CheckUserLabelContent = "";
+                PhoneBookWindow bookWindow = new PhoneBookWindow();
+                (Window.GetWindow(App.Current.MainWindow) as MainWindow).Hide();
+                bookWindow.Show();
+            }
         }
     }
 }

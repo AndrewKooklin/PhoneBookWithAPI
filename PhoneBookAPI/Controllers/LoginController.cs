@@ -18,7 +18,7 @@ namespace PhoneBookAPI.Controllers
             _dataManager = dataManager;
         }
 
-        [HttpPost("/api/[controller]/CreateRecord/{LoginModel?}")]
+        [HttpPost("/api/[controller]/CheckUserToDB/{LoginModel?}")]
         public Task<bool> CheckUserToDB([FromBody] LoginModel model)
         {
             return _dataManager.Accounts.CheckUserToDB(model);
