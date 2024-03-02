@@ -121,3 +121,15 @@ C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Runtime.CompilerServices
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Text.Encodings.Web.xml
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\View\PhoneBookWindow.g.cs
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\View\PhoneBookWindow.baml
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\Newtonsoft.Json.dll
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Net.Http.Json.dll
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Text.Json.dll
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.ValueTuple.dll
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\Newtonsoft.Json.xml
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Net.Http.Json.xml
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Text.Json.xml
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.ValueTuple.xml

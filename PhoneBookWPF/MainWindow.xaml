@@ -178,7 +178,7 @@
                     Style="{StaticResource LogInButton}"
                     Width="80"
                     Margin="165,0,0,12"
-                    Command="{Binding }">
+                    Command="{Binding LogInCommand, Source={StaticResource MainWindowViewModel}}">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource MyMultiValueConverter}">
                         <Binding Path="Text" ElementName="tbUserName"></Binding>
