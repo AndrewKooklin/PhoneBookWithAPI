@@ -23,18 +23,64 @@ namespace PhoneBookWPF.ViewModel
         HttpResponseMessage response = new HttpResponseMessage();
         bool result;
 
-        private StringBuilder _errorInputLabelContent = new StringBuilder();
-        
-        public StringBuilder ErrorInputLabelContent
+
+        private string _errorInputUserNameContent = "";
+
+        public string ErrorInputUserNameContent
         {
             get
             {
-                return _errorInputLabelContent;
+                return _errorInputUserNameContent;
             }
             set
             {
-                _errorInputLabelContent = value;
-                OnPropertyChanged(nameof(ErrorInputLabelContent));
+                _errorInputUserNameContent = value;
+                OnPropertyChanged(nameof(ErrorInputUserNameContent));
+            }
+        }
+
+        private string _errorInputEMailContent = "";
+
+        public string ErrorInputEMailContent
+        {
+            get
+            {
+                return _errorInputEMailContent;
+            }
+            set
+            {
+                _errorInputEMailContent = value;
+                OnPropertyChanged(nameof(ErrorInputEMailContent));
+            }
+        }
+
+        private string _errorInputPasswordContent = "";
+
+        public string ErrorInputPasswordContent
+        {
+            get
+            {
+                return _errorInputPasswordContent;
+            }
+            set
+            {
+                _errorInputPasswordContent = value;
+                OnPropertyChanged(nameof(ErrorInputPasswordContent));
+            }
+        }
+
+        private string _errorInputConfirmPasswordContent = "";
+
+        public string ErrorInputConfirmPasswordContent
+        {
+            get
+            {
+                return _errorInputConfirmPasswordContent;
+            }
+            set
+            {
+                _errorInputConfirmPasswordContent = value;
+                OnPropertyChanged(nameof(ErrorInputConfirmPasswordContent));
             }
         }
 
@@ -94,36 +140,38 @@ namespace PhoneBookWPF.ViewModel
             var values = (object[])param;
             string userName = values[0].ToString();
             string email = values[1].ToString();
-            PasswordBox passwordBox = (PasswordBox)values[3];
+            PasswordBox passwordBox = (PasswordBox)values[2];
             string passwordValue = passwordBox.Password;
-            PasswordBox confirmPassword = (PasswordBox)values[4];
+            PasswordBox confirmPassword = (PasswordBox)values[3];
             string confirmPasswordValue = confirmPassword.Password;
 
             if (String.IsNullOrEmpty(userName) || userName.Length < 3)
             {
-                ErrorInputLabelContent.Append("Имя не менее 3 символов!");
+                ErrorInputUserNameContent = "Имя не менее 3 символов";
                 ErrorRegistrationLabelContent = "";
                 return false;
             }
-            if (String.IsNullOrEmpty(email) || new EmailAddressAttribute().IsValid(email))
+            else if (String.IsNullOrEmpty(email) || new EmailAddressAttribute().IsValid(email))
             {
-                ErrorInputLabelContent.Append("\nEMail формата name@site.com!");
-                ErrorRegistrationLabelContent = "";
+                ErrorInputEMailContent = "EMail формата name@site.com!";
                 return false;
             }
-            if (String.IsNullOrEmpty(passwordValue) || passwordValue.Length < 6)
+            else if (String.IsNullOrEmpty(passwordValue) || passwordValue.Length < 6)
             {
-                ErrorInputLabelContent.Append("\nПароль не менее 6 символов!");
+                ErrorInputPasswordContent = "Пароль не менее 6 символов!";
                 return false;
             }
-            if (!passwordValue.Equals(confirmPasswordValue))
+            else if (!passwordValue.Equals(confirmPasswordValue))
             {
-                ErrorInputLabelContent.Append("\nПароли не совпадают!");
+                ErrorInputConfirmPasswordContent = "Пароли не совпадают!";
                 return false;
             }
             else
             {
-                ErrorInputLabelContent.Clear();
+                ErrorInputUserNameContent = "";
+                ErrorInputEMailContent = "";
+                ErrorInputPasswordContent = "";
+                ErrorInputConfirmPasswordContent = "";
                 return true;
             }
         }

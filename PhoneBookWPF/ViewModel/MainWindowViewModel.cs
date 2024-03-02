@@ -100,7 +100,7 @@ namespace PhoneBookWPF.ViewModel
         public MainWindowViewModel()
         {
             LogInCommand = new RelayCommand(Execute, CanExecute);
-            //RedirectRegistrationCommand = new RedirectRegistrationCommand();
+            RedirectRegistrationCommand = new RedirectRegistrationCommand();
         }
 
         public ICommand LogInCommand { get; set; }
