@@ -69,7 +69,7 @@
             <Setter Property="Width" Value="255"/>
             <Setter Property="Height" Value="25"/>
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="Foreground" Value="Blue"/>
+            <Setter Property="Foreground" Value="Yellow"/>
             <Setter Property="Padding" Value="0 0 0 5"/>
         </Style>
 
@@ -165,7 +165,7 @@
                Width="265"
                Height="45"
                FontSize="15"
-               Foreground="DarkRed"
+               Foreground="Yellow"
                Padding="0 0 0 5"
                Margin="0">
         </Label>

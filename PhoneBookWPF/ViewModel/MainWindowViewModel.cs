@@ -18,13 +18,12 @@ using System.Windows.Input;
 
 namespace PhoneBookWPF.ViewModel
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
-
         private HttpClient _httpClient { get; set; }
         private string url = @"https://localhost:44379/api/";
         string urlRequest = "";
-        HttpResponseMessage response;
+        HttpResponseMessage response = new HttpResponseMessage();
         bool result;
 
         private string userName;
@@ -37,7 +36,7 @@ namespace PhoneBookWPF.ViewModel
             set
             {
                 userName = value;
-                //OnPropertyChanged(nameof(UserName));
+                OnPropertyChanged(nameof(UserName));
             }
         }
 
@@ -51,7 +50,7 @@ namespace PhoneBookWPF.ViewModel
             set
             {
                 password = value;
-                //OnPropertyChanged(nameof(Password));
+                OnPropertyChanged(nameof(Password));
             }
         }
 
@@ -65,7 +64,7 @@ namespace PhoneBookWPF.ViewModel
             set
             {
                 _errorUserNameBoxLabel = value;
-                //OnPropertyChanged(nameof(InputLabelContent));
+                OnPropertyChanged(nameof(ErrorUserNameBoxLabel));
             }
         }
 
@@ -80,7 +79,7 @@ namespace PhoneBookWPF.ViewModel
             set
             {
                 _errorPasswordBoxLabel = value;
-                //OnPropertyChanged(nameof(InputLabelContent));
+                OnPropertyChanged(nameof(ErrorPasswordBoxLabel));
             }
         }
 
@@ -94,15 +93,12 @@ namespace PhoneBookWPF.ViewModel
             set
             {
                 _ckeckUserLabelContent = value;
-                //OnPropertyChanged(nameof(CheckUserLabelContent));
+                OnPropertyChanged(nameof(CheckUserLabelContent));
             }
         }
 
         public MainWindowViewModel()
         {
-            _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Accept.Clear();
-            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             LogInCommand = new RelayCommand(Execute, CanExecute);
             //RedirectRegistrationCommand = new RedirectRegistrationCommand();
         }
@@ -125,9 +121,6 @@ namespace PhoneBookWPF.ViewModel
 
             string _userName = PhoneBookWPF.Properties.Settings.Default.UserName;
             string _password = PhoneBookWPF.Properties.Settings.Default.Password;
-
-
-            //SignInManager<IdentityUser> _signInManager = new SignInManager<IdentityUser>(PhoneBookContext.GetContext());
 
             if (userName.Equals(_userName) && passwordValue.Equals(_password))
             {
@@ -165,11 +158,17 @@ namespace PhoneBookWPF.ViewModel
             string passwordValue = passwordBox.Password;
 
             LoginModel model = new LoginModel();
-            model.Input.UserName = userNameValue;
-            model.Input.Password = passwordValue;
-            model.ErrorMessage = "";
+            LoginModel.InputModel input = new LoginModel.InputModel();
+            model.Input = input;
             model.ReturnUrl = "";
+            model.ErrorMessage = "";
+            input.UserName = userNameValue;
+            input.Password = passwordValue;
+            input.RememberMe = false; ;
 
+            _httpClient = new HttpClient();
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             urlRequest = $"{url}" + "Login/CheckUserToDB/";
 
             using (_httpClient)

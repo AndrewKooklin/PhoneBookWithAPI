@@ -1,0 +1,175 @@
+﻿<Window x:Class="PhoneBookWPF.View.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhoneBookWPF.View"
+        mc:Ignorable="d"
+        Title="PhoneBook Registration" 
+        Height="450"
+        MinHeight="450"
+        MaxHeight="450"
+        Width="600"
+        MinWidth="600"
+        MaxWidth="600"
+        Background="MediumPurple"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!--<viewModel:RegistrationWindowViewModel x:Name="RegistrationWindowViewModel" x:Key="RegistrationWindowViewModel">
+        </viewModel:RegistrationWindowViewModel>
+        <help:MyMultiValueConverter x:Key="MyMultiValueConverter">
+        </help:MyMultiValueConverter>-->
+
+        <Style x:Key="RegistrationLabel" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="RegistrationTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Height" Value="37"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="RegistrationPasswordBox" TargetType="{x:Type PasswordBox}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Height" Value="37"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="RegistrationButton" TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="LightGreen"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="0 0 0 5"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.ColumnSpan="2"
+               Content="Registration form" 
+               HorizontalAlignment="Center"
+               FontSize="25"
+               FontWeight="Bold"
+               Margin="150,12,171.6,0" 
+               VerticalAlignment="Top" 
+               Width="272"/>
+        <Label x:Name="lErrorInput"
+               Content="{Binding }"
+               Grid.Row="1"
+               Grid.Column="1"
+               Height="30"
+               Width="260"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               FontSize="15"
+               Padding="0"
+               Margin="0"
+               Foreground="Blue">
+
+        </Label>
+        <Label Content="UserName"
+               Grid.Row="2"
+               Style="{StaticResource RegistrationLabel}" 
+               Width="118"/>
+        <Label Content="Password" 
+               Grid.Row="3"
+               Style="{StaticResource RegistrationLabel}" 
+               Width="107"/>
+        <Label Content="Confirm password" 
+               Grid.Row="4"
+               Style="{StaticResource RegistrationLabel}" 
+               Width="185"/>
+        <TextBox x:Name="tbUserName"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Style="{StaticResource RegistrationTextBox}" 
+                 Width="230"/>
+        <PasswordBox x:Name="tbPassword"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Style="{StaticResource RegistrationPasswordBox}" 
+                 Width="230"/>
+
+        <PasswordBox x:Name="tbConfirmPassword"
+                     Grid.Row="4"
+                     Grid.Column="1"
+                     Style="{StaticResource RegistrationPasswordBox}" 
+                     Width="230"/>
+        <Label x:Name="lErrorRegistration"
+               Content="{Binding }"
+               Grid.Row="5"
+               Grid.Column="1"
+               Height="30"
+               Width="230"
+               HorizontalAlignment="Left"
+               FontSize="15"
+               Foreground="DarkRed">
+
+        </Label>
+        <CheckBox x:Name="chbRememberMe"
+                  Grid.Row="6"
+                  Grid.Column="1"
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Center"
+                  BorderThickness="2"
+                  BorderBrush="Black"
+                  Margin="20,10,0,0"
+                  Height="25" 
+                  Width="25"
+                  IsChecked="{Binding }"/>
+        <Label Content="Remember me"
+               Grid.Row="6"
+               Grid.Column="1"
+               FontSize="20"
+               Margin="50,0,0,0"
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Center" 
+               Width="151"/>
+        <StackPanel
+            Grid.Row="7"
+            Grid.ColumnSpan="2"
+            Orientation="Horizontal">
+            <Button Content="Log in"  
+                Margin="240,0,0,0"
+                Style="{StaticResource RegistrationButton}" 
+                Width="80"
+                Command="{Binding }" 
+                CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
+            <Button Content="Register" 
+                Margin="28,0,0,0"
+                Style="{StaticResource RegistrationButton}"   
+                Width="118"
+                Command="{Binding }">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource MyMultiValueConverter}">
+                        <Binding Path="Text" ElementName="tbUserName"></Binding>
+                        <Binding ElementName="tbPassword"></Binding>
+                        <Binding ElementName="tbConfirmPassword"></Binding>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Window>
