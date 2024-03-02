@@ -133,3 +133,5 @@ C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Net.Http.Json.xml
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Text.Json.xml
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.ValueTuple.xml
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\View\RegistrationWindow.g.cs
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\View\RegistrationWindow.baml

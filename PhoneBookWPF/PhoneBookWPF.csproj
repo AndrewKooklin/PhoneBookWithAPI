@@ -262,6 +262,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\RedirectRegistrationCommand.cs" />
+    <Compile Include="Commands\RedirectToLogInCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="HelpMethods\MyMultiValueConverter.cs" />
     <Compile Include="HelpMethods\PhoneBookContext.cs" />

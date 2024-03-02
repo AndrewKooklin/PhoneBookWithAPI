@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -11,31 +12,39 @@ namespace PhoneBookWPF.ViewModel
 {
     public class RegistrationWindowViewModel : BaseViewModel
     {
-        private string _inputLabelContent = "";
-        public string InputLabelContent
+        private HttpClient _httpClient { get; set; }
+        private string url = @"https://localhost:44379/api/";
+        string urlRequest = "";
+        HttpResponseMessage response = new HttpResponseMessage();
+        bool result;
+
+        private StringBuilder _errorInputLabelContent = new StringBuilder();
+        
+        public StringBuilder ErrorInputLabelContent
         {
             get
             {
-                return _inputLabelContent;
+                return _errorInputLabelContent;
             }
             set
             {
-                _inputLabelContent = value;
-                OnPropertyChanged(nameof(InputLabelContent));
+                _errorInputLabelContent = value;
+                OnPropertyChanged(nameof(ErrorInputLabelContent));
             }
         }
 
-        private string _ckeckMatchPasswordsLabelContent = "";
-        public string CkeckMatchPasswordsLabelContent
+        private string _errorRegistrationLabelContent = "";
+
+        public string ErrorRegistrationLabelContent
         {
             get
             {
-                return _ckeckMatchPasswordsLabelContent;
+                return _errorRegistrationLabelContent;
             }
             set
             {
-                _ckeckMatchPasswordsLabelContent = value;
-                OnPropertyChanged(nameof(CkeckMatchPasswordsLabelContent));
+                _errorRegistrationLabelContent = value;
+                OnPropertyChanged(nameof(ErrorRegistrationLabelContent));
             }
         }
 
@@ -67,7 +76,7 @@ namespace PhoneBookWPF.ViewModel
 
         public RegistrationWindowViewModel()
         {
-            //RedirectToLogInCommand = new RedirectToLogInCommand();
+            RedirectToLogInCommand = new RedirectToLogInCommand();
             RegisterCommand = new RelayCommand(Execute, CanExecute);
         }
 
@@ -84,23 +93,25 @@ namespace PhoneBookWPF.ViewModel
             PasswordBox confirmPassword = (PasswordBox)values[2];
             string confirmPasswordValue = confirmPassword.Password;
 
-            if (userName == null || String.IsNullOrEmpty(userName) || String.IsNullOrWhiteSpace(userName) ||
-                userName.Length < 3 || passwordValue.Length < 3 ||
-                String.IsNullOrWhiteSpace(passwordValue) || String.IsNullOrEmpty(passwordValue))
+            if (String.IsNullOrEmpty(userName) || userName.Length < 3)
             {
-                InputLabelContent = "Имя и пароль не менее 3 символов !";
-                CkeckMatchPasswordsLabelContent = "";
+                ErrorInputLabelContent.Append("Имя не менее 3 символов !");
+                ErrorRegistrationLabelContent = "";
+                return false;
+            }
+            if (String.IsNullOrEmpty(passwordValue) || passwordValue.Length < 6)
+            {
+                ErrorInputLabelContent.Append("\nПароль не менее 6 символов !");
                 return false;
             }
             if (!passwordValue.Equals(confirmPasswordValue))
             {
-                CkeckMatchPasswordsLabelContent = "Пароли не совпадают !";
+                ErrorInputLabelContent.Append("\nПароли не совпадают !");
                 return false;
             }
             else
             {
-                InputLabelContent = "";
-                CkeckMatchPasswordsLabelContent = "";
+                ErrorInputLabelContent.Clear();
                 return true;
             }
         }
