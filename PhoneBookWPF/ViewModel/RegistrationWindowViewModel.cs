@@ -1,8 +1,13 @@
-﻿using PhoneBookWPF.Commands;
+﻿using Newtonsoft.Json;
+using PhoneBookWPF.Commands;
+using PhoneBookWPF.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -88,25 +93,32 @@ namespace PhoneBookWPF.ViewModel
             }
             var values = (object[])param;
             string userName = values[0].ToString();
-            PasswordBox passwordBox = (PasswordBox)values[1];
+            string email = values[1].ToString();
+            PasswordBox passwordBox = (PasswordBox)values[3];
             string passwordValue = passwordBox.Password;
-            PasswordBox confirmPassword = (PasswordBox)values[2];
+            PasswordBox confirmPassword = (PasswordBox)values[4];
             string confirmPasswordValue = confirmPassword.Password;
 
             if (String.IsNullOrEmpty(userName) || userName.Length < 3)
             {
-                ErrorInputLabelContent.Append("Имя не менее 3 символов !");
+                ErrorInputLabelContent.Append("Имя не менее 3 символов!");
+                ErrorRegistrationLabelContent = "";
+                return false;
+            }
+            if (String.IsNullOrEmpty(email) || new EmailAddressAttribute().IsValid(email))
+            {
+                ErrorInputLabelContent.Append("\nEMail формата name@site.com!");
                 ErrorRegistrationLabelContent = "";
                 return false;
             }
             if (String.IsNullOrEmpty(passwordValue) || passwordValue.Length < 6)
             {
-                ErrorInputLabelContent.Append("\nПароль не менее 6 символов !");
+                ErrorInputLabelContent.Append("\nПароль не менее 6 символов!");
                 return false;
             }
             if (!passwordValue.Equals(confirmPasswordValue))
             {
-                ErrorInputLabelContent.Append("\nПароли не совпадают !");
+                ErrorInputLabelContent.Append("\nПароли не совпадают!");
                 return false;
             }
             else
@@ -116,49 +128,46 @@ namespace PhoneBookWPF.ViewModel
             }
         }
 
-        private void Execute(object param)
+        private async void Execute(object param)
         {
             if (param == null)
             {
                 return;
             }
             var values = (object[])param;
-            string userNameValue = values[0].ToString();
+            string email = values[0].ToString();
             PasswordBox passwordBox = (PasswordBox)values[1];
             string passwordValue = passwordBox.Password;
             PasswordBox confirmPassword = (PasswordBox)values[2];
             string confirmPasswordValue = confirmPassword.Password;
 
-            //CheckUserToDataBase checkUserToDB = new CheckUserToDataBase();
+            RegisterModel model = new RegisterModel();
 
-            //if (checkUserToDB.CheckUser(userNameValue, passwordValue))
-            //{
-            //    MessageBox.Show("Пользователь уже существует", "Registration",
-            //                    MessageBoxButton.OK, MessageBoxImage.Information);
-            //    return;
-            //}
-            //if (!passwordValue.Equals(confirmPasswordValue))
-            //{
-            //    CkeckMatchPasswordsLabelContent = "Пароли не совпадают !";
-            //    return;
-            //}
-            //else
-            //{
-            //    Users user = new Users(userNameValue, passwordValue);
-            //    AddNewUser addUser = new AddNewUser();
-            //    addUser.Add(user);
+            _httpClient = new HttpClient();
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            urlRequest = $"{url}" + "Register/AddUser/";
 
-            //    if (CkeckRememberMe)
-            //    {
-            //        StoreWithEF.Properties.Settings.Default.UserName = userNameValue;
-            //        StoreWithEF.Properties.Settings.Default.Password = passwordValue;
-            //        StoreWithEF.Properties.Settings.Default.Save();
-            //    }
-            //    CkeckMatchPasswordsLabelContent = "";
-            //    MessageBox.Show("Вы успешно зарегистрировались," +
-            //                    "\nперейдите на форму входа.", "Registration",
-            //                    MessageBoxButton.OK, MessageBoxImage.Information);
-            //}
+            using (_httpClient)
+            {
+                using (response = await _httpClient.PostAsJsonAsync(urlRequest, model))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    result = JsonConvert.DeserializeObject<bool>(apiResponse);
+                }
+            }
+
+            if (!result)
+            {
+                ErrorRegistrationLabelContent = "Ошибка, проверьте работу" +
+                                                "\nAPI сервера!";
+                return;
+            }
+            else
+            {
+                ErrorRegistrationLabelContent = "Вы успешно зарегистрировались," +
+                                                "\nперейдите на форму входа!";
+            }
         }
     }
 }

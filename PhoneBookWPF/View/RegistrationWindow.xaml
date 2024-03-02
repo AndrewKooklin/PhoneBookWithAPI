@@ -7,9 +7,9 @@
         xmlns:help="clr-namespace:PhoneBookWPF.HelpMethods"
         mc:Ignorable="d"
         Title="PhoneBook Registration" 
-        Height="450"
-        MinHeight="450"
-        MaxHeight="450"
+        Height="500"
+        MinHeight="500"
+        MaxHeight="500"
         Width="600"
         MinWidth="600"
         MaxWidth="600"
@@ -53,7 +53,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="Width" Value="255"/>
-            <Setter Property="Height" Value="100"/>
+            <Setter Property="Height" Value="60"/>
             <Setter Property="Margin" Value="0"/>
             <Setter Property="Foreground" Value="Yellow"/>
             <Setter Property="Padding" Value="0 0 0 5"/>
@@ -66,6 +66,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.7*"/>
             <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.6*"/>
@@ -96,12 +97,16 @@
                Grid.Row="2"
                Style="{StaticResource RegistrationLabel}" 
                Width="118"/>
-        <Label Content="Password" 
+        <Label Content="EMail"
                Grid.Row="3"
+               Style="{StaticResource RegistrationLabel}" 
+               Width="73"/>
+        <Label Content="Password" 
+               Grid.Row="4"
                Style="{StaticResource RegistrationLabel}" 
                Width="107"/>
         <Label Content="Confirm password" 
-               Grid.Row="4"
+               Grid.Row="5"
                Style="{StaticResource RegistrationLabel}" 
                Width="185"/>
         <TextBox x:Name="tbUserName"
@@ -109,20 +114,25 @@
                  Grid.Column="1"
                  Style="{StaticResource RegistrationTextBox}" 
                  Width="230"/>
-        <PasswordBox x:Name="tbPassword"
+        <TextBox x:Name="tbEMail"
                  Grid.Row="3"
+                 Grid.Column="1"
+                 Style="{StaticResource RegistrationTextBox}" 
+                 Width="230"/>
+        <PasswordBox x:Name="tbPassword"
+                 Grid.Row="4"
                  Grid.Column="1"
                  Style="{StaticResource RegistrationPasswordBox}" 
                  Width="230"/>
 
         <PasswordBox x:Name="tbConfirmPassword"
-                     Grid.Row="4"
+                     Grid.Row="5"
                      Grid.Column="1"
                      Style="{StaticResource RegistrationPasswordBox}" 
                      Width="230"/>
 
         <CheckBox x:Name="chbRememberMe"
-                  Grid.Row="5"
+                  Grid.Row="6"
                   Grid.Column="1"
                   HorizontalAlignment="Left" 
                   VerticalAlignment="Center"
@@ -133,7 +143,7 @@
                   Width="25"
                   IsChecked="{Binding CkeckRememberMe, Source={StaticResource RegistrationWindowViewModel}}"/>
         <Label Content="Remember me"
-               Grid.Row="5"
+               Grid.Row="6"
                Grid.Column="1"
                FontSize="20"
                Margin="50,0,0,0"
@@ -143,7 +153,7 @@
 
         <Label x:Name="lErrorRegistration"
                Content="{Binding ErrorRegistrationLabelContent, Source={StaticResource RegistrationWindowViewModel}}"
-               Grid.Row="6"
+               Grid.Row="7"
                Grid.Column="1"
                Height="30"
                Width="240"
@@ -153,7 +163,7 @@
         </Label>
 
         <StackPanel
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.ColumnSpan="2"
             Orientation="Horizontal">
             <Button Content="Log in"  
@@ -170,6 +180,7 @@
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource MyMultiValueConverter}">
                         <Binding Path="Text" ElementName="tbUserName"></Binding>
+                        <Binding Path="Text" ElementName="tbEMail"></Binding>
                         <Binding ElementName="tbPassword"></Binding>
                         <Binding ElementName="tbConfirmPassword"></Binding>
                     </MultiBinding>

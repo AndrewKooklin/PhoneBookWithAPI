@@ -55,6 +55,7 @@ namespace PhoneBookAPI
             {
                 options.ConstraintMap.Add("PhoneBookRecord", typeof(ProvaRouteConstraint));
                 options.ConstraintMap.Add("LoginModel", typeof(ProvaRouteConstraint));
+                options.ConstraintMap.Add("RegisterModel", typeof(ProvaRouteConstraint));
             });
         }
 
