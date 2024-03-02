@@ -138,8 +138,10 @@ namespace PhoneBookWPF.ViewModel
                 return false;
             }
             var values = (object[])param;
-            string userName = values[0].ToString();
-            string email = values[1].ToString();
+            TextBox tbuserName = (TextBox)values[0];
+            string userName = tbuserName.Text;
+            TextBox tbemail = (TextBox)values[1];
+            string email = tbemail.Text;
             PasswordBox passwordBox = (PasswordBox)values[2];
             string passwordValue = passwordBox.Password;
             PasswordBox confirmPassword = (PasswordBox)values[3];
