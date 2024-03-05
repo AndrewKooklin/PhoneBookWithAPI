@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -71,7 +72,7 @@ namespace PhoneBookWPF.ViewModel
 
         private string _errorInputConfirmPasswordContent = "";
 
-        public string ErrorInputConfirmPasswordContent
+        public string ErrorInputConfirmPassword
         {
             get
             {
@@ -80,7 +81,7 @@ namespace PhoneBookWPF.ViewModel
             set
             {
                 _errorInputConfirmPasswordContent = value;
-                OnPropertyChanged(nameof(ErrorInputConfirmPasswordContent));
+                OnPropertyChanged(nameof(ErrorInputConfirmPassword));
             }
         }
 
@@ -131,68 +132,94 @@ namespace PhoneBookWPF.ViewModel
             RegisterCommand = new RelayCommand(Execute, CanExecute);
         }
 
-        private bool CanExecute(object param)
+        private bool CanExecute(object parameter)
         {
-            if (param == null)
+            if (parameter == null)
             {
                 return false;
             }
-            var values = (object[])param;
-            TextBox tbuserName = (TextBox)values[0];
-            string userName = tbuserName.Text;
-            TextBox tbemail = (TextBox)values[1];
-            string email = tbemail.Text;
-            PasswordBox passwordBox = (PasswordBox)values[2];
+            Grid gReg = (Grid)parameter;
+            var gRegChildren = gReg.Children;
+            TextBox tbuserName = (TextBox)gRegChildren[9];
+            string userNameValue = tbuserName.Text;
+            TextBox tbemail = (TextBox)gRegChildren[10];
+            string emailValue = tbemail.Text;
+            PasswordBox passwordBox = (PasswordBox)gRegChildren[11];
             string passwordValue = passwordBox.Password;
-            PasswordBox confirmPassword = (PasswordBox)values[3];
+            PasswordBox confirmPassword = (PasswordBox)gRegChildren[12];
             string confirmPasswordValue = confirmPassword.Password;
 
-            if (String.IsNullOrEmpty(userName) || userName.Length < 3)
+            if (String.IsNullOrEmpty(userNameValue) || userNameValue.Length < 3)
             {
                 ErrorInputUserNameContent = "Имя не менее 3 символов";
                 ErrorRegistrationLabelContent = "";
                 return false;
             }
-            else if (String.IsNullOrEmpty(email) || new EmailAddressAttribute().IsValid(email))
+            else
             {
-                ErrorInputEMailContent = "EMail формата name@site.com!";
+                ErrorInputUserNameContent = "";
+            }
+
+            if (String.IsNullOrEmpty(emailValue))
+            {
+                ErrorInputEMailContent = "Заполните поле \"EMail!\"";
                 return false;
             }
-            else if (String.IsNullOrEmpty(passwordValue) || passwordValue.Length < 6)
+            else if (!String.IsNullOrEmpty(emailValue))
+            {
+                try
+                {
+                    var mailAddress = new MailAddress(emailValue);
+                }
+                catch 
+                {
+                    ErrorInputEMailContent = "EMail формата name@site.com!";
+                    return false;
+                }
+                ErrorInputEMailContent = "";
+            }
+
+            if (String.IsNullOrEmpty(passwordValue) || passwordValue.Length < 6)
             {
                 ErrorInputPasswordContent = "Пароль не менее 6 символов!";
                 return false;
             }
-            else if (!passwordValue.Equals(confirmPasswordValue))
+            else
             {
-                ErrorInputConfirmPasswordContent = "Пароли не совпадают!";
+                ErrorInputPasswordContent = "";
+            }
+            
+            if (!passwordValue.Equals(confirmPasswordValue))
+            {
+                ErrorInputConfirmPassword = "Пароли не совпадают!";
                 return false;
             }
             else
             {
-                ErrorInputUserNameContent = "";
-                ErrorInputEMailContent = "";
-                ErrorInputPasswordContent = "";
-                ErrorInputConfirmPasswordContent = "";
+                ErrorInputConfirmPassword = "";
                 return true;
             }
         }
 
-        private async void Execute(object param)
+        private async void Execute(object parameter)
         {
-            if (param == null)
+            if (parameter == null)
             {
                 return;
             }
-            var values = (object[])param;
-            string email = values[0].ToString();
-            PasswordBox passwordBox = (PasswordBox)values[1];
+            Grid gReg = (Grid)parameter;
+            var gRegChildren = gReg.Children;
+            TextBox tbuserName = (TextBox)gRegChildren[9];
+            string userNameValue = tbuserName.Text;
+            TextBox tbemail = (TextBox)gRegChildren[10];
+            string emailValue = tbemail.Text;
+            PasswordBox passwordBox = (PasswordBox)gRegChildren[11];
             string passwordValue = passwordBox.Password;
-            PasswordBox confirmPassword = (PasswordBox)values[2];
-            string confirmPasswordValue = confirmPassword.Password;
 
             RegisterModel model = new RegisterModel();
-
+            model.UserName = userNameValue;
+            model.Password = passwordValue;
+            model.Email = emailValue;
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -217,6 +244,13 @@ namespace PhoneBookWPF.ViewModel
             {
                 ErrorRegistrationLabelContent = "Вы успешно зарегистрировались," +
                                                 "\nперейдите на форму входа!";
+            }
+
+            if (CkeckRememberMe)
+            {
+                PhoneBookWPF.Properties.Settings.Default.UserName = userNameValue;
+                PhoneBookWPF.Properties.Settings.Default.Password = passwordValue;
+                PhoneBookWPF.Properties.Settings.Default.Save();
             }
         }
     }

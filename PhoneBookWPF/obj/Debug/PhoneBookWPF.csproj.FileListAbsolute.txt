@@ -135,3 +135,5 @@ C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.Threading.Tasks.Extensio
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\bin\Debug\System.ValueTuple.xml
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\View\RegistrationWindow.g.cs
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\View\RegistrationWindow.baml
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\View\PhoneBookRecords.g.cs
+C:\repos\PhoneBookWithAPI\PhoneBookWPF\obj\Debug\View\PhoneBookRecords.baml

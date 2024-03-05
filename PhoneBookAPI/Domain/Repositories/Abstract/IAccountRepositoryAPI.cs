@@ -1,4 +1,5 @@
-﻿using PhoneBookAPI.Domain.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using PhoneBookAPI.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
     {
         Task<bool> CheckUserToDB(LoginModel model);
 
-        Task<bool> CreateUser(RegisterModel model);
+        Task<IdentityUser> CreateUser(RegisterModel model);
+
+        Task<List<string>> GetRoles(IdentityUser user);
     }
 }

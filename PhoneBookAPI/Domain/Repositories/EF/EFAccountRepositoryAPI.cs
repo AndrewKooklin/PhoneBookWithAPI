@@ -22,8 +22,8 @@ namespace PhoneBookAPI.Domain.Repositories.EF
 
         public async Task<bool> CheckUserToDB(LoginModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Input.UserName,
-                    model.Input.Password, false, lockoutOnFailure: false);
+            var result = await _signInManager.PasswordSignInAsync(model.UserName,
+                    model.Password, false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
                 return true;
@@ -34,18 +34,29 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             }
         }
 
-        public async Task<bool> CreateUser(RegisterModel model)
+        public async Task<IdentityUser> CreateUser(RegisterModel model)
         {
             var user = new IdentityUser { UserName = model.UserName, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
-                return true;
+                return null; 
             }
             else
             {
-                return false;
+                return await _userManager.FindByEmailAsync(model.Email);
             }
+        }
+
+        public async Task<List<string>> GetRoles(IdentityUser user)
+        {
+            List<string> roles = new List<string>();
+            var userRoles = await _userManager.GetRolesAsync(user);
+            foreach (string role in userRoles)
+            {
+                roles.Add(role);
+            }
+            return roles;
         }
     }
 }

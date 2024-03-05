@@ -8,14 +8,6 @@ namespace PhoneBookWPF.Model
 {
     public class LoginModel
     {
-        public InputModel Input { get; set; }
-
-        public string ReturnUrl { get; set; }
-
-        public string ErrorMessage { get; set; }
-
-        public class InputModel
-        {
             public string UserName { get; set; }
 
             //[Required(ErrorMessage = "Заполните поле \"Email\"")]
@@ -24,7 +16,6 @@ namespace PhoneBookWPF.Model
 
             public string Password { get; set; }
 
-            public bool RememberMe { get; set; }
-        }
+            public string Role { get; set; }
     }
 }

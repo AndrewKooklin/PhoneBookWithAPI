@@ -55,12 +55,12 @@
             <Setter Property="Height" Value="20"/>
             <Setter Property="Margin" Value="0"/>
             <Setter Property="Foreground" Value="Yellow"/>
-            <Setter Property="Padding" Value="0 0 0 5"/>
+            <Setter Property="Padding" Value="0 0 0 0"/>
         </Style>
 
     </Window.Resources>
 
-    <Grid>
+    <Grid x:Name="gRegistration">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.7*"/>
@@ -73,7 +73,7 @@
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.35*"/>
+            <RowDefinition Height="0.45*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -101,25 +101,25 @@
         <Label x:Name="lErrorEMail"
                Grid.Row="3"
                Grid.Column="1"
-               Content=""
+               Content="{Binding ErrorInputEMailContent, Source={StaticResource RegistrationWindowViewModel}}"
                Style="{StaticResource LabelInputError}"/>
         <Label Content="EMail"
                Grid.Row="4"
                Style="{StaticResource RegistrationLabel}" 
                Width="73"/>
         <Label x:Name="lErrorPassword"
-               Grid.Row="4"
+               Grid.Row="5"
                Grid.Column="1"
-               Content=""
+               Content="{Binding ErrorInputPasswordContent, Source={StaticResource RegistrationWindowViewModel}}"
                Style="{StaticResource LabelInputError}"/>
         <Label Content="Password" 
                Grid.Row="6"
                Style="{StaticResource RegistrationLabel}" 
                Width="107"/>
         <Label x:Name="lErrorConfirmPassword"
-               Grid.Row="4"
+               Grid.Row="7"
                Grid.Column="1"
-               Content=""
+               Content="{Binding ErrorInputConfirmPassword, Source={StaticResource RegistrationWindowViewModel}}"
                Style="{StaticResource LabelInputError}"/>
         <Label Content="Confirm password" 
                Grid.Row="8"
@@ -171,10 +171,10 @@
                Content="{Binding ErrorRegistrationLabelContent, Source={StaticResource RegistrationWindowViewModel}}"
                Grid.Row="10"
                Grid.Column="1"
-               Height="30"
+               Height="40"
                Width="240"
                HorizontalAlignment="Left"
-               FontSize="15"
+               FontSize="12"
                Foreground="Yellow"/>
 
         <StackPanel
@@ -191,16 +191,17 @@
                 Margin="28,0,0,0"
                 Style="{StaticResource RegistrationButton}"   
                 Width="118"
-                Command="{Binding RegisterCommand, Source={StaticResource RegistrationWindowViewModel}}">
-                <Button.CommandParameter>
+                Command="{Binding RegisterCommand, Source={StaticResource RegistrationWindowViewModel}}"
+                CommandParameter="{Binding ElementName=gRegistration, Mode=OneWay}"/>
+            <!--<Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource MyMultiValueConverter}">
-                        <Binding ElementName="tbUserName"/>
+                        <Binding Path="" ElementName="tbUserName"/>
                         <Binding ElementName="tbEMail"/>
                         <Binding ElementName="tbPassword"/>
                         <Binding ElementName="tbConfirmPassword"/>
                     </MultiBinding>
-                </Button.CommandParameter>
-            </Button>
+                </Button.CommandParameter>-->
+
         </StackPanel>
 
     </Grid>

@@ -24,7 +24,8 @@ namespace PhoneBookWPF.ViewModel
         private string url = @"https://localhost:44379/api/";
         string urlRequest = "";
         HttpResponseMessage response = new HttpResponseMessage();
-        bool result;
+        IdentityUser user;
+        List<string> userRoles = new List<string>();
 
         private string userName;
         public string UserName
@@ -157,14 +158,13 @@ namespace PhoneBookWPF.ViewModel
             PasswordBox passwordBox = (PasswordBox)values[1];
             string passwordValue = passwordBox.Password;
 
-            LoginModel model = new LoginModel();
-            LoginModel.InputModel input = new LoginModel.InputModel();
-            model.Input = input;
-            model.ReturnUrl = "";
-            model.ErrorMessage = "";
-            input.UserName = userNameValue;
-            input.Password = passwordValue;
-            input.RememberMe = false; ;
+            LoginModel model = new LoginModel
+            {
+                UserName = userNameValue,
+                Password = passwordValue
+            };
+
+            
 
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Accept.Clear();
@@ -176,11 +176,22 @@ namespace PhoneBookWPF.ViewModel
                 using (response = await _httpClient.PostAsJsonAsync(urlRequest, model))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    result = JsonConvert.DeserializeObject<bool>(apiResponse);
+                    user = JsonConvert.DeserializeObject<IdentityUser>(apiResponse);
                 }
             }
 
-            if (!result)
+            urlRequest = $"{url}" + "Login/GetUserRoles/";
+
+            using (_httpClient)
+            {
+                using (response = await _httpClient.PostAsJsonAsync(urlRequest, user))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    userRoles = JsonConvert.DeserializeObject<List<string>>(apiResponse);
+                }
+            }
+
+            if (user == null)
             {
                 CheckUserLabelContent = "Пользователь не найден, проверьте" +
                                         "\nимя и пароль или зарегистрируйтесь !";
@@ -190,6 +201,18 @@ namespace PhoneBookWPF.ViewModel
             {
                 CheckUserLabelContent = "";
                 PhoneBookWindow bookWindow = new PhoneBookWindow();
+                if (userRoles.Contains("Admin"))
+                {
+
+                }
+                else if (!userRoles.Contains("Admin") && userRoles.Contains("User"))
+                {
+
+                }
+                else
+                {
+
+                }
                 (Window.GetWindow(App.Current.MainWindow) as MainWindow).Hide();
                 bookWindow.Show();
             }

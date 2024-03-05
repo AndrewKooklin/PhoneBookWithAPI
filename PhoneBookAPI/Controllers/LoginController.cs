@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PhoneBookAPI.Domain.Entities;
 
@@ -22,6 +23,12 @@ namespace PhoneBookAPI.Controllers
         public Task<bool> CheckUserToDB([FromBody] LoginModel model)
         {
             return _dataManager.Accounts.CheckUserToDB(model);
+        }
+
+        [HttpPost("/api/[controller]/GetUserRoles/{IdentityUser?}")]
+        public Task<List<string>> GetUserRoles([FromBody] IdentityUser user)
+        {
+            return  _dataManager.Accounts.GetRoles(user);
         }
     }
 }

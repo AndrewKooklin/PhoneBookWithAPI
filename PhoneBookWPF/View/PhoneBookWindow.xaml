@@ -6,9 +6,106 @@
         xmlns:local="clr-namespace:PhoneBookWPF.View"
         mc:Ignorable="d"
         Title="PhoneBook" 
-        Height="450" 
-        Width="800">
-    <Grid>
+        Height="400"
+        MinHeight="400"
+        Width="915"
+        MinWidth="915"
+        Background="#FFCCF6EE"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
         
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.Resources>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="132*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="715*" MinWidth="715"></ColumnDefinition>
+            <ColumnDefinition Width="200*" MinWidth="200"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Menu x:Name="mTop"
+              Grid.Row="0"
+              Grid.ColumnSpan="2"
+              Height="24"
+              VerticalAlignment="Top"
+              FontSize="15">
+
+            <MenuItem x:Name="miRecords" 
+                      Header="Записи">
+                <MenuItem x:Name="miReadRecords"
+                          Header="Прочитать"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miReadRecords}">
+                </MenuItem>
+                <MenuItem x:Name="miAddRecord"
+                          Header="Добавить"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miAddRecord}">
+                </MenuItem>
+                <MenuItem x:Name="miChangeRecord"
+                          Header="Изменить"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miChangeRecord}">
+                </MenuItem>
+                <MenuItem x:Name="miDeleteRecord"
+                          Header="Удалить"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miDeleteRecord}">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Users">
+                <MenuItem x:Name="miOpenAccount"
+                          Header="Открыть"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miOpenAccount}">
+                </MenuItem>
+                <MenuItem x:Name="miCloseAccount"
+                          Header="Закрыть"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miCloseAccount}">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Перевод">
+                <MenuItem x:Name="miBetweenSelf"
+                          Header="Между своими счетами"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miBetweenSelf}">
+                </MenuItem>
+                <MenuItem x:Name="miBetweenClients"
+                          Header="Между клиентами"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miBetweenClients}">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="miSelectUser"
+                      Header="Выбор пользователя"
+                      Margin="10,0,0,0"
+                      Command="{Binding SelectUserCommand}" 
+                      CommandParameter="{Binding ElementName=window, Mode=OneWay}">
+            </MenuItem>
+        </Menu>
+
+        <ContentControl x:Name="ccLeftPartPage"
+                            Grid.Row="1"
+                            Content="{Binding LeftCurrentView}">
+        </ContentControl>
+
+        <ContentControl x:Name="ccRightPartPage"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Content="{Binding RightCurrentView}">
+            <ContentControl.Resources>
+
+            </ContentControl.Resources>
+        </ContentControl>
+
     </Grid>
 </Window>
