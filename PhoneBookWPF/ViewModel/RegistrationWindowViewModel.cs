@@ -1,18 +1,8 @@
-﻿using Newtonsoft.Json;
-using PhoneBookWPF.Commands;
-using PhoneBookWPF.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
-using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace PhoneBookWPF.ViewModel
 {
@@ -171,7 +161,7 @@ namespace PhoneBookWPF.ViewModel
                 {
                     var mailAddress = new MailAddress(emailValue);
                 }
-                catch 
+                catch
                 {
                     ErrorInputEMailContent = "EMail формата name@site.com!";
                     return false;
@@ -188,7 +178,7 @@ namespace PhoneBookWPF.ViewModel
             {
                 ErrorInputPasswordContent = "";
             }
-            
+
             if (!passwordValue.Equals(confirmPasswordValue))
             {
                 ErrorInputConfirmPassword = "Пароли не совпадают!";

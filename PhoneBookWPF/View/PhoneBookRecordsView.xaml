@@ -4,18 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhoneBookWPF.View"
-             xmlns:viewModel="clr-namespace:PhoneBookWPF.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450"
-             d:DesignWidth="710">
-    
+             d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <!--<viewModel:PhoneBookRecordsViewModel x:Key="PhoneBookRecordsViewModel"></viewModel:PhoneBookRecordsViewModel>-->
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.Resources>
-            <viewModel:PhoneBookRecordsViewModel x:Key="PhoneBookRecordsViewModel"></viewModel:PhoneBookRecordsViewModel>
+            <!--<viewModel:PhoneBookRecordsViewModel x:Key="PhoneBookRecordsViewModel"/>-->
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -53,7 +50,7 @@
                     Content="Отчество" 
                     Width="110"
                     Margin="0"/>
-            
+
         </StackPanel>
 
         <ScrollViewer Grid.Row="2"
@@ -98,7 +95,7 @@
                                                Text="{Binding }"
                                                Width="110"
                                                Margin="3 0 0 0"/>
-                                    
+
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -108,8 +105,8 @@
         </ScrollViewer>
         <ContentControl x:Name="ccDetails"
                         Grid.Row="3"
-                        Content="{Binding DetailsView}">
+                        Content="{Binding }">
         </ContentControl>
-        
+
     </Grid>
 </UserControl>

@@ -10,7 +10,7 @@ namespace PhoneBookWPF.Model
     public class PhoneBookRecord : BaseViewModel
     {
         private int _id;
-        public int Id 
+        public int Id
         {
             get { return _id; }
             set
@@ -21,7 +21,7 @@ namespace PhoneBookWPF.Model
         }
 
         private string _lastName;
-        public string LastName 
+        public string LastName
         {
             get { return _lastName; }
             set

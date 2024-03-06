@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace PhoneBookWPF.View
 {
     /// <summary>
-    /// Interaction logic for PhoneBookRecords.xaml
+    /// Interaction logic for PhoneBookRecordsView.xaml
     /// </summary>
     public partial class PhoneBookRecordsView : UserControl
     {

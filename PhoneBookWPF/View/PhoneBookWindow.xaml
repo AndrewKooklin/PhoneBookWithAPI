@@ -14,7 +14,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        
+
     </Window.Resources>
 
     <Grid>
@@ -137,7 +137,7 @@
 
         <ContentControl x:Name="ccLeftPartPage"
                             Grid.Row="1"
-                            Content="{Binding LeftCurrentView}">
+                            Content="{Binding }">
         </ContentControl>
 
         <ContentControl x:Name="ccRightPartPage"

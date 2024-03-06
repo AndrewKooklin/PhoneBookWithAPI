@@ -24,11 +24,5 @@ namespace PhoneBookWPF
         {
             InitializeComponent();
         }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            tbUserName.Text = PhoneBookWPF.Properties.Settings.Default.UserName;
-            tbPassword.Password = PhoneBookWPF.Properties.Settings.Default.Password;
-        }
     }
 }
