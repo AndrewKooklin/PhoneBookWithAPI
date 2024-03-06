@@ -31,16 +31,16 @@
             <ColumnDefinition Width="200*" MinWidth="200"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Menu x:Name="mTop"
+        <Menu x:Name="mTopLeft"
               Grid.Row="0"
-              Grid.ColumnSpan="2"
               Height="24"
               VerticalAlignment="Top"
+              HorizontalAlignment="Left"
               FontSize="15">
 
             <MenuItem x:Name="miRecords" 
-                      Header="Записи">
-                <MenuItem x:Name="miReadRecords"
+                      Header="Records">
+                <MenuItem x:Name="miGetRecords"
                           Header="Прочитать"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miReadRecords}">
@@ -62,32 +62,74 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Users">
-                <MenuItem x:Name="miOpenAccount"
-                          Header="Открыть"
+                <MenuItem x:Name="miGetUsers"
+                          Header="Список"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miOpenAccount}">
                 </MenuItem>
-                <MenuItem x:Name="miCloseAccount"
-                          Header="Закрыть"
+                <MenuItem x:Name="miAddUser"
+                          Header="Добавить"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miCloseAccount}">
+                </MenuItem>
+                <MenuItem x:Name="miChangeUser"
+                          Header="Изменить"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miCloseAccount}">
+                </MenuItem>
+                <MenuItem x:Name="miDeleteUser"
+                          Header="Удалить"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miCloseAccount}">
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Перевод">
-                <MenuItem x:Name="miBetweenSelf"
-                          Header="Между своими счетами"
+            <MenuItem Header="Roles">
+                <MenuItem x:Name="miGetRoles"
+                          Header="Список"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miBetweenSelf}">
                 </MenuItem>
-                <MenuItem x:Name="miBetweenClients"
-                          Header="Между клиентами"
+                <MenuItem x:Name="miAddRole"
+                          Header="Добавить роль"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miBetweenClients}">
                 </MenuItem>
+                <MenuItem x:Name="miDeleteRole"
+                          Header="Удалить роль"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miBetweenClients}">
+                </MenuItem>
+                <MenuItem x:Name="miAddRoleUser"
+                          Header="Добавить роль пользователю"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miCloseAccount}">
+                </MenuItem>
+                <MenuItem x:Name="miDeleteRoleUser"
+                          Header="Удалить роль у пользователя"
+                          Command="{Binding UpdateViewCommand}" 
+                          CommandParameter="{Binding Header, ElementName=miCloseAccount}">
+                </MenuItem>
             </MenuItem>
-            <MenuItem x:Name="miSelectUser"
-                      Header="Выбор пользователя"
+        </Menu>
+        <Menu x:Name="mTopRight"
+              Grid.Row="0"
+              Grid.Column="1"
+              Height="24"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Right"
+              FontSize="15">
+
+            <MenuItem x:Name="miUserName"
+                      Header="{Binding UserName}"
                       Margin="10,0,0,0"
+                      HorizontalAlignment="Right"
+                      Command="{Binding SelectUserCommand}" 
+                      CommandParameter="{Binding ElementName=window, Mode=OneWay}">
+            </MenuItem>
+            <MenuItem x:Name="miLogOut"
+                      Header="Logout"
+                      Margin="10,0,30,0"
+                      HorizontalAlignment="Right"
                       Command="{Binding SelectUserCommand}" 
                       CommandParameter="{Binding ElementName=window, Mode=OneWay}">
             </MenuItem>
