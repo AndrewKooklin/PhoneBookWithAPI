@@ -18,9 +18,9 @@ namespace PhoneBookWPF.View
     /// <summary>
     /// Interaction logic for PhoneBookRecords.xaml
     /// </summary>
-    public partial class PhoneBookRecords : UserControl
+    public partial class PhoneBookRecordsView : UserControl
     {
-        public PhoneBookRecords()
+        public PhoneBookRecordsView()
         {
             InitializeComponent();
         }

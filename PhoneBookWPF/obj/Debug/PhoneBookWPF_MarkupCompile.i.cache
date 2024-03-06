@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\repos\PhoneBookWithAPI\PhoneBookWPF\App.xaml
-51527651946
+5749993189
 
-301920781424
+341779985017
 84727588846
-MainWindow.xaml;View\DetailsView.xaml;View\PhoneBookRecords.xaml;View\PhoneBookWindow.xaml;View\RegistrationWindow.xaml;
+MainWindow.xaml;View\DetailsView.xaml;View\PhoneBookRecordsView.xaml;View\PhoneBookWindow.xaml;View\RegistrationWindow.xaml;
 
 True
 

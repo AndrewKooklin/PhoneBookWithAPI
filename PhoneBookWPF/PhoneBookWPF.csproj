@@ -267,16 +267,20 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="HelpMethods\MyMultiValueConverter.cs" />
     <Compile Include="HelpMethods\PhoneBookContext.cs" />
+    <Compile Include="HelpMethods\Records.cs" />
     <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\PhoneBookRecord.cs" />
     <Compile Include="Model\RegisterModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\PhoneBookRecordsViewModel.cs" />
+    <Compile Include="ViewModel\PhoneBookWindowViewModel.cs" />
     <Compile Include="ViewModel\RegistrationWindowViewModel.cs" />
     <Compile Include="View\DetailsView.xaml.cs">
       <DependentUpon>DetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PhoneBookRecords.xaml.cs">
-      <DependentUpon>PhoneBookRecords.xaml</DependentUpon>
+    <Compile Include="View\PhoneBookRecordsView.xaml.cs">
+      <DependentUpon>PhoneBookRecordsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PhoneBookWindow.xaml.cs">
       <DependentUpon>PhoneBookWindow.xaml</DependentUpon>
@@ -308,7 +312,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PhoneBookRecords.xaml">
+    <Page Include="View\PhoneBookRecordsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
