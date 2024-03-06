@@ -1,11 +1,21 @@
-﻿using PhoneBookWPF.View;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
+using PhoneBookWPF.Commands;
+using PhoneBookWPF.Model;
+using PhoneBookWPF.View;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PhoneBookWPF.ViewModel
 {
@@ -18,17 +28,17 @@ namespace PhoneBookWPF.ViewModel
         IdentityUser user;
         List<string> userRoles = new List<string>();
 
-        private string userName;
-        public string UserName
+        private string eMail;
+        public string EMail
         {
             get
             {
-                return userName;
+                return eMail;
             }
             set
             {
-                userName = value;
-                OnPropertyChanged(nameof(UserName));
+                eMail = value;
+                OnPropertyChanged(nameof(EMail));
             }
         }
 
@@ -107,18 +117,18 @@ namespace PhoneBookWPF.ViewModel
             }
 
             var values = (object[])parameter;
-            string userName = values[0].ToString();
+            string eMail = values[0].ToString();
             PasswordBox passwordBox = (PasswordBox)values[1];
             string passwordValue = passwordBox.Password;
 
-            string _userName = PhoneBookWPF.Properties.Settings.Default.UserName;
+            string _eMail = PhoneBookWPF.Properties.Settings.Default.EMail;
             string _password = PhoneBookWPF.Properties.Settings.Default.Password;
 
-            if (userName.Equals(_userName) && passwordValue.Equals(_password))
+            if (this.eMail.Equals(_eMail) && passwordValue.Equals(_password))
             {
                 return true;
             }
-            if (String.IsNullOrEmpty(userName) || userName.Length < 3)
+            if (string.IsNullOrEmpty(this.eMail) || this.eMail.Length < 3)
             {
                 ErrorUserNameBoxLabel = "Имя не менее 3 символов !";
                 CheckUserLabelContent = "";
@@ -145,13 +155,13 @@ namespace PhoneBookWPF.ViewModel
                 return;
             }
             var values = (object[])param;
-            string userNameValue = values[0].ToString();
+            string eMailValue = values[0].ToString();
             PasswordBox passwordBox = (PasswordBox)values[1];
             string passwordValue = passwordBox.Password;
 
             LoginModel model = new LoginModel
             {
-                UserName = userNameValue,
+                EMail = eMailValue,
                 Password = passwordValue
             };
 

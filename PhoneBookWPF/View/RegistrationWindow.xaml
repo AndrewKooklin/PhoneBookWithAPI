@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhoneBookWPF.View"
+        xmlns:viewModel="clr-namespace:PhoneBookWPF.ViewModel"
+        xmlns:help="clr-namespace:PhoneBookWPF.HelpMethods"
         mc:Ignorable="d"
         Title="PhoneBook Registration" 
         Height="500"
@@ -16,8 +18,8 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        <!--<viewModel:RegistrationWindowViewModel x:Key="RegistrationWindowViewModel"/>
-        <help:MyMultiValueConverter x:Key="MyMultiValueConverter"/>-->
+
+        
 
         <Style x:Key="RegistrationLabel" TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="20"/>
@@ -90,7 +92,7 @@
         <Label x:Name="lErrorUserName"
                Grid.Row="1"
                Grid.Column="1"
-               Content="{Binding ErrorInputUserNameContent, Source={StaticResource RegistrationWindowViewModel}}"
+               Content="{Binding }"
                Style="{StaticResource LabelInputError}"/>
         <Label Content="UserName"
                Grid.Row="2"
@@ -99,7 +101,7 @@
         <Label x:Name="lErrorEMail"
                Grid.Row="3"
                Grid.Column="1"
-               Content="{Binding ErrorInputEMailContent, Source={StaticResource RegistrationWindowViewModel}}"
+               Content="{Binding }"
                Style="{StaticResource LabelInputError}"/>
         <Label Content="EMail"
                Grid.Row="4"
@@ -108,7 +110,7 @@
         <Label x:Name="lErrorPassword"
                Grid.Row="5"
                Grid.Column="1"
-               Content="{Binding ErrorInputPasswordContent, Source={StaticResource RegistrationWindowViewModel}}"
+               Content="{Binding }"
                Style="{StaticResource LabelInputError}"/>
         <Label Content="Password" 
                Grid.Row="6"
@@ -117,7 +119,7 @@
         <Label x:Name="lErrorConfirmPassword"
                Grid.Row="7"
                Grid.Column="1"
-               Content="{Binding ErrorInputConfirmPassword, Source={StaticResource RegistrationWindowViewModel}}"
+               Content="{Binding }"
                Style="{StaticResource LabelInputError}"/>
         <Label Content="Confirm password" 
                Grid.Row="8"
@@ -154,8 +156,8 @@
                   BorderBrush="Black"
                   Margin="20,10,0,0"
                   Height="25" 
-                  Width="25"
-                  IsChecked="{Binding CkeckRememberMe, Source={StaticResource RegistrationWindowViewModel}}"/>
+                  Width="25"/>
+                  <!--IsChecked=""-->
         <Label Content="Remember me"
                Grid.Row="9"
                Grid.Column="1"
@@ -166,7 +168,7 @@
                Width="151"/>
 
         <Label x:Name="lErrorRegistration"
-               Content="{Binding ErrorRegistrationLabelContent, Source={StaticResource RegistrationWindowViewModel}}"
+               Content="{Binding }"
                Grid.Row="10"
                Grid.Column="1"
                Height="40"
@@ -183,13 +185,13 @@
                 Margin="240,0,0,0"
                 Style="{StaticResource RegistrationButton}" 
                 Width="80"
-                Command="{Binding RedirectToLogInCommand, Source={StaticResource RegistrationWindowViewModel}}" 
+                Command="{Binding }" 
                 CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
             <Button Content="Register" 
                 Margin="28,0,0,0"
                 Style="{StaticResource RegistrationButton}"   
                 Width="118"
-                Command="{Binding RegisterCommand, Source={StaticResource RegistrationWindowViewModel}}"
+                Command="{Binding }"
                 CommandParameter="{Binding ElementName=gRegistration, Mode=OneWay}"/>
             <!--<Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource MyMultiValueConverter}">

@@ -1,8 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PhoneBookWPF.Commands;
+using PhoneBookWPF.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PhoneBookWPF.ViewModel
 {
@@ -209,7 +218,7 @@ namespace PhoneBookWPF.ViewModel
             RegisterModel model = new RegisterModel();
             model.UserName = userNameValue;
             model.Password = passwordValue;
-            model.Email = emailValue;
+            model.EMail = emailValue;
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
