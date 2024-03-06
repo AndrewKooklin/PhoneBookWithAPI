@@ -63,6 +63,9 @@
     <Compile Include="Model\PhoneBookRecord.cs" />
     <Compile Include="Model\RegisterModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\PhoneBookRecordsViewModel.cs" />
+    <Compile Include="ViewModel\PhoneBookWindowViewModel.cs" />
     <Compile Include="ViewModel\RegistrationWindowViewModel.cs" />
     <Compile Include="View\DetailsView.xaml.cs">
       <DependentUpon>DetailsView.xaml</DependentUpon>
