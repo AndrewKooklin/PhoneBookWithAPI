@@ -247,7 +247,7 @@ namespace PhoneBookWPF.ViewModel
 
             if (CkeckRememberMe)
             {
-                PhoneBookWPF.Properties.Settings.Default.UserName = userNameValue;
+                PhoneBookWPF.Properties.Settings.Default.EMail = userNameValue;
                 PhoneBookWPF.Properties.Settings.Default.Password = passwordValue;
                 PhoneBookWPF.Properties.Settings.Default.Save();
             }

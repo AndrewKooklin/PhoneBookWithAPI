@@ -56,17 +56,17 @@ namespace PhoneBookWPF.ViewModel
             }
         }
 
-        private string _errorUserNameBoxLabel = "";
-        public string ErrorUserNameBoxLabel
+        private string _errorEMAilBoxLabel = "";
+        public string ErrorEMailBoxLabel
         {
             get
             {
-                return _errorUserNameBoxLabel;
+                return _errorEMAilBoxLabel;
             }
             set
             {
-                _errorUserNameBoxLabel = value;
-                OnPropertyChanged(nameof(ErrorUserNameBoxLabel));
+                _errorEMAilBoxLabel = value;
+                OnPropertyChanged(nameof(ErrorEMailBoxLabel));
             }
         }
 
@@ -117,20 +117,20 @@ namespace PhoneBookWPF.ViewModel
             }
 
             var values = (object[])parameter;
-            string eMail = values[0].ToString();
+            string eMailValue = values[0].ToString();
             PasswordBox passwordBox = (PasswordBox)values[1];
             string passwordValue = passwordBox.Password;
 
             string _eMail = PhoneBookWPF.Properties.Settings.Default.EMail;
             string _password = PhoneBookWPF.Properties.Settings.Default.Password;
 
-            if (this.eMail.Equals(_eMail) && passwordValue.Equals(_password))
+            if (eMailValue.Equals(_eMail) && passwordValue.Equals(_password))
             {
                 return true;
             }
-            if (string.IsNullOrEmpty(this.eMail) || this.eMail.Length < 3)
+            if (string.IsNullOrEmpty(eMailValue) || eMailValue.Length < 3)
             {
-                ErrorUserNameBoxLabel = "Имя не менее 3 символов !";
+                ErrorEMailBoxLabel = "Имя не менее 3 символов !";
                 CheckUserLabelContent = "";
                 return false;
             }
@@ -142,7 +142,7 @@ namespace PhoneBookWPF.ViewModel
             }
             else
             {
-                ErrorUserNameBoxLabel = "";
+                ErrorEMailBoxLabel = "";
                 ErrorPasswordBoxLabel = "";
                 return true;
             }
@@ -154,6 +154,7 @@ namespace PhoneBookWPF.ViewModel
             {
                 return;
             }
+
             var values = (object[])param;
             string eMailValue = values[0].ToString();
             PasswordBox passwordBox = (PasswordBox)values[1];

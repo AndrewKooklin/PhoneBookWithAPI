@@ -24,5 +24,11 @@ namespace PhoneBookWPF
         {
             InitializeComponent();
         }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            tbEMail.Text = PhoneBookWPF.Properties.Settings.Default.EMail;
+            tbPassword.Password = PhoneBookWPF.Properties.Settings.Default.Password;
+        }
     }
 }
