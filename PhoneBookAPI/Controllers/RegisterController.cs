@@ -18,7 +18,7 @@ namespace PhoneBookAPI.Controllers
         }
 
         [HttpPost("/api/[controller]/AddUser/{RegisterModel?}")]
-        public Task<IdentityUser> AddUser([FromBody] RegisterModel model)
+        public Task<bool> AddUser([FromBody] RegisterModel model)
         {
             return _dataManager.Accounts.CreateUser(model);
         }

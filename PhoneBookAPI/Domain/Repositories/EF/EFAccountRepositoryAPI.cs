@@ -22,7 +22,7 @@ namespace PhoneBookAPI.Domain.Repositories.EF
 
         public async Task<bool> CheckUserToDB(LoginModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.UserName,
+            var result = await _signInManager.PasswordSignInAsync(model.EMail,
                     model.Password, false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
@@ -44,7 +44,7 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             }
             else
             {
-                return true;/**/
+                return true;
             }
         }
 
