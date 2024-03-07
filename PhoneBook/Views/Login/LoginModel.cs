@@ -24,13 +24,13 @@ namespace PhoneBook.Views.Login
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Заполните поле \"UserName\"")]
-            [MinLength(3, ErrorMessage = "Длина не менее 3 символов")]
-            public string UserName { get; set; }
+            //[Required(ErrorMessage = "Заполните поле \"UserName\"")]
+            //[MinLength(3, ErrorMessage = "Длина не менее 3 символов")]
+            //public string UserName { get; set; }
 
-            //[Required(ErrorMessage = "Заполните поле \"Email\"")]
-            //[EmailAddress(ErrorMessage ="Поле Email формата name@site.com")]
-            //public string Email { get; set; }
+            [Required(ErrorMessage = "Заполните поле \"Email\"")]
+            [EmailAddress(ErrorMessage = "Поле Email формата name@site.com")]
+            public string Email { get; set; }
 
             [Required(ErrorMessage ="Заполните поле \"Пароль\"")]
             [MinLength(6, ErrorMessage = "Длина не менее 6 символов")]

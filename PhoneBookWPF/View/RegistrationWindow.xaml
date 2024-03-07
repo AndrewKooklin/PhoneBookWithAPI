@@ -8,9 +8,9 @@
         xmlns:help="clr-namespace:PhoneBookWPF.HelpMethods"
         mc:Ignorable="d"
         Title="PhoneBook Registration" 
-        Height="500"
-        MinHeight="500"
-        MaxHeight="500"
+        Height="450"
+        MinHeight="450"
+        MaxHeight="450"
         Width="600"
         MinWidth="600"
         MaxWidth="600"
@@ -70,8 +70,6 @@
             <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.6*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.45*"/>
             <RowDefinition Height="*"/>
@@ -89,66 +87,54 @@
                Margin="150,12,171.6,0" 
                VerticalAlignment="Top" 
                Width="272"/>
-        <Label x:Name="lErrorUserName"
-               Grid.Row="1"
-               Grid.Column="1"
-               Content="{Binding ErrorInputUserNameContent, Source={StaticResource RegistrationViewModel}}"
-               Style="{StaticResource LabelInputError}"/>
-        <Label Content="UserName"
-               Grid.Row="2"
-               Style="{StaticResource RegistrationLabel}" 
-               Width="118"/>
+        
+        
         <Label x:Name="lErrorEMail"
-               Grid.Row="3"
+               Grid.Row="1"
                Grid.Column="1"
                Content="{Binding ErrorInputEMailContent, Source={StaticResource RegistrationViewModel}}"
                Style="{StaticResource LabelInputError}"/>
         <Label Content="EMail"
-               Grid.Row="4"
+               Grid.Row="2"
                Style="{StaticResource RegistrationLabel}" 
                Width="73"/>
         <Label x:Name="lErrorPassword"
-               Grid.Row="5"
+               Grid.Row="3"
                Grid.Column="1"
                Content="{Binding ErrorInputPasswordContent, Source={StaticResource RegistrationViewModel}}"
                Style="{StaticResource LabelInputError}"/>
         <Label Content="Password" 
-               Grid.Row="6"
+               Grid.Row="4"
                Style="{StaticResource RegistrationLabel}" 
                Width="107"/>
         <Label x:Name="lErrorConfirmPassword"
-               Grid.Row="7"
+               Grid.Row="5"
                Grid.Column="1"
                Content="{Binding ErrorInputConfirmPassword, Source={StaticResource RegistrationViewModel}}"
                Style="{StaticResource LabelInputError}"/>
         <Label Content="Confirm password" 
-               Grid.Row="8"
+               Grid.Row="6"
                Style="{StaticResource RegistrationLabel}" 
                Width="185"/>
-        <TextBox x:Name="tbUserName"
+        <TextBox x:Name="tbEMail"
                  Grid.Row="2"
                  Grid.Column="1"
                  Style="{StaticResource RegistrationTextBox}" 
                  Width="230"/>
-        <TextBox x:Name="tbEMail"
-                 Grid.Row="4"
-                 Grid.Column="1"
-                 Style="{StaticResource RegistrationTextBox}" 
-                 Width="230"/>
         <PasswordBox x:Name="tbPassword"
-                 Grid.Row="6"
+                 Grid.Row="4"
                  Grid.Column="1"
                  Style="{StaticResource RegistrationPasswordBox}" 
                  Width="230"/>
 
         <PasswordBox x:Name="tbConfirmPassword"
-                     Grid.Row="8"
+                     Grid.Row="6"
                      Grid.Column="1"
                      Style="{StaticResource RegistrationPasswordBox}" 
                      Width="230"/>
 
         <CheckBox x:Name="chbRememberMe"
-                  Grid.Row="9"
+                  Grid.Row="7"
                   Grid.Column="1"
                   HorizontalAlignment="Left" 
                   VerticalAlignment="Center"
@@ -159,7 +145,7 @@
                   Width="25"
                   IsChecked="{Binding CkeckRememberMe, Source={StaticResource RegistrationViewModel}}"/>
         <Label Content="Remember me"
-               Grid.Row="9"
+               Grid.Row="7"
                Grid.Column="1"
                FontSize="20"
                Margin="50,0,0,0"
@@ -169,7 +155,7 @@
 
         <Label x:Name="lErrorRegistration"
                Content="{Binding ErrorRegistrationLabelContent, Source={StaticResource RegistrationViewModel}}"
-               Grid.Row="10"
+               Grid.Row="8"
                Grid.Column="1"
                Height="40"
                Width="240"
@@ -178,7 +164,7 @@
                Foreground="Yellow"/>
 
         <StackPanel
-            Grid.Row="11"
+            Grid.Row="9"
             Grid.ColumnSpan="2"
             Orientation="Horizontal">
             <Button Content="Log in"  

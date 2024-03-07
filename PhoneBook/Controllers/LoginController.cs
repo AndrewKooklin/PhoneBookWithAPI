@@ -35,7 +35,7 @@ namespace PhoneBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Input.UserName, 
+                var result = await _signInManager.PasswordSignInAsync(model.Input.Email, 
                     model.Input.Password, model.Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {

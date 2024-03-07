@@ -50,7 +50,7 @@ namespace PhoneBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Input.UserName, Email = model.Input.Email };
+                var user = new IdentityUser { UserName = model.Input.Email, Email = model.Input.Email };
                 var result = await _userManager.CreateAsync(user, model.Input.Password);
                 if (result.Succeeded)
                 {

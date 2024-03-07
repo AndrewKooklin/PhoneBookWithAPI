@@ -21,10 +21,10 @@ namespace PhoneBook.Views.Register
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Заполните поле \"UserName\"")]
-            [MinLength(3, ErrorMessage = "Длина не менее 3 символов.")]
-            [Display(Name = "UserName")]
-            public string UserName { get; set; }
+            //[Required(ErrorMessage = "Заполните поле \"UserName\"")]
+            //[MinLength(3, ErrorMessage = "Длина не менее 3 символов.")]
+            //[Display(Name = "UserName")]
+            //public string UserName { get; set; }
 
             [Required(ErrorMessage = "Заполните поле \"Email\"")]
             [EmailAddress(ErrorMessage = "Поле Email формата name@site.com")]

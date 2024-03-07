@@ -204,7 +204,7 @@ namespace PhoneBookWPF.ViewModel
                 using (response = await client.PostAsJsonAsync(urlRequest, user))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    userRoles = JsonConvert.DeserializeObject<List<string>>(apiResponse);
+                    userRoles = JsonConvert.DeserializeObject<List<string>>(apiResponse).ToList();
                 }
             }
 

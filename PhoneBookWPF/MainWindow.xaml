@@ -190,7 +190,7 @@
                     Width="128" 
                     Style="{StaticResource LogInButton}"
                     Command="{Binding RedirectRegistrationCommand, Source={StaticResource MainWindowViewModel}}" 
-                    CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
+                    CommandParameter="{Binding ElementName=Window, Mode=OneWay}"/>
         </StackPanel>
 
     </Grid>
