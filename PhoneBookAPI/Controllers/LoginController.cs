@@ -25,6 +25,12 @@ namespace PhoneBookAPI.Controllers
             return _dataManager.Accounts.CheckUserToDB(model);
         }
 
+        [HttpPost("/api/[controller]/GetUserFromDB/{LoginModel?}")]
+        public Task<IdentityUser> GetUserFromDB([FromBody] LoginModel model)
+        {
+            return _dataManager.Accounts.GetUser(model);
+        }
+
         [HttpPost("/api/[controller]/GetUserRoles/{IdentityUser?}")]
         public Task<List<string>> GetUserRoles([FromBody] IdentityUser user)
         {

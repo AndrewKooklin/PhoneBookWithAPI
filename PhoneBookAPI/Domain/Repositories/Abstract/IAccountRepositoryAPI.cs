@@ -11,7 +11,9 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
     {
         Task<bool> CheckUserToDB(LoginModel model);
 
-        Task<IdentityUser> CreateUser(RegisterModel model);
+        Task<bool> CreateUser(RegisterModel model);
+
+        Task<IdentityUser> GetUser(LoginModel model);
 
         Task<List<string>> GetRoles(IdentityUser user);
     }

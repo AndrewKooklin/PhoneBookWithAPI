@@ -25,6 +25,7 @@ namespace PhoneBookWPF.ViewModel
         private string url = @"https://localhost:44379/api/";
         string urlRequest = "";
         HttpResponseMessage response = new HttpResponseMessage();
+        bool userExist;
         IdentityUser user;
         List<string> userRoles = new List<string>();
 
@@ -166,12 +167,28 @@ namespace PhoneBookWPF.ViewModel
                 Password = passwordValue
             };
 
-
-
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             urlRequest = $"{url}" + "Login/CheckUserToDB/";
+
+            using (_httpClient)
+            {
+                using (response = await _httpClient.PostAsJsonAsync(urlRequest, model))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    userExist = JsonConvert.DeserializeObject<bool>(apiResponse);
+                }
+            }
+
+            if (!userExist)
+            {
+                CheckUserLabelContent = "Пользователь не найден, проверьте" +
+                                        "\nимя и пароль или зарегистрируйтесь !";
+                return;
+            }
+
+            urlRequest = $"{url}" + "Login/GetUserFromDB/";
 
             using (_httpClient)
             {
@@ -193,31 +210,23 @@ namespace PhoneBookWPF.ViewModel
                 }
             }
 
-            if (user == null)
+            CheckUserLabelContent = "";
+            PhoneBookWindow bookWindow = new PhoneBookWindow();
+            if (userRoles.Contains("Admin"))
             {
-                CheckUserLabelContent = "Пользователь не найден, проверьте" +
-                                        "\nимя и пароль или зарегистрируйтесь !";
-                return;
+
+            }
+            else if (!userRoles.Contains("Admin") && userRoles.Contains("User"))
+            {
+
             }
             else
             {
-                CheckUserLabelContent = "";
-                PhoneBookWindow bookWindow = new PhoneBookWindow();
-                if (userRoles.Contains("Admin"))
-                {
 
-                }
-                else if (!userRoles.Contains("Admin") && userRoles.Contains("User"))
-                {
-
-                }
-                else
-                {
-
-                }
-                (Window.GetWindow(App.Current.MainWindow) as MainWindow).Hide();
-                bookWindow.Show();
             }
+            
+            (Window.GetWindow(App.Current.MainWindow) as MainWindow).Hide();
+            bookWindow.Show();
         }
     }
 }

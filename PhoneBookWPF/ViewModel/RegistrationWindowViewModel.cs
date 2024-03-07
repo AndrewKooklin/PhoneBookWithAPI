@@ -211,14 +211,14 @@ namespace PhoneBookWPF.ViewModel
             TextBox tbuserName = (TextBox)gRegChildren[9];
             string userNameValue = tbuserName.Text;
             TextBox tbemail = (TextBox)gRegChildren[10];
-            string emailValue = tbemail.Text;
+            string eMailValue = tbemail.Text;
             PasswordBox passwordBox = (PasswordBox)gRegChildren[11];
             string passwordValue = passwordBox.Password;
 
             RegisterModel model = new RegisterModel();
             model.UserName = userNameValue;
             model.Password = passwordValue;
-            model.EMail = emailValue;
+            model.EMail = eMailValue;
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -247,7 +247,7 @@ namespace PhoneBookWPF.ViewModel
 
             if (CkeckRememberMe)
             {
-                PhoneBookWPF.Properties.Settings.Default.EMail = userNameValue;
+                PhoneBookWPF.Properties.Settings.Default.EMail = eMailValue;
                 PhoneBookWPF.Properties.Settings.Default.Password = passwordValue;
                 PhoneBookWPF.Properties.Settings.Default.Save();
             }

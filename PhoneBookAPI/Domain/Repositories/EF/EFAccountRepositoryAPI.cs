@@ -34,23 +34,28 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             }
         }
 
-        public async Task<IdentityUser> CreateUser(RegisterModel model)
+        public async Task<bool> CreateUser(RegisterModel model)
         {
             var user = new IdentityUser { UserName = model.UserName, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
             {
-                return null; 
+                return false; 
             }
             else
             {
-                return await _userManager.FindByEmailAsync(model.Email);
+                return true;/**/
             }
+        }
+
+        public async Task<IdentityUser> GetUser(LoginModel model)
+        {
+            return await _userManager.FindByEmailAsync(model.EMail);
         }
 
         public async Task<List<string>> GetRoles(IdentityUser user)
         {
-            List<string> roles = new List<string>();
+            List<string> roles = new List<string>(); 
             var userRoles = await _userManager.GetRolesAsync(user);
             foreach (string role in userRoles)
             {
