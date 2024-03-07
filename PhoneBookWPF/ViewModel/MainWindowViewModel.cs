@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json;
 using PhoneBookWPF.Commands;
+using PhoneBookWPF.HelpMethods;
 using PhoneBookWPF.Model;
 using PhoneBookWPF.View;
 using System;
@@ -21,7 +22,7 @@ namespace PhoneBookWPF.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private HttpClient _httpClient { get; set; }
+        MyHttpClient MyHttp = new MyHttpClient();
         private string url = @"https://localhost:44379/api/";
         string urlRequest = "";
         HttpResponseMessage response = new HttpResponseMessage();
@@ -167,14 +168,11 @@ namespace PhoneBookWPF.ViewModel
                 Password = passwordValue
             };
 
-            _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Accept.Clear();
-            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             urlRequest = $"{url}" + "Login/CheckUserToDB/";
 
-            using (_httpClient)
+            using (var client = MyHttp.GetHttpClient())
             {
-                using (response = await _httpClient.PostAsJsonAsync(urlRequest, model))
+                using (response = await client.PostAsJsonAsync(urlRequest, model))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     userExist = JsonConvert.DeserializeObject<bool>(apiResponse);
@@ -190,9 +188,9 @@ namespace PhoneBookWPF.ViewModel
 
             urlRequest = $"{url}" + "Login/GetUserFromDB/";
 
-            using (_httpClient)
+            using (var client = MyHttp.GetHttpClient())
             {
-                using (response = await _httpClient.PostAsJsonAsync(urlRequest, model))
+                using (response = await client.PostAsJsonAsync(urlRequest, model))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     user = JsonConvert.DeserializeObject<IdentityUser>(apiResponse);
@@ -201,9 +199,9 @@ namespace PhoneBookWPF.ViewModel
 
             urlRequest = $"{url}" + "Login/GetUserRoles/";
 
-            using (_httpClient)
+            using (var client = MyHttp.GetHttpClient())
             {
-                using (response = await _httpClient.PostAsJsonAsync(urlRequest, user))
+                using (response = await client.PostAsJsonAsync(urlRequest, user))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     userRoles = JsonConvert.DeserializeObject<List<string>>(apiResponse);

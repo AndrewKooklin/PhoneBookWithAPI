@@ -104,6 +104,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\RedirectToLogInCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="HelpMethods\MyHttpClient.cs" />
     <Compile Include="HelpMethods\MyMultiValueConverter.cs" />
     <Compile Include="HelpMethods\Records.cs" />
     <Compile Include="Model\LoginModel.cs" />
