@@ -210,9 +210,18 @@ namespace PhoneBookWPF.ViewModel
 
             CheckUserLabelContent = "";
             PhoneBookWindow bookWindow = new PhoneBookWindow();
+            bookWindow.ccLeftPartPage = new PhoneBookRecordsView();
+            bookWindow.ccRightPartPage = null;
             if (userRoles.Contains("Admin"))
             {
-
+                bookWindow.miAddRecord.Visibility = Visibility.Visible;
+                bookWindow.miChangeRecord.Visibility = Visibility.Visible;
+                bookWindow.miDeleteRecord.Visibility = Visibility.Visible;
+                bookWindow.miUsers.Visibility = Visibility.Visible;
+                bookWindow.miRoles.Visibility = Visibility.Visible;
+                bookWindow.lUserName.Visibility = Visibility.Visible;
+                bookWindow.lUserName.Content = user.UserName;
+                bookWindow.miLogOut.Visibility = Visibility.Visible;
             }
             else if (!userRoles.Contains("Admin") && userRoles.Contains("User"))
             {

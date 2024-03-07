@@ -39,51 +39,69 @@
               FontSize="15">
 
             <MenuItem x:Name="miRecords" 
-                      Header="Records">
+                      Header="Records"
+                      Cursor="Hand">
                 <MenuItem x:Name="miGetRecords"
                           Header="Прочитать"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miReadRecords}">
                 </MenuItem>
                 <MenuItem x:Name="miAddRecord"
                           Header="Добавить"
+                          Visibility="Collapsed"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miAddRecord}">
                 </MenuItem>
                 <MenuItem x:Name="miChangeRecord"
                           Header="Изменить"
+                          Visibility="Collapsed"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miChangeRecord}">
                 </MenuItem>
                 <MenuItem x:Name="miDeleteRecord"
                           Header="Удалить"
+                          Visibility="Collapsed"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miDeleteRecord}">
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Users">
+            <MenuItem x:Name="miUsers"
+                      Header="Users"
+                      Visibility="Collapsed"
+                      Cursor="Hand">
                 <MenuItem x:Name="miGetUsers"
                           Header="Список"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miOpenAccount}">
                 </MenuItem>
                 <MenuItem x:Name="miAddUser"
                           Header="Добавить"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miCloseAccount}">
                 </MenuItem>
                 <MenuItem x:Name="miChangeUser"
                           Header="Изменить"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miCloseAccount}">
                 </MenuItem>
                 <MenuItem x:Name="miDeleteUser"
                           Header="Удалить"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miCloseAccount}">
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Roles">
+            <MenuItem x:Name="miRoles"
+                      Header="Roles"
+                      Visibility="Collapsed"
+                      Cursor="Hand">
                 <MenuItem x:Name="miGetRoles"
                           Header="Список"
                           Command="{Binding UpdateViewCommand}" 
@@ -91,21 +109,25 @@
                 </MenuItem>
                 <MenuItem x:Name="miAddRole"
                           Header="Добавить роль"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miBetweenClients}">
                 </MenuItem>
                 <MenuItem x:Name="miDeleteRole"
                           Header="Удалить роль"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miBetweenClients}">
                 </MenuItem>
                 <MenuItem x:Name="miAddRoleUser"
                           Header="Добавить роль пользователю"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miCloseAccount}">
                 </MenuItem>
                 <MenuItem x:Name="miDeleteRoleUser"
                           Header="Удалить роль у пользователя"
+                          Cursor="Hand"
                           Command="{Binding UpdateViewCommand}" 
                           CommandParameter="{Binding Header, ElementName=miCloseAccount}">
                 </MenuItem>
@@ -119,15 +141,16 @@
               HorizontalAlignment="Right"
               FontSize="15">
 
-            <MenuItem x:Name="miUserName"
-                      Header="{Binding UserName}"
-                      Margin="10,0,0,0"
-                      HorizontalAlignment="Right"
-                      Command="{Binding SelectUserCommand}" 
-                      CommandParameter="{Binding ElementName=window, Mode=OneWay}">
-            </MenuItem>
+            <Label x:Name="lUserName"
+                   Visibility="Collapsed"
+                   Content=""
+                   Margin="10,0,0,0"
+                   HorizontalAlignment="Right">
+            </Label>
             <MenuItem x:Name="miLogOut"
+                      Visibility="Collapsed"
                       Header="Logout"
+                      Cursor="Hand"
                       Margin="10,0,30,0"
                       HorizontalAlignment="Right"
                       Command="{Binding SelectUserCommand}" 
