@@ -68,5 +68,13 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             }
             return roles;
         }
+
+        public UserWithRolesModel UserRoles(LoginModel model)
+        {
+            UserWithRolesModel userRoles = new UserWithRolesModel();
+            userRoles.User = GetUser(model).GetAwaiter().GetResult();
+            userRoles.Roles = GetRoles(userRoles.User).GetAwaiter().GetResult();
+            return userRoles;
+        }
     }
 }

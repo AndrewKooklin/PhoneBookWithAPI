@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PhoneBook.Domain.Entities;
+using PhoneBook.Views.Roles;
 
 namespace PhoneBook.Domain
 {
@@ -53,6 +54,7 @@ namespace PhoneBook.Domain
                 Name = "Admin",
                 NormalizedName = "ADMIN",
                 ConcurrencyStamp = "6d5c54e4-667f-4b61-9ac9-d61039cdf950"
+                //Description = "This role can perform all operations"
             });
 
             builder.Entity<IdentityRole>().HasData(new IdentityRole
@@ -60,13 +62,7 @@ namespace PhoneBook.Domain
                 Name = "User",
                 NormalizedName = "USER",
                 ConcurrencyStamp = "302dc497-bf7b-49fa-af47-cc1123b3fe8e"
-            });
-
-            builder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Name = "Counter",
-                NormalizedName = "COUNTER",
-                ConcurrencyStamp = "600b4457-e84c-4fc6-a91b-e3b551d56eca"
+                //Description = "This role can add PhoneBookRecord"
             });
         }
     }

@@ -14,6 +14,7 @@ using PhoneBook.Domain;
 using PhoneBook.Domain.Repositories.Abstract;
 using PhoneBook.Domain.Repositories.API;
 using PhoneBook.Views.Login;
+using PhoneBook.Views.Roles;
 
 namespace PhoneBook
 {
@@ -32,6 +33,7 @@ namespace PhoneBook
 
             //подключаем сервисы
             services.AddTransient<IPhoneBookRecordRepository, APIPhoneBookRecordsRepository>();
+            services.AddTransient<IAccountRepository, APIAccountRepository>();
             services.AddTransient<DataManager>();
 
             //подключаем контекст БД

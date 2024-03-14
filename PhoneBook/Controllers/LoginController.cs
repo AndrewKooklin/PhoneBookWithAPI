@@ -11,11 +11,11 @@ namespace PhoneBook.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly DataManager _dataManager;
 
-        public LoginController(SignInManager<IdentityUser> signInManager)
+        public LoginController(DataManager dataManager)
         {
-            _signInManager = signInManager;
+            _dataManager = dataManager;
         }
 
         public IActionResult LogInIndex()
@@ -35,10 +35,10 @@ namespace PhoneBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Input.Email, 
-                    model.Input.Password, model.Input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                bool result = await _dataManager.Accounts.CheckUserToDB(model);
+                if (result)
                 {
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 else

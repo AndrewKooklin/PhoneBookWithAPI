@@ -10,9 +10,13 @@ namespace PhoneBook.Domain
     {
         public IPhoneBookRecordRepository PhoneBookRecords { get; set; }
 
-        public DataManager(IPhoneBookRecordRepository phoneBookRecords)
+        public IAccountRepository Accounts { get; set; }
+
+        public DataManager(IPhoneBookRecordRepository phoneBookRecords,
+                            IAccountRepository accounts)
         {
             PhoneBookRecords = phoneBookRecords;
+            Accounts = accounts;
         }
     }
 }

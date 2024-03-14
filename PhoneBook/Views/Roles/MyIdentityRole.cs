@@ -9,6 +9,7 @@ namespace PhoneBook.Views.Roles
 {
     public class MyIdentityRole : IdentityRole
     {
+
         [Required(ErrorMessage = "Заполните поле \"Роль\"")]
         [MinLength(4, ErrorMessage = "Длина не менее 4 символов.")]
         [Display(Name = "Роль")]

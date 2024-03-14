@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using PhoneBookAPI.Domain.Entities;
+using PhoneBook.Views.Login;
+using PhoneBook.Views.Register;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBookAPI.Domain.Repositories.Abstract
+namespace PhoneBook.Domain.Repositories.Abstract
 {
-    public interface IAccountRepositoryAPI
+    public interface IAccountRepository
     {
         Task<bool> CheckUserToDB(LoginModel model);
 
@@ -18,7 +19,5 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
         Task<IdentityUser> GetUser(LoginModel model);
 
         Task<List<string>> GetRoles(IdentityUser user);
-
-        UserWithRolesModel UserRoles(LoginModel model);
     }
 }

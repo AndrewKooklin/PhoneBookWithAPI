@@ -14,13 +14,13 @@ namespace PhoneBook.Views.Register
     [AllowAnonymous]
     public class RegisterModel
     {
-        [BindProperty]
-        public InputModel Input { get; set; }
+        //[BindProperty]
+        //public InputModel Input { get; set; }
 
-        public string ReturnUrl { get; set; }
+        //public string ReturnUrl { get; set; }
 
-        public class InputModel
-        {
+        //public class InputModel
+        //{
             //[Required(ErrorMessage = "Заполните поле \"UserName\"")]
             //[MinLength(3, ErrorMessage = "Длина не менее 3 символов.")]
             //[Display(Name = "UserName")]
@@ -47,6 +47,6 @@ namespace PhoneBook.Views.Register
             public string Role { get; set; }
 
             public IEnumerable<SelectListItem> RolesList { get; set; }
-        }
+        //}
     }
 }

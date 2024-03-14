@@ -32,7 +32,7 @@ namespace PhoneBook.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRole(MyIdentityRole role)
+        public IActionResult CreateRole(IdentityRole role)
         {
             if (!_roleManager.RoleExistsAsync(role.Name).GetAwaiter().GetResult())
             {

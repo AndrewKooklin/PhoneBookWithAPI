@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using PhoneBook.Views.Register;
+using PhoneBook.Views.Roles;
 
 namespace PhoneBook.Controllers
 {
@@ -17,12 +18,12 @@ namespace PhoneBook.Controllers
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<MyIdentityRole> _roleManager;
 
         public RegisterController(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<MyIdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -34,7 +35,7 @@ namespace PhoneBook.Controllers
 
         public IActionResult CreateUser()
         {
-            _registerModel.Input = new RegisterModel.InputModel
+            _registerModel = new RegisterModel
             {
                 RolesList = _roleManager.Roles.Select(r => r.Name).Select(i => new SelectListItem
                 {
@@ -50,11 +51,11 @@ namespace PhoneBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Input.Email, Email = model.Input.Email };
-                var result = await _userManager.CreateAsync(user, model.Input.Password);
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, model.Input.Role);
+                    await _userManager.AddToRoleAsync(user, model.Role);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("LogInIndex", "Login");
