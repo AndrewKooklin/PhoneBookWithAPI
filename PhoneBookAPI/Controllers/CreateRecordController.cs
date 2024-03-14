@@ -20,9 +20,9 @@ namespace PhoneBookAPI
         }
 
         [HttpPost("/api/[controller]/CreateRecord/{PhoneBookRecord?}")]
-        public void CreateRecord([FromBody] PhoneBookRecord record)
+        public bool CreateRecord([FromBody] PhoneBookRecord record)
         {
-            _dataManager.PhoneBookRecords.SavePhoneBookRecord(record);
+            return _dataManager.PhoneBookRecords.SavePhoneBookRecord(record).GetAwaiter().GetResult();
         }
     }
 }

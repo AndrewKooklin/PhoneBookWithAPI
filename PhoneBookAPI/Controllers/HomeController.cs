@@ -22,7 +22,7 @@ namespace PhoneBookAPI
 
         [HttpGet]
         [Route("/api/[controller]/GetRecords")]
-        public IEnumerable<PhoneBookRecord> GetRecords()
+        public List<PhoneBookRecord> GetRecords()
         {
             return _dataManager.PhoneBookRecords.GetPhoneBookRecordsFromAPI();
         }

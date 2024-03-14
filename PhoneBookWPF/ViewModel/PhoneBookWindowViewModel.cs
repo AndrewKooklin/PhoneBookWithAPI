@@ -12,7 +12,7 @@ namespace PhoneBookWPF.ViewModel
     {
         public PhoneBookWindowViewModel()
         {
-            LeftCurrentView = new PhoneBookRecordsView();
+            LeftCurrentView = new RecordsView();
         }
 
         private UserControl _leftCurrentView = null;

@@ -9,11 +9,11 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
 {
     public interface IPhoneBookRecordRepositoryAPI
     {
-        IEnumerable<PhoneBookRecord> GetPhoneBookRecordsFromAPI();
+        List<PhoneBookRecord> GetPhoneBookRecordsFromAPI();
 
         PhoneBookRecord GetPhoneBookRecordById(int id);
 
-        void SavePhoneBookRecord(PhoneBookRecord phoneBookRecord);
+        Task<bool> SavePhoneBookRecord(PhoneBookRecord phoneBookRecord);
 
         void EditPhoneBookRecord(PhoneBookRecord phoneBookRecord);
 

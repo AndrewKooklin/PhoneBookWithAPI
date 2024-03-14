@@ -29,7 +29,7 @@ namespace PhoneBook.Controllers
             }
             else
             {
-                IEnumerable<PhoneBookRecord> records = null;
+                List<PhoneBookRecord> records = null;
 
                 records = _dataManager.PhoneBookRecords.GetPhoneBookRecords().GetAwaiter().GetResult();
 

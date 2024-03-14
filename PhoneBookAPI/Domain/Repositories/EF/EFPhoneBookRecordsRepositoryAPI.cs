@@ -11,15 +11,17 @@ namespace PhoneBookAPI.Domain.Repositories.EF
     public class EFPhoneBookRecordsRepositoryAPI : IPhoneBookRecordRepositoryAPI
     {
         private readonly AppDBContextAPI _context;
+        private int countBeforeAdded;
+        private int countAfterAdded;
 
         public EFPhoneBookRecordsRepositoryAPI(AppDBContextAPI context)
         {
             _context = context;
         }
 
-        public IEnumerable<PhoneBookRecord> GetPhoneBookRecordsFromAPI()
+        public List<PhoneBookRecord> GetPhoneBookRecordsFromAPI()
         {
-            return _context.PhoneBookRecords.AsEnumerable();
+            return _context.PhoneBookRecords.ToList();
         }
 
         public PhoneBookRecord GetPhoneBookRecordById(int id)
@@ -27,15 +29,26 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             return _context.PhoneBookRecords.FirstOrDefault(r => r.Id == id);
         }
 
-        public void SavePhoneBookRecord(PhoneBookRecord phoneBookRecord)
+        public async Task<bool> SavePhoneBookRecord(PhoneBookRecord phoneBookRecord)
         {
+            countBeforeAdded = await _context.PhoneBookRecords.CountAsync();
+
             if (phoneBookRecord.Id == default)
             {
                 //_context.Entry(phoneBookRecord).State = Microsoft.EntityFrameworkCore.EntityState.Added;
-                _context.PhoneBookRecords.Add(phoneBookRecord);
+               await _context.PhoneBookRecords.AddAsync(phoneBookRecord);
             }
             _context.SaveChanges();
             _context.Dispose();
+            countAfterAdded = await _context.PhoneBookRecords.CountAsync();
+            if (countAfterAdded > countBeforeAdded)
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
         }
 
         public void DeletePhoneBookRecord(int id)

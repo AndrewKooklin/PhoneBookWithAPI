@@ -210,7 +210,7 @@ namespace PhoneBookWPF.ViewModel
 
             CheckUserLabelContent = "";
             PhoneBookWindow bookWindow = new PhoneBookWindow();
-            bookWindow.ccLeftPartPage = new PhoneBookRecordsView();
+            bookWindow.ccLeftPartPage = new RecordsView();
             bookWindow.ccRightPartPage = null;
             if (userRoles.Contains("Admin"))
             {

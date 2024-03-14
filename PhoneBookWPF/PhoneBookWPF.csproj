@@ -118,11 +118,11 @@
     <Compile Include="View\DetailsView.xaml.cs">
       <DependentUpon>DetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PhoneBookRecordsView.xaml.cs">
-      <DependentUpon>PhoneBookRecordsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\PhoneBookWindow.xaml.cs">
       <DependentUpon>PhoneBookWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RecordsView.xaml.cs">
+      <DependentUpon>RecordsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
@@ -144,11 +144,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PhoneBookRecordsView.xaml">
+    <Page Include="View\PhoneBookWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PhoneBookWindow.xaml">
+    <Page Include="View\RecordsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @model IEnumerable<IdentityUser>
+@inject RoleManager<IdentityRole> roleMAnager
 
 @{
     ViewData["Title"] = "Список пользователей";

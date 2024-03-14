@@ -9,16 +9,6 @@ namespace PhoneBook.Controllers
 {
     public class LogoutController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-
-        public LogoutController(SignInManager<IdentityUser> signInManager)
-        {
-            _signInManager = signInManager;
-        }
-        public async Task<IActionResult> LogoutUser()
-        {
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
-        }
+        
     }
 }
