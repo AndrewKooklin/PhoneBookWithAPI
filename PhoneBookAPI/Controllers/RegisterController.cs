@@ -17,10 +17,28 @@ namespace PhoneBookAPI.Controllers
             _dataManager = dataManager;
         }
 
-        [HttpPost("/api/[controller]/AddUser/{RegisterModel?}")]
-        public Task<bool> AddUser([FromBody] RegisterModel model)
+        [HttpPost("/api/[controller]/CreateUser/{RegisterModel?}")]
+        public Task<bool> CreateUser([FromBody] RegisterModel model)
         {
             return _dataManager.Accounts.CreateUser(model);
+        }
+
+        [HttpGet("/api/[controller]/GetUserManager")]
+        public UserManager<IdentityUser> GetUserManager()
+        {
+            return _dataManager.Accounts.GetUserManager();
+        }
+
+        [HttpGet("/api/[controller]/GetSignInManager")]
+        public SignInManager<IdentityUser> GetSignInManager()
+        {
+            return _dataManager.Accounts.GetSignInManager();
+        }
+
+        [HttpGet("/api/[controller]/GetRoleManager")]
+        public RoleManager<IdentityRole> GetRoleManager()
+        {
+            return _dataManager.Accounts.GetRoleManager();
         }
     } 
 }

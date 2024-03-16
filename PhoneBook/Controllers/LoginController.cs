@@ -5,17 +5,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PhoneBook.Domain;
+using PhoneBook.Domain.Entities;
 using PhoneBook.Views.Login;
 
 namespace PhoneBook.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly DataManager _dataManager;
 
-        public LoginController(DataManager dataManager)
+        public LoginController(/*SignInManager<IdentityUser> signInManager,*/
+                                DataManager dataManager)
         {
             _dataManager = dataManager;
+            _signInManager = _dataManager.Accounts.GetSignInManager();
         }
 
         public IActionResult LogInIndex()
@@ -35,10 +39,10 @@ namespace PhoneBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool result = await _dataManager.Accounts.CheckUserToDB(model);
-                if (result)
+                var result = await _signInManager.PasswordSignInAsync(model.Email, 
+                    model.Password, model.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
                 {
-                    
                     return RedirectToAction("Index", "Home");
                 }
                 else

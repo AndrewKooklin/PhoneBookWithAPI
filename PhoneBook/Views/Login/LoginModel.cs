@@ -33,7 +33,7 @@ namespace PhoneBook.Views.Login
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Заполните поле \"Пароль\"")]
-        [MinLength(6, ErrorMessage = "Длина не менее 6 символов")]
+        [MinLength(6, ErrorMessage = "Длина пароля не менее 6 символов")]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }

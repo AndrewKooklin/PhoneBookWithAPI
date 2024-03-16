@@ -26,7 +26,7 @@ namespace PhoneBookAPI
         public void ConfigureServices(IServiceCollection services)
         {
             //подключаем Config из appsettings.json для получения connectionString
-            Configuration.Bind("PhoneBookAPI", new Config());
+            //Configuration.Bind("PhoneBookAPI", new Config());
 
             //подключаем сервисы
             services.AddTransient<IPhoneBookRecordRepositoryAPI, EFPhoneBookRecordsRepositoryAPI>();
@@ -34,7 +34,7 @@ namespace PhoneBookAPI
             services.AddTransient<DataManager>();
 
             //подключаем контекст БД
-            services.AddDbContext<AppDBContextAPI>(x => x.UseSqlServer(Config.ConnectionString));
+            //services.AddDbContext<AppDBContextAPI>(x => x.UseSqlServer(Config.ConnectionString));
             //настраиваем Identity систему
             services.AddIdentity<IdentityUser, IdentityRole>(opts =>
             {
@@ -45,7 +45,7 @@ namespace PhoneBookAPI
                 opts.Password.RequireUppercase = false;
                 opts.Password.RequireDigit = false;
             })
-            .AddEntityFrameworkStores<AppDBContextAPI>()
+            //.AddEntityFrameworkStores<AppDBContextAPI>();
             .AddDefaultTokenProviders();
 
             services.AddControllers();

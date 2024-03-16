@@ -19,7 +19,7 @@ namespace PhoneBook.Controllers
             _roleManager = roleManager;
         }
 
-        public IActionResult Index()
+        public IActionResult RoleIndex()
         {
             var roles = _roleManager.Roles;
             return View(roles);

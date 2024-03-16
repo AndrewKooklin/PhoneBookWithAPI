@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using PhoneBook.Domain;
 using PhoneBook.Views.Register;
 using PhoneBook.Views.Roles;
 
@@ -18,16 +19,19 @@ namespace PhoneBook.Controllers
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<MyIdentityRole> _roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly DataManager _dataManager;
 
         public RegisterController(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
-            RoleManager<MyIdentityRole> roleManager)
+            //UserManager<IdentityUser> userManager,
+            //SignInManager<IdentityUser> signInManager,
+            //RoleManager<IdentityRole> roleManager,
+            DataManager dataManager)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
+            _dataManager = dataManager;
+            _userManager = _dataManager.Accounts.GetUserManager();
+            _signInManager = _dataManager.Accounts.GetSignInManager();
+            _roleManager = _dataManager.Accounts.GetRoleManager();
         }
 
         RegisterModel _registerModel = new RegisterModel();
@@ -51,14 +55,16 @@ namespace PhoneBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                //var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var result = await _dataManager.Accounts.CreateUser(model);
+                if (result)
                 {
-                    await _userManager.AddToRoleAsync(user, model.Role);
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    
                     return RedirectToAction("LogInIndex", "Login");
+                }
+                else
+                {
+                    return View(model);
                 }
             }
             else
@@ -66,7 +72,6 @@ namespace PhoneBook.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return View(model);
             }
-            return View(model);
         }
     }
 }

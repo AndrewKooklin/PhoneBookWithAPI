@@ -12,12 +12,15 @@ namespace PhoneBookAPI.Domain.Repositories.EF
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public EFAccountRepositoryAPI(SignInManager<IdentityUser> signInManager,
-                                      UserManager<IdentityUser> userManager)
+                                      UserManager<IdentityUser> userManager,
+                                      RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task<bool> CheckUserToDB(LoginModel model)
@@ -45,6 +48,12 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
             {
+                if (!String.IsNullOrEmpty(model.Role))
+                {
+                    await _userManager.AddToRoleAsync(user, model.Role);
+                }
+                await _signInManager.SignInAsync(user, isPersistent: false);
+
                 return false; 
             }
             else
@@ -69,12 +78,35 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             return roles;
         }
 
-        public UserWithRolesModel UserRoles(LoginModel model)
+        public UserWithRolesModel GetUserWithRoles(LoginModel model)
         {
-            UserWithRolesModel userRoles = new UserWithRolesModel();
-            userRoles.User = GetUser(model).GetAwaiter().GetResult();
-            userRoles.Roles = GetRoles(userRoles.User).GetAwaiter().GetResult();
-            return userRoles;
+            if(model.EMail == null)
+            {
+                return null;
+            }
+            else
+            {
+                UserWithRolesModel userRoles = new UserWithRolesModel();
+                userRoles.User = GetUser(model).GetAwaiter().GetResult();
+                userRoles.Roles = GetRoles(userRoles.User).GetAwaiter().GetResult();
+                return userRoles;
+
+            }
+        }
+
+        public UserManager<IdentityUser> GetUserManager()
+        {
+            return _userManager;
+        }
+
+        public SignInManager<IdentityUser> GetSignInManager()
+        {
+            return _signInManager;
+        }
+
+        public RoleManager<IdentityRole> GetRoleManager()
+        {
+            return _roleManager;
         }
     }
 }

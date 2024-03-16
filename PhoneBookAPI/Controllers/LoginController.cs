@@ -37,10 +37,10 @@ namespace PhoneBookAPI.Controllers
             return  _dataManager.Accounts.GetRoles(user);
         }
 
-        [HttpPost("/api/[controller]/GetUserRoles/{IdentityUser?}")]
+        [HttpPost("/api/[controller]/GetUserWithRoles/{IdentityUser?}")]
         public UserWithRolesModel GetUserWithRoles([FromBody] LoginModel model)
         {
-            return _dataManager.Accounts.UserRoles(model);
+            return _dataManager.Accounts.GetUserWithRoles(model);
         }
     }
 }

@@ -7,12 +7,20 @@
   <ItemGroup>
     <Compile Remove="Domain\Repositories\EF\**" />
     <Compile Remove="DTO\**" />
+    <Compile Remove="Migrations\**" />
     <Content Remove="Domain\Repositories\EF\**" />
     <Content Remove="DTO\**" />
+    <Content Remove="Migrations\**" />
     <EmbeddedResource Remove="Domain\Repositories\EF\**" />
     <EmbeddedResource Remove="DTO\**" />
+    <EmbeddedResource Remove="Migrations\**" />
     <None Remove="Domain\Repositories\EF\**" />
     <None Remove="DTO\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Domain\AppDBContext.cs" />
   </ItemGroup>
 
   <ItemGroup>

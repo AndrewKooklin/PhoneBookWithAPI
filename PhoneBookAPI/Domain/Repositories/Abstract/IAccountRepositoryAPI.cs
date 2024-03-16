@@ -19,6 +19,12 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
 
         Task<List<string>> GetRoles(IdentityUser user);
 
-        UserWithRolesModel UserRoles(LoginModel model);
+        UserWithRolesModel GetUserWithRoles(LoginModel model);
+
+        UserManager<IdentityUser> GetUserManager();
+
+        SignInManager<IdentityUser> GetSignInManager();
+
+        RoleManager<IdentityRole> GetRoleManager();
     }
 }

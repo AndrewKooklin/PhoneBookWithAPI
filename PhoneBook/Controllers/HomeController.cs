@@ -30,7 +30,6 @@ namespace PhoneBook.Controllers
             else
             {
                 List<PhoneBookRecord> records = null;
-
                 records = _dataManager.PhoneBookRecords.GetPhoneBookRecords().GetAwaiter().GetResult();
 
                 return View(records);
