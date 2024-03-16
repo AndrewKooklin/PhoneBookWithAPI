@@ -156,7 +156,6 @@ C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\Microsoft.Extensions
 C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\repos\PhoneBookWithAPI\PhoneBook\obj\Debug\netcoreapp3.1\Razor\Views\Logout\LogoutUser.cshtml.g.cs
 C:\repos\PhoneBookWithAPI\PhoneBook\obj\Debug\netcoreapp3.1\Razor\Views\Login\LogInError.cshtml.g.cs
-C:\repos\PhoneBookWithAPI\PhoneBook\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Index.cshtml.g.cs
 C:\repos\PhoneBookWithAPI\PhoneBook\obj\Debug\netcoreapp3.1\Razor\Views\Roles\CreateRole.cshtml.g.cs
 C:\repos\PhoneBookWithAPI\PhoneBook\obj\Debug\netcoreapp3.1\Razor\Views\Users\Index.cshtml.g.cs
 C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\System.Net.Http.Json.dll
@@ -168,3 +167,4 @@ C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBookAPI.StaticW
 C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBookAPI.exe
 C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBookAPI.dll
 C:\repos\PhoneBookWithAPI\PhoneBook\bin\Debug\netcoreapp3.1\PhoneBookAPI.pdb
+C:\repos\PhoneBookWithAPI\PhoneBook\obj\Debug\netcoreapp3.1\Razor\Views\Roles\RoleIndex.cshtml.g.cs

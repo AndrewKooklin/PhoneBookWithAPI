@@ -15,6 +15,7 @@ using PhoneBook.Views.Roles;
 
 namespace PhoneBook.Controllers
 {
+    [Route("[controller]")]
     public class RegisterController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -25,18 +26,27 @@ namespace PhoneBook.Controllers
         public RegisterController(
             //UserManager<IdentityUser> userManager,
             //SignInManager<IdentityUser> signInManager,
-            //RoleManager<IdentityRole> roleManager,
+            RoleManager<IdentityRole> roleManager,
             DataManager dataManager)
         {
             _dataManager = dataManager;
-            _userManager = _dataManager.Accounts.GetUserManager();
-            _signInManager = _dataManager.Accounts.GetSignInManager();
-            _roleManager = _dataManager.Accounts.GetRoleManager();
+            if (Role.RoleName.Equals("Anonymus"))
+            {
+                _roleManager = roleManager;
+            }
+            else
+            {
+                _userManager = _dataManager.Accounts.GetUserManager().GetAwaiter().GetResult();
+                _signInManager = _dataManager.Accounts.GetSignInManager().GetAwaiter().GetResult();
+                _roleManager = _dataManager.Accounts.GetRoleManager().GetAwaiter().GetResult();
+            }
+            
         }
 
         RegisterModel _registerModel = new RegisterModel();
         public string ReturnUrl { get; set; }
 
+        [HttpGet]
         public IActionResult CreateUser()
         {
             _registerModel = new RegisterModel
@@ -59,7 +69,7 @@ namespace PhoneBook.Controllers
                 var result = await _dataManager.Accounts.CreateUser(model);
                 if (result)
                 {
-                    
+                    Role.RoleName = "";
                     return RedirectToAction("LogInIndex", "Login");
                 }
                 else

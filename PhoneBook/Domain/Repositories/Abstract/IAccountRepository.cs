@@ -20,7 +20,7 @@ namespace PhoneBook.Domain.Repositories.Abstract
 
         Task<List<string>> GetRoles(IdentityUser user);
 
-        Task<UserWithRolesModel> GetUserWithRoles(LoginModel model);
+        //Task<UserWithRolesModel> GetUserWithRoles(LoginModel model);
 
         Task<UserManager<IdentityUser>> GetUserManager();
 

@@ -5,20 +5,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using PhoneBookAPI.Domain.Entities;
+using PhoneBookAPI.Domain;
 
 namespace PhoneBookAPI.Controllers
 {
-    public class RegisterController : ControllerBase
+    public class APIRegisterController : ControllerBase
     {
         private readonly DataManager _dataManager;
 
-        public RegisterController(DataManager dataManager)
+        public APIRegisterController(DataManager dataManager)
         {
             _dataManager = dataManager;
         }
 
-        [HttpPost("/api/[controller]/CreateUser/{RegisterModel?}")]
-        public Task<bool> CreateUser([FromBody] RegisterModel model)
+        [HttpPost("/api/[controller]/CreateNewUser/{RegisterModel?}")]
+        public Task<bool> CreateNewUser([FromBody] RegisterModel model)
         {
             return _dataManager.Accounts.CreateUser(model);
         }

@@ -13,6 +13,8 @@ namespace PhoneBook.Domain
 
         public IAccountRepository Accounts { get; set; }
 
+        public string Role { get; set; }
+
         //public SignInManager<IdentityUser> SignInManager { get; set; }
 
         //public UserManager<IdentityUser> UserManager { get; set; }

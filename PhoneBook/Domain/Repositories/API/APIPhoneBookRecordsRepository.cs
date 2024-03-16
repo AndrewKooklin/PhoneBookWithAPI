@@ -14,7 +14,7 @@ namespace PhoneBook.Domain.Repositories.API
 {
     public class APIPhoneBookRecordsRepository : IPhoneBookRecordRepository
     {
-        private HttpClient _httpClient { get; set; }
+        private MyHttpClient _httpClient = new MyHttpClient();
         private string url = @"https://localhost:44379/api/";
         string urlRequest = "";
         HttpResponseMessage response;
@@ -23,9 +23,6 @@ namespace PhoneBook.Domain.Repositories.API
 
         public APIPhoneBookRecordsRepository()
         {
-            _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Accept.Clear();
-            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task<List<PhoneBookRecord>> GetPhoneBookRecords()
@@ -36,7 +33,7 @@ namespace PhoneBook.Domain.Repositories.API
 
             using (_httpClient)
             {
-                using (response = await _httpClient.GetAsync(urlRequest))
+                using (response = await _httpClient.GetHttpClient().GetAsync(urlRequest))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     records = JsonConvert.DeserializeObject<List<PhoneBookRecord>>(apiResponse);
@@ -58,7 +55,7 @@ namespace PhoneBook.Domain.Repositories.API
         {
             urlRequest = $"{url}"+"Details/GetRecordById/"+$"{id}";
 
-            string json = _httpClient.GetStringAsync(urlRequest).Result;
+            string json = _httpClient.GetHttpClient().GetStringAsync(urlRequest).Result;
 
             return JsonConvert.DeserializeObject<PhoneBookRecord>(json);
         }
@@ -66,7 +63,7 @@ namespace PhoneBook.Domain.Repositories.API
         public async Task<bool> SavePhoneBookRecord(PhoneBookRecord phoneBookRecord)
         {
             urlRequest = $"{url}" + "CreateRecord/CreateRecord/" + $"{phoneBookRecord}";
-            using (response = await _httpClient.PostAsJsonAsync(urlRequest, phoneBookRecord))
+            using (response = await _httpClient.GetHttpClient().PostAsJsonAsync(urlRequest, phoneBookRecord))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 apiResponseConvert = JsonConvert.DeserializeObject<bool>(apiResponse);
@@ -78,14 +75,14 @@ namespace PhoneBook.Domain.Repositories.API
         {
             urlRequest = $"{url}" + "DeleteRecord/DeleteRecord/"+$"{id}";
 
-            response = await _httpClient.DeleteAsync(urlRequest);
+            response = await _httpClient.GetHttpClient().DeleteAsync(urlRequest);
         }
 
         public async void EditPhoneBookRecord(PhoneBookRecord phoneBookRecord)
         {
             urlRequest = $"{url}" + "EditRecord/EditRecord/";
 
-            response = await _httpClient.PostAsJsonAsync(urlRequest, phoneBookRecord);
+            response = await _httpClient.GetHttpClient().PostAsJsonAsync(urlRequest, phoneBookRecord);
         }
     }
 }

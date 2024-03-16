@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhoneBookAPI.Domain
+namespace PhoneBook.Domain
 {
-    public class Config
+    public static class Role
     {
-        public static string ConnectionString { get; set; }
+        public static string RoleName { get; set; }
     }
 }

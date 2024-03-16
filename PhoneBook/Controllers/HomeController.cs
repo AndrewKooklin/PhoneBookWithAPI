@@ -18,6 +18,7 @@ namespace PhoneBook.Controllers
         public HomeController(DataManager dataManager)
         {
             _dataManager = dataManager;
+            //if()
         }
 
         [HttpGet]
@@ -31,7 +32,7 @@ namespace PhoneBook.Controllers
             {
                 List<PhoneBookRecord> records = null;
                 records = _dataManager.PhoneBookRecords.GetPhoneBookRecords().GetAwaiter().GetResult();
-
+                Role.RoleName = "Anonymus";
                 return View(records);
             }
         }

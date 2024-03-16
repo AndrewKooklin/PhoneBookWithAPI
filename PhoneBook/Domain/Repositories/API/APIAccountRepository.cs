@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using PhoneBook.Domain.Repositories.Abstract;
-using PhoneBook.Views.Login;
-using PhoneBook.Views.Register;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +13,7 @@ namespace PhoneBook.Domain.Repositories.API
 {
     public class APIAccountRepository : IAccountRepository
     {
-        private MyHttpClient _httpClient { get; set; }
+        private PhoneBook.Domain.MyHttpClient _httpClient = new MyHttpClient();
         private string url = @"https://localhost:44379/api/";
         private string urlRequest = "";
         private HttpResponseMessage response;
@@ -26,13 +24,13 @@ namespace PhoneBook.Domain.Repositories.API
         private SignInManager<IdentityUser> _signInManager;
         private RoleManager<IdentityRole> _roleManager;
 
-        private UserWithRolesModel userWithRoles;
+        //private UserWithRolesModel userWithRoles;
 
         public APIAccountRepository()
         {
         }
 
-        public async Task<bool> CheckUserToDB(LoginModel model)
+        public async Task<bool> CheckUserToDB(PhoneBook.Views.Login.LoginModel model)
         {
             urlRequest = $"{url}" + "Login/CheckUserToDB/" + $"{model}";
             using (response = await _httpClient.GetHttpClient().PostAsJsonAsync(urlRequest, model))
@@ -43,9 +41,9 @@ namespace PhoneBook.Domain.Repositories.API
             return apiResponseBoolean;
         }
 
-        public async Task<bool> CreateUser(RegisterModel model)
+        public async Task<bool> CreateUser(PhoneBook.Views.Register.RegisterModel model)
         {
-            urlRequest = $"{url}" + "Register/CreateUser/" + $"{model}";
+            urlRequest = $"{url}" + "APIRegister/CreateNewUser/" + $"{model}";
             using (response = await _httpClient.GetHttpClient().PostAsJsonAsync(urlRequest, model))
             {
                 apiResponse = await response.Content.ReadAsStringAsync();
@@ -59,21 +57,21 @@ namespace PhoneBook.Domain.Repositories.API
             throw new NotImplementedException();
         }
 
-        public Task<IdentityUser> GetUser(LoginModel model)
+        public Task<IdentityUser> GetUser(PhoneBook.Views.Login.LoginModel model)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<UserWithRolesModel> GetUserWithRoles(LoginModel model)
-        {
-            urlRequest = $"{url}" + "Login/GetUserWithRoles/" + $"{model}";
-            using (response = await _httpClient.GetHttpClient().PostAsJsonAsync(urlRequest, model))
-            {
-                apiResponse = await response.Content.ReadAsStringAsync();
-                userWithRoles = JsonConvert.DeserializeObject<UserWithRolesModel>(apiResponse);
-            }
-            return userWithRoles;
-        }
+        //public async Task<UserWithRolesModel> GetUserWithRoles(LoginModel model)
+        //{
+        //    urlRequest = $"{url}" + "Login/GetUserWithRoles/" + $"{model}";
+        //    using (response = await _httpClient.GetHttpClient().PostAsJsonAsync(urlRequest, model))
+        //    {
+        //        apiResponse = await response.Content.ReadAsStringAsync();
+        //        userWithRoles = JsonConvert.DeserializeObject<UserWithRolesModel>(apiResponse);
+        //    }
+        //    return userWithRoles;
+        //}
 
         public void LogoutUser()
         {

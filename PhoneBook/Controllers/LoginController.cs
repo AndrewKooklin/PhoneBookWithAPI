@@ -12,14 +12,17 @@ namespace PhoneBook.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly DataManager _dataManager;
+        private SignInManager<IdentityUser> _signInManager;
+        private DataManager _dataManager;
 
         public LoginController(/*SignInManager<IdentityUser> signInManager,*/
                                 DataManager dataManager)
         {
             _dataManager = dataManager;
-            _signInManager = _dataManager.Accounts.GetSignInManager();
+            if (!_dataManager.Role.Equals("Anonymus"))
+            {
+                _signInManager = _dataManager.Accounts.GetSignInManager().GetAwaiter().GetResult();
+            }
         }
 
         public IActionResult LogInIndex()
@@ -43,6 +46,7 @@ namespace PhoneBook.Controllers
                     model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    //this._signInManager = _dataManager.Accounts.GetSignInManager().GetAwaiter().GetResult();
                     return RedirectToAction("Index", "Home");
                 }
                 else
