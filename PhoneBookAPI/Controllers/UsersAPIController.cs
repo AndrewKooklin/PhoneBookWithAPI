@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PhoneBookAPI.Domain;
+using PhoneBookAPI.Domain.Entities;
 
 namespace PhoneBookAPI.Controllers
 {
+    [ApiController]
     public class UsersAPIController : Controller
     {
         private DataManager _dataManager;
@@ -17,9 +19,22 @@ namespace PhoneBookAPI.Controllers
             _dataManager = dataManager;
         }
 
-        public IEnumerable<IdentityUser> GetUsers()
+        [HttpGet("/api/[controller]/GetUsers")]
+        public List<IdentityUser> GetUsers()
         {
             return _dataManager.Accounts.GetUsers();
+        }
+
+        [HttpGet("/api/[controller]/GetUserWithRoles/{id?}")]
+        public UserWithRolesModel GetUserWithRoles(string id)
+        {
+            return _dataManager.Accounts.GetUserWithRoles(id);
+        }
+
+        [HttpPost("/api/[controller]/AddRoleToUser/{userId?}/{role?}")]
+        public bool AddRoleToUser(string userId, string role)
+        {
+
         }
     }
 }

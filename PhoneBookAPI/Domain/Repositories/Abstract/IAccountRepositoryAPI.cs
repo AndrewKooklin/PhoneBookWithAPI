@@ -27,7 +27,12 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
 
         Task<bool> DeleteRole(string id);
 
-        IEnumerable<IdentityUser> GetUsers();
+        List<IdentityUser> GetUsers();
+
+        UserWithRolesModel GetUserWithRoles(string id);
+
+        bool AddRoleToUser(string userId, string role);
+
 
         //UserWithRolesModel GetUserWithRoles(LoginModel model);
 

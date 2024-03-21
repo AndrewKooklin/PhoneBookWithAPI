@@ -67,6 +67,11 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             return await _userManager.FindByEmailAsync(model.EMail);
         }
 
+        public async Task<IdentityUser> GetUser(string id)
+        {
+            return await _userManager.FindByIdAsync(id);
+        }
+
         public async Task<List<string>> GetUserRoles(LoginModel model)
         {
             IdentityUser user = new IdentityUser();
@@ -142,10 +147,42 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             }
         }
 
-        public IEnumerable<IdentityUser> GetUsers()
+        public List<IdentityUser> GetUsers()
         {
-            var users = _userManager.Users.AsEnumerable();
+            var users = _userManager.Users.ToList();
             return users;
+        }
+
+        public UserWithRolesModel GetUserWithRoles(string id)
+        {
+            UserWithRolesModel userWithRoles = new UserWithRolesModel();
+            var user = GetUser(id).GetAwaiter().GetResult();
+            var roles = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().ToList();
+            userWithRoles.User = user;
+            userWithRoles.Roles = roles;
+            return userWithRoles;
+        }
+
+        public bool AddRoleToUser(string userId, string role)
+        {
+            IdentityUser user = GetUser(userId).GetAwaiter().GetResult();
+            var roles = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().ToList();
+            if (roles.Contains(role))
+            {
+                return false;
+            }
+            else
+            {
+                var result = _userManager.AddToRoleAsync(user, role).GetAwaiter().GetResult();
+                if (result.Succeeded)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
 
         //public UserWithRolesModel GetUserWithRoles(LoginModel model)
