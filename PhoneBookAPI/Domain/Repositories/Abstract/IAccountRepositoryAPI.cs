@@ -21,6 +21,14 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
 
         List<string> GetRoleNames();
 
+        IEnumerable<IdentityRole> GetRoles();
+
+        Task<bool> CreateRole(IdentityRole role);
+
+        Task<bool> DeleteRole(string id);
+
+        IEnumerable<IdentityUser> GetUsers();
+
         //UserWithRolesModel GetUserWithRoles(LoginModel model);
 
         //UserManager<IdentityUser> GetUserManager();

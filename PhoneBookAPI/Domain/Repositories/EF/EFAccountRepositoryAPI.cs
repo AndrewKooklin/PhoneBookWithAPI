@@ -46,7 +46,7 @@ namespace PhoneBookAPI.Domain.Repositories.EF
         {
             var user = new IdentityUser { UserName = model.Email, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Password);
-            if (!result.Succeeded)
+            if (result.Succeeded)
             {
                 if (!String.IsNullOrEmpty(model.Role))
                 {
@@ -54,7 +54,7 @@ namespace PhoneBookAPI.Domain.Repositories.EF
                 }
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
-                return false; 
+                return false;
             }
             else
             {
@@ -69,10 +69,9 @@ namespace PhoneBookAPI.Domain.Repositories.EF
 
         public async Task<List<string>> GetUserRoles(LoginModel model)
         {
-            
             IdentityUser user = new IdentityUser();
             user = await _userManager.FindByEmailAsync(model.EMail);
-            if(user == null)
+            if (user == null)
             {
                 return null;
             }
@@ -94,6 +93,59 @@ namespace PhoneBookAPI.Domain.Repositories.EF
                 roleNames.Add(roleName.Name);
             }
             return roleNames;
+        }
+
+        public IEnumerable<IdentityRole> GetRoles()
+        {
+            var roles = _roleManager.Roles.AsEnumerable();
+            return roles;
+        }
+
+        public async Task<bool> CreateRole(IdentityRole role)
+        {
+            if (await _roleManager.RoleExistsAsync(role.Name))
+            {
+                return false;
+            }
+            else
+            {
+                var result = await _roleManager.CreateAsync(new IdentityRole(role.Name));
+                if (result.Succeeded)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public async Task<bool> DeleteRole(string id)
+        {
+            IdentityRole role = _roleManager.FindByIdAsync(id).GetAwaiter().GetResult();
+            if (role != null)
+            {
+                var result = await _roleManager.DeleteAsync(role);
+                if (result.Succeeded)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public IEnumerable<IdentityUser> GetUsers()
+        {
+            var users = _userManager.Users.AsEnumerable();
+            return users;
         }
 
         //public UserWithRolesModel GetUserWithRoles(LoginModel model)
