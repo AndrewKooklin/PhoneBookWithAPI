@@ -1,53 +1,56 @@
 ﻿@model PhoneBookRecord
 @{
-    string strTitle = "Создать запись";
+    string strTitle = "Редактировать запись";
     ViewBag.Title = strTitle;
 }
 
 <div class="row">
     <div class="col-md-4">
         <div>
-            <h1>@ViewBag.Title</h1>
+            <h2>@ViewBag.Title</h2>
         </div>
         <section>
-            <form asp-controller="CreateRecord" asp-action="Create" method="post" enctype="multipart/form-data">
+            <form asp-controller="EditRecord" asp-action="EditRecord" method="post" enctype="multipart/form-data">
+
+                <input type="hidden" asp-for="@Model.Id" />
                 <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
+                <div asp-validation-summary="All" class="text-validation"></div>
                 <div class="form-group">
                     <label asp-for="LastName"></label>
-                    <input asp-for="LastName"  class="form-control"/>
+                    <input asp-for="LastName" value="@Model.LastName" class="form-control" />
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="FirstName"></label>
-                    <input asp-for="FirstName"  class="form-control"/>
+                    <input asp-for="FirstName" value="@Model.FirstName" class="form-control" />
                     <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="FathersName"></label>
-                    <input asp-for="FathersName"  class="form-control"/>
+                    <input asp-for="FathersName" value="@Model.FathersName" class="form-control" />
                     <span asp-validation-for="FathersName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="PhoneNumber"></label>
-                    <input asp-for="PhoneNumber"  class="form-control"/>
+                    <input asp-for="PhoneNumber" value="@Model.PhoneNumber" class="form-control" />
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Address"></label>
-                    <input asp-for="Address"  class="form-control"/>
+                    <input asp-for="Address" value="@Model.Address" class="form-control" />
                     <span asp-validation-for="Address" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Description"></label>
-                    <input asp-for="Description"  class="form-control"/>
+                    <input asp-for="Description" value="@Model.Description" class="form-control" />
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-primary" type="submit" value="Создать запись">Создать</button>
-                </div>
+                <button type="submit" value="Изменить" class="btn btn-primary">Изменить</button>
             </form>
         </section>
     </div>
 </div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 

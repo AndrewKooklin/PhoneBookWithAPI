@@ -39,7 +39,7 @@ namespace PhoneBookAPI.Domain.Repositories.EF
                await _context.PhoneBookRecords.AddAsync(phoneBookRecord);
             }
             _context.SaveChanges();
-            _context.Dispose();
+
             countAfterAdded = await _context.PhoneBookRecords.CountAsync();
             if (countAfterAdded > countBeforeAdded)
             {

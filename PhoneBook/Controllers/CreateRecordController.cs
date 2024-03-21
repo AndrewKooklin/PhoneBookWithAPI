@@ -18,13 +18,13 @@ namespace PhoneBook.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult CreateRecord()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(PhoneBookRecord model)
+        public IActionResult CreateRecord(PhoneBookRecord model)
         {
             if (ModelState.IsValid)
             {

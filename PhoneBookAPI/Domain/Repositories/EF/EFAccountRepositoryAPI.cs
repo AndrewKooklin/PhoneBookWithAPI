@@ -67,46 +67,64 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             return await _userManager.FindByEmailAsync(model.EMail);
         }
 
-        public async Task<List<string>> GetRoles(IdentityUser user)
+        public async Task<List<string>> GetUserRoles(LoginModel model)
         {
-            List<string> roles = new List<string>(); 
-            var userRoles = await _userManager.GetRolesAsync(user);
-            foreach (string role in userRoles)
-            {
-                roles.Add(role);
-            }
-            return roles;
-        }
-
-        public UserWithRolesModel GetUserWithRoles(LoginModel model)
-        {
-            if(model.EMail == null)
+            
+            IdentityUser user = new IdentityUser();
+            user = await _userManager.FindByEmailAsync(model.EMail);
+            if(user == null)
             {
                 return null;
             }
             else
             {
-                UserWithRolesModel userRoles = new UserWithRolesModel();
-                userRoles.User = GetUser(model).GetAwaiter().GetResult();
-                userRoles.Roles = GetRoles(userRoles.User).GetAwaiter().GetResult();
-                return userRoles;
-
+                List<string> roles = new List<string>();
+                var rolesFromDb = await _userManager.GetRolesAsync(user);
+                UserRoles.Roles = rolesFromDb.ToList();
+                return UserRoles.Roles;
             }
         }
 
-        public UserManager<IdentityUser> GetUserManager()
+        public List<string> GetRoleNames()
         {
-            return _userManager;
+            List<string> roleNames = new List<string>();
+            var roles = _roleManager.Roles;
+            foreach (var roleName in roles)
+            {
+                roleNames.Add(roleName.Name);
+            }
+            return roleNames;
         }
 
-        public SignInManager<IdentityUser> GetSignInManager()
-        {
-            return _signInManager;
-        }
+        //public UserWithRolesModel GetUserWithRoles(LoginModel model)
+        //{
+        //    if(model.EMail == null)
+        //    {
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        UserWithRolesModel userRoles = new UserWithRolesModel();
+        //        userRoles.User = GetUser(model).GetAwaiter().GetResult();
+        //        userRoles.Roles = GetRoles(userRoles.User).GetAwaiter().GetResult();
+        //        return userRoles;
 
-        public RoleManager<IdentityRole> GetRoleManager()
-        {
-            return _roleManager;
-        }
+        //    }
+        //}
+
+        //public UserManager<IdentityUser> GetUserManager()
+        //{
+        //    return _userManager;
+        //}
+
+        //public SignInManager<IdentityUser> GetSignInManager()
+        //{
+        //    return _signInManager;
+        //}
+
+        //public RoleManager<IdentityRole> GetRoleManager()
+        //{
+        //    return _roleManager;
+        //}
     }
 }

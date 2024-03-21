@@ -10,11 +10,11 @@ namespace PhoneBookAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LogoutController : Controller
+    public class LogoutAPIController : Controller
     {
         private readonly DataManager _dataManager;
 
-        public LogoutController(DataManager dataManager)
+        public LogoutAPIController(DataManager dataManager)
         {
             _dataManager = dataManager;
         }

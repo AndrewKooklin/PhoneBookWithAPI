@@ -10,11 +10,11 @@ namespace PhoneBookAPI
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CreateRecordController : ControllerBase
+    public class CreateRecordAPIController : ControllerBase
     {
         private readonly DataManager _dataManager;
 
-        public CreateRecordController(DataManager dataManager)
+        public CreateRecordAPIController(DataManager dataManager)
         {
             _dataManager = dataManager;
         }

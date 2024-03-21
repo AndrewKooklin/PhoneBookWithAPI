@@ -32,16 +32,16 @@ namespace PhoneBookAPI.Controllers
             return _dataManager.Accounts.GetUser(model);
         }
 
-        [HttpPost("/api/[controller]/GetUserRoles/{IdentityUser?}")]
-        public Task<List<string>> GetUserRoles([FromBody] IdentityUser user)
+        [HttpPost("/api/[controller]/GetUserRoles/{LoginModel?}")]
+        public Task<List<string>> GetUserRoles([FromBody] LoginModel model)
         {
-            return  _dataManager.Accounts.GetRoles(user);
+            return  _dataManager.Accounts.GetUserRoles(model);
         }
 
-        [HttpPost("/api/[controller]/GetUserWithRoles/{IdentityUser?}")]
-        public UserWithRolesModel GetUserWithRoles([FromBody] LoginModel model)
-        {
-            return _dataManager.Accounts.GetUserWithRoles(model);
-        }
+        //[HttpPost("/api/[controller]/GetUserWithRoles/{IdentityUser?}")]
+        //public UserWithRolesModel GetUserWithRoles([FromBody] LoginModel model)
+        //{
+        //    return _dataManager.Accounts.GetUserWithRoles(model);
+        //}
     }
 }
