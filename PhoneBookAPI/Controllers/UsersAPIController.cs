@@ -34,25 +34,25 @@ namespace PhoneBookAPI.Controllers
         [HttpPost("/api/[controller]/AddRoleToUser/{RoleUserModel?}")]
         public bool AddRoleToUser(RoleUserModel model)
         {
-            return _dataManager.Accounts.AddRoleToUser(model);
+            return _dataManager.Accounts.AddRoleToUser(model).GetAwaiter().GetResult();
         }
 
         [HttpPost("/api/[controller]/DeleteRoleUser/{RoleUserModel?}")]
         public bool DeleteRoleUser(RoleUserModel model)
         {
-            return _dataManager.Accounts.DeleteRoleUser(model);
+            return _dataManager.Accounts.DeleteRoleUser(model).GetAwaiter().GetResult();
         }
 
         [HttpPost("/api/[controller]/DeleteRolesUser/{id?}")]
         public bool DeleteRolesUser(string id)
         {
-            return _dataManager.Accounts.DeleteRolesUser(id);
+            return _dataManager.Accounts.DeleteRolesUser(id).GetAwaiter().GetResult();
         }
 
         [HttpPost("/api/[controller]/DeleteUser/{id?}")]
         public bool DeleteUser(string id)
         {
-            return _dataManager.Accounts.DeleteUser(id);
+            return _dataManager.Accounts.DeleteUser(id).GetAwaiter().GetResult();
         }
     }
 }

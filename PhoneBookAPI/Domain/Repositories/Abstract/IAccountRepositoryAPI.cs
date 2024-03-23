@@ -31,12 +31,12 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
 
         UserWithRolesModel GetUserWithRoles(string id);
 
-        bool AddRoleToUser(RoleUserModel model);
+        Task<bool> AddRoleToUser(RoleUserModel model);
 
-        bool DeleteRoleUser(RoleUserModel model);
+        Task<bool> DeleteRoleUser(RoleUserModel model);
 
-        bool DeleteRolesUser(string userId);
+        Task<bool> DeleteRolesUser(string userId);
 
-        bool DeleteUser(string id);
+        Task<bool> DeleteUser(string id);
     }
 }

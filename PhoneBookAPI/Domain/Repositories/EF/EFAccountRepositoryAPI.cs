@@ -166,10 +166,10 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             return userWithRoles;
         }
 
-        public bool AddRoleToUser(RoleUserModel model)
+        public async Task<bool> AddRoleToUser(RoleUserModel model)
         {
             IdentityUser user = GetUser(model.UserId).GetAwaiter().GetResult();
-            var result = _userManager.AddToRoleAsync(user, model.Role).GetAwaiter().GetResult();
+            var result = await _userManager.AddToRoleAsync(user, model.Role);
             if (result.Succeeded)
             {
                 return true;
@@ -180,10 +180,10 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             }
         }
 
-        public bool DeleteRoleUser(RoleUserModel model)
+        public async Task<bool> DeleteRoleUser(RoleUserModel model)
         {
             IdentityUser user = GetUser(model.UserId).GetAwaiter().GetResult();
-            IdentityResult result = _userManager.RemoveFromRoleAsync(user, model.Role).GetAwaiter().GetResult();
+            IdentityResult result = await _userManager.RemoveFromRoleAsync(user, model.Role);
             if (!result.Succeeded)
             {
                 return false;
