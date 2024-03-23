@@ -54,11 +54,11 @@ namespace PhoneBookAPI.Domain.Repositories.EF
                 }
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
 
@@ -166,54 +166,29 @@ namespace PhoneBookAPI.Domain.Repositories.EF
         public bool AddRoleToUser(RoleUserModel model)
         {
             IdentityUser user = GetUser(model.UserId).GetAwaiter().GetResult();
-            var roles = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().ToList();
-            if (roles.Contains(model.Role))
+            var result = _userManager.AddToRoleAsync(user, model.Role).GetAwaiter().GetResult();
+            if (result.Succeeded)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteRoleUser(RoleUserModel model)
+        {
+            IdentityUser user = GetUser(model.UserId).GetAwaiter().GetResult();
+            IdentityResult result = _userManager.RemoveFromRoleAsync(user, model.Role).GetAwaiter().GetResult();
+            if (!result.Succeeded)
             {
                 return false;
             }
             else
             {
-                var result = _userManager.AddToRoleAsync(user, model.Role).GetAwaiter().GetResult();
-                if (result.Succeeded)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
         }
-
-        //public UserWithRolesModel GetUserWithRoles(LoginModel model)
-        //{
-        //    if(model.EMail == null)
-        //    {
-        //        return null;
-        //    }
-        //    else
-        //    {
-        //        UserWithRolesModel userRoles = new UserWithRolesModel();
-        //        userRoles.User = GetUser(model).GetAwaiter().GetResult();
-        //        userRoles.Roles = GetRoles(userRoles.User).GetAwaiter().GetResult();
-        //        return userRoles;
-
-        //    }
-        //}
-
-        //public UserManager<IdentityUser> GetUserManager()
-        //{
-        //    return _userManager;
-        //}
-
-        //public SignInManager<IdentityUser> GetSignInManager()
-        //{
-        //    return _signInManager;
-        //}
-
-        //public RoleManager<IdentityRole> GetRoleManager()
-        //{
-        //    return _roleManager;
-        //}
     }
 }

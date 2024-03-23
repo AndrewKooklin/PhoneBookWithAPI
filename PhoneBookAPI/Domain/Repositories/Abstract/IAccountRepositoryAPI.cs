@@ -33,6 +33,8 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
 
         bool AddRoleToUser(RoleUserModel model);
 
+        bool DeleteRoleUser(RoleUserModel model);
+
 
         //UserWithRolesModel GetUserWithRoles(LoginModel model);
 
