@@ -31,10 +31,10 @@ namespace PhoneBookAPI.Controllers
             return _dataManager.Accounts.GetUserWithRoles(id);
         }
 
-        [HttpPost("/api/[controller]/AddRoleToUser/{userId?}/{role?}")]
-        public bool AddRoleToUser(string userId, string role)
+        [HttpPost("/api/[controller]/AddRoleToUser/{RoleUserModel?}")]
+        public bool AddRoleToUser(RoleUserModel model)
         {
-
+            return _dataManager.Accounts.AddRoleToUser(model);
         }
     }
 }

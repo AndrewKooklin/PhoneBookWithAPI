@@ -163,17 +163,17 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             return userWithRoles;
         }
 
-        public bool AddRoleToUser(string userId, string role)
+        public bool AddRoleToUser(RoleUserModel model)
         {
-            IdentityUser user = GetUser(userId).GetAwaiter().GetResult();
+            IdentityUser user = GetUser(model.UserId).GetAwaiter().GetResult();
             var roles = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().ToList();
-            if (roles.Contains(role))
+            if (roles.Contains(model.Role))
             {
                 return false;
             }
             else
             {
-                var result = _userManager.AddToRoleAsync(user, role).GetAwaiter().GetResult();
+                var result = _userManager.AddToRoleAsync(user, model.Role).GetAwaiter().GetResult();
                 if (result.Succeeded)
                 {
                     return true;

@@ -31,7 +31,7 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
 
         UserWithRolesModel GetUserWithRoles(string id);
 
-        bool AddRoleToUser(string userId, string role);
+        bool AddRoleToUser(RoleUserModel model);
 
 
         //UserWithRolesModel GetUserWithRoles(LoginModel model);
