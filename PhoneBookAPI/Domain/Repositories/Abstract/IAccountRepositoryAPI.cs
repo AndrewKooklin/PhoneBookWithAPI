@@ -35,13 +35,8 @@ namespace PhoneBookAPI.Domain.Repositories.Abstract
 
         bool DeleteRoleUser(RoleUserModel model);
 
+        bool DeleteRolesUser(string userId);
 
-        //UserWithRolesModel GetUserWithRoles(LoginModel model);
-
-        //UserManager<IdentityUser> GetUserManager();
-
-        //SignInManager<IdentityUser> GetSignInManager();
-
-        //RoleManager<IdentityRole> GetRoleManager();
+        bool DeleteUser(string id);
     }
 }

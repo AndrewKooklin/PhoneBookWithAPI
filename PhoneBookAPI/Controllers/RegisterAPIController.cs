@@ -30,23 +30,5 @@ namespace PhoneBookAPI.Controllers
         {
             return _dataManager.Accounts.GetRoleNames();
         }
-
-        //[HttpGet("/api/[controller]/GetUserManager")]
-        //public UserManager<IdentityUser> GetUserManager()
-        //{
-        //    return _dataManager.Accounts.GetUserManager();
-        //}
-
-        //[HttpGet("/api/[controller]/GetSignInManager")]
-        //public SignInManager<IdentityUser> GetSignInManager()
-        //{
-        //    return _dataManager.Accounts.GetSignInManager();
-        //}
-
-        //[HttpGet("/api/[controller]/GetRoleManager")]
-        //public RoleManager<IdentityRole> GetRoleManager()
-        //{
-        //    return _dataManager.Accounts.GetRoleManager();
-        //}
     } 
 }

@@ -10,17 +10,20 @@ namespace PhoneBookAPI.Domain.Repositories.EF
 {
     public class EFAccountRepositoryAPI : IAccountRepositoryAPI
     {
+        private readonly AppDBContextAPI _context;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public EFAccountRepositoryAPI(SignInManager<IdentityUser> signInManager,
+        public EFAccountRepositoryAPI(AppDBContextAPI context,
+                                      SignInManager<IdentityUser> signInManager,
                                       UserManager<IdentityUser> userManager,
                                       RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
+            _context = context;
         }
 
         public async Task<bool> CheckUserToDB(LoginModel model)
@@ -188,6 +191,40 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             else
             {
                 return true;
+            }
+        }
+
+        public async Task<bool> DeleteRolesUser(string userId)
+        {
+            IdentityResult result;
+            var user = _userManager.FindByIdAsync(userId).GetAwaiter().GetResult();
+            var roles = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().AsEnumerable();
+            if (roles.Any())
+            {
+                result = await _userManager.RemoveFromRolesAsync(user, roles);
+                if (result.Succeeded)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public async Task<bool> DeleteUser(string id)
+        {
+            var user = _userManager.FindByIdAsync(id).GetAwaiter().GetResult();
+            IdentityResult result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

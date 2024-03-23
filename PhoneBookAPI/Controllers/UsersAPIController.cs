@@ -42,5 +42,17 @@ namespace PhoneBookAPI.Controllers
         {
             return _dataManager.Accounts.DeleteRoleUser(model);
         }
+
+        [HttpPost("/api/[controller]/DeleteRolesUser/{id?}")]
+        public bool DeleteRolesUser(string id)
+        {
+            return _dataManager.Accounts.DeleteRolesUser(id);
+        }
+
+        [HttpPost("/api/[controller]/DeleteUser/{id?}")]
+        public bool DeleteUser(string id)
+        {
+            return _dataManager.Accounts.DeleteUser(id);
+        }
     }
 }
