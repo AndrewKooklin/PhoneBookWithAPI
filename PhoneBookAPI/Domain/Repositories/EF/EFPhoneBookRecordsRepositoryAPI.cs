@@ -63,7 +63,5 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             _context.PhoneBookRecords.Update(phoneBookRecord);
             _context.SaveChanges();
         }
-
-
     }
 }

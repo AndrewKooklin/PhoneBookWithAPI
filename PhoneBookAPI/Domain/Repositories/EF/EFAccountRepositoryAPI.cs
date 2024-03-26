@@ -111,21 +111,14 @@ namespace PhoneBookAPI.Domain.Repositories.EF
 
         public async Task<bool> CreateRole(IdentityRole role)
         {
-            if (await _roleManager.RoleExistsAsync(role.Name))
+            if (!await _roleManager.RoleExistsAsync(role.Name))
             {
-                return false;
+                var result = await _roleManager.CreateAsync(new IdentityRole(role.Name));
+                return true;
             }
             else
             {
-                var result = await _roleManager.CreateAsync(new IdentityRole(role.Name));
-                if (result.Succeeded)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
         }
 
