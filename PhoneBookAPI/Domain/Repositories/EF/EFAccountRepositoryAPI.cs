@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using PhoneBookAPI.Domain.Entities;
 using PhoneBookAPI.Domain.Repositories.Abstract;
 using System;
@@ -157,6 +158,22 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             userWithRoles.User = user;
             userWithRoles.Roles = roles;
             return userWithRoles;
+        }
+
+        public List<UserWithRolesModel> GetUsersWithRoles()
+        {
+            List<UserWithRolesModel> usersWithRoles = new List<UserWithRolesModel>();
+            var users = GetUsers();
+            foreach(var user in users)
+            {
+                UserWithRolesModel userWithRoles = new UserWithRolesModel();
+                var roles = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().ToList();
+                userWithRoles.User = user;
+                userWithRoles.Roles = roles;
+                usersWithRoles.Add(userWithRoles);
+            }
+            
+            return usersWithRoles;
         }
 
         public async Task<bool> AddRoleToUser(RoleUserModel model)

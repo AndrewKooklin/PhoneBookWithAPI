@@ -15,6 +15,8 @@ namespace PhoneBookAPI.Domain
 
         public DbSet<PhoneBookRecord> PhoneBookRecords { get; set; }
 
+        //public DbSet<AspNetRoles> PhoneBookRecords { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
