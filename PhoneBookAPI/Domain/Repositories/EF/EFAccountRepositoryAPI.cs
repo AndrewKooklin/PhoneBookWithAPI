@@ -168,6 +168,8 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             {
                 UserWithRolesModel userWithRoles = new UserWithRolesModel();
                 var roles = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().ToList();
+                //var usersList = _context.Users;
+                //var roleUser = _context.UserRoles;
                 userWithRoles.User = user;
                 userWithRoles.Roles = roles;
                 usersWithRoles.Add(userWithRoles);
