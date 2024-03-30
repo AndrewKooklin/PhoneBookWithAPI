@@ -2,10 +2,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PhoneBookAPI.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PhoneBookAPI.Domain
 {
@@ -14,8 +10,6 @@ namespace PhoneBookAPI.Domain
         public AppDBContextAPI(DbContextOptions<AppDBContextAPI> options) : base(options) { }
 
         public DbSet<PhoneBookRecord> PhoneBookRecords { get; set; }
-
-        //public DbSet<AspNetRoles> PhoneBookRecords { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

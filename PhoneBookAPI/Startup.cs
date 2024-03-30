@@ -36,6 +36,7 @@ namespace PhoneBookAPI
 
             //подключаем контекст БД
             services.AddDbContext<AppDBContextAPI>(x => x.UseSqlServer(Config.ConnectionString));
+
             //настраиваем Identity систему
             services.AddIdentity<IdentityUser, IdentityRole>(opts =>
             {

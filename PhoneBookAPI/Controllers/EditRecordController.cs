@@ -19,7 +19,6 @@ namespace PhoneBookAPI.Controllers
             _dataManager = dataManager;
         }
 
-        //[Route("/api/[controller]/EditRecord/{record:PhoneBookRecord}")]
         [HttpPost("/api/[controller]/EditRecord/{PhoneBookRecord?}")]
         public void EditRecord([FromBody] PhoneBookRecord record)
         {
