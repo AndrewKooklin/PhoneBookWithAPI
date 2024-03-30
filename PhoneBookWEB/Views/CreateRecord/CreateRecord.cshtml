@@ -1,0 +1,53 @@
+﻿@model PhoneBookRecord
+@{
+    string strTitle = "Создать запись";
+    ViewBag.Title = strTitle;
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div>
+            <h1>@ViewBag.Title</h1>
+        </div>
+        <section>
+            <form asp-controller="CreateRecord" asp-action="CreateRecord" method="post" enctype="multipart/form-data">
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FathersName"></label>
+                    <input asp-for="FathersName" class="form-control" />
+                    <span asp-validation-for="FathersName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit" value="Создать запись">Создать</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+

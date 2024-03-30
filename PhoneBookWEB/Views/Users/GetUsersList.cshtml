@@ -1,0 +1,46 @@
+﻿@model List<IdentityUser>
+
+@{
+    ViewData["Title"] = "Список пользователей";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<div>
+    <a class="btn btn-primary" asp-controller="Register" asp-action="CreateNewUser" title="Добавить">Добавить</a>
+</div>
+<div>
+    <p>&nbsp;</p>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>UserName</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Users"
+                       asp-action="UserDetails"
+                       asp-route-id="@item.Id"
+                       title="Просмотреть"
+                       class="linkDetails">
+                        @item.Id
+                </a>
+            </td>
+            <td>@item.UserName</td>
+            <td>@item.Email</td>
+            <td>
+                <a asp-controller="Users" asp-action="DeleteUser" asp-route-id="@item.Id" class="btn btn-primary" title="Удалить пользователя">Удалить</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

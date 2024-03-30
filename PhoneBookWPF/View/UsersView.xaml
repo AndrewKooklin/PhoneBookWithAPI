@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="PhoneBookWPF.View.UsersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PhoneBookWPF.View"
+             xmlns:viewModel="clr-namespace:PhoneBookWPF.ViewModel"
+             xmlns:model="clr-namespace:PhoneBookWPF.Model"
+             xmlns:help="clr-namespace:PhoneBookWPF.HelpMethods"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" 
+             d:DesignWidth="400"
+             Margin="0 10 0 0">
+
+    <Grid x:Name="gRecords"
+          MaxHeight="400"
+          MaxWidth="400"
+          HorizontalAlignment="Stretch">
+        <Grid.Resources>
+            <viewModel:PhoneBookWindowViewModel x:Key="PhoneBookViewModel"/>
+            <model:UserModel x:Key="UserModel"/>
+            <help:MyMultiValueConverter x:Key="MyMultiValue"/>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="spUsersHeaders"
+                    Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    Margin="10,5,0,2">
+            <Button x:Name="bUserId"
+                    Content="UserId" 
+                    Width="150"
+                    Margin="0"
+                    Background="PaleGreen"/>
+            <Button x:Name="bEmail"
+                    Content="Email" 
+                    Width="120"
+                    Margin="0"
+                    Background="PaleGreen"/>
+            <Button x:Name="bRoles"
+                    Content="Roles" 
+                    Width="80"
+                    Margin="0"
+                    Background="PaleGreen"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" 
+              Grid.Column="0">
+            <Grid.Resources>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer Grid.Column="0"
+                          Margin="0 2 0 0" 
+                          VerticalScrollBarVisibility="Auto" 
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Height="370"
+                          Grid.RowSpan="2">
+                <StackPanel x:Name="spUsersContent"
+                        Margin="10 0 0 0" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top"
+                        Height="300">
+                    <ListBox x:Name="lbUsers"
+                         ItemsSource="{Binding Users, Source={StaticResource PhoneBookViewModel}}"
+                         SelectedItem="{Binding SelectedUser, Source={StaticResource PhoneBookViewModel}, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="0" 
+                         Background="#FFDFFFCE"
+                         FontSize="14">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="Black" 
+                                    BorderThickness="0 0 0 1" 
+                                    Padding="0" 
+                                    Margin="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock x:Name="tbId" 
+                                               Text="{Binding Path=User.Id}"
+                                               Width="150"
+                                               Margin="0 0 0 0"
+                                               TextWrapping="Wrap"/>
+                                        <TextBlock x:Name="tbEmail" 
+                                               Text="{Binding Path=User.Email}"
+                                               Width="115"
+                                               Margin="0 0 0 0"
+                                               TextAlignment="Center"/>
+                                        <ListBox x:Name="lbRoles"
+                                                 ItemsSource="{Binding Path=Roles}"
+                                                 Margin="0"
+                                                 Padding="0"
+                                                 Width="70"
+                                                 Background="#FFDFFFCE"
+                                                 FontSize="14">
+                                        </ListBox>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

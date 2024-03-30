@@ -1,0 +1,209 @@
+﻿<Window x:Class="PhoneBookWPF.View.PhoneBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhoneBookWPF.View"
+        xmlns:viewModel="clr-namespace:PhoneBookWPF.ViewModel"
+        xmlns:help="clr-namespace:PhoneBookWPF.HelpMethods"
+        mc:Ignorable="d"
+        Title="PhoneBook" 
+        Height="460"
+        MinHeight="460"
+        Width="640"
+        MinWidth="640"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <viewModel:PhoneBookWindowViewModel x:Key="PhoneBookWindowViewModel"/>
+        <help:MyMultiValueConverter x:Key="MyMultiValueConverter"/>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.Resources>
+
+            <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="132*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="410*" MinWidth="410"></ColumnDefinition>
+            <ColumnDefinition Width="210*" MinWidth="210"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Menu x:Name="mTopLeft"
+              Grid.Row="0"
+              Height="24"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Left"
+              FontSize="15"
+              Background="White">
+
+            <MenuItem x:Name="miRecords" 
+                      Header="Records"
+                      Cursor="Hand">
+                <MenuItem x:Name="miGetRecords"
+                          Header="Прочитать записи"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miGetRecords}">
+                </MenuItem>
+                <MenuItem x:Name="miGetDetails"
+                          Header="Детали записи"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}"
+                          CommandParameter="{Binding Header, ElementName=miGetDetails}">
+                </MenuItem>
+                <MenuItem x:Name="miAddRecord"
+                          Header="Добавить запись"
+                          Visibility="Collapsed"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miAddRecord}">
+                </MenuItem>
+                <MenuItem x:Name="miChangeRecord"
+                          Header="Изменить запись"
+                          Visibility="Collapsed"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miChangeRecord}">
+                </MenuItem>
+                <MenuItem x:Name="miDeleteRecord"
+                          Header="Удалить запись"
+                          Visibility="Collapsed"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miDeleteRecord}">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="miUsers"
+                      Header="Users"
+                      Visibility="Collapsed"
+                      Cursor="Hand">
+                <MenuItem x:Name="miGetUsers"
+                          Header="Список пользователей"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miGetUsers}">
+                </MenuItem>
+                <MenuItem x:Name="miAddUser"
+                          Header="Добавить пользователя"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miAddUser}">
+                </MenuItem>
+                <MenuItem x:Name="miDeleteUser"
+                          Header="Удалить пользователя"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miDeleteUser}">
+                </MenuItem>
+                <MenuItem x:Name="miAddRoleUser"
+                          Header="Добавить роль пользователю"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miAddRoleUser}">
+                </MenuItem>
+                <MenuItem x:Name="miDeleteRoleUser"
+                          Header="Удалить роль у пользователя"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miDeleteRoleUser}">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="miRoles"
+                      Header="Roles"
+                      Visibility="Collapsed"
+                      Cursor="Hand">
+                <MenuItem x:Name="miGetRoles"
+                          Header="Список ролей"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miGetRoles}">
+                </MenuItem>
+                <MenuItem x:Name="miAddRole"
+                          Header="Добавить роль"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miAddRole}">
+                </MenuItem>
+                <MenuItem x:Name="miDeleteRole"
+                          Header="Удалить роль"
+                          Cursor="Hand"
+                          Command="{Binding UpdateViewCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                          CommandParameter="{Binding Header, ElementName=miDeleteRole}">
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Menu x:Name="mTopRight"
+              Grid.Column="1"
+              Height="24"
+              Width="auto"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Right"
+              FontSize="15"
+              Background="White">
+
+            <MenuItem x:Name="miLogIn"
+                      Header="Login"
+                      Cursor="Hand"
+                      Margin="0 0 2 0"
+                      Command="{Binding OpenLogInWindowCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                      CommandParameter="">
+            </MenuItem>
+            <MenuItem x:Name="miRegister"
+                   Header="Register"
+                   Foreground="Black"
+                   Margin="0 0 2 0"
+                   Cursor="Hand"
+                   Command="{Binding OpenRegisterWindowCommand, Source={StaticResource PhoneBookWindowViewModel}}" 
+                   CommandParameter="">
+            </MenuItem>
+
+            <MenuItem x:Name="miUserName"
+                   Visibility="Collapsed"
+                   Header=""
+                   Foreground="Coral"
+                   Cursor="Arrow"
+                   Margin="0 0 2 0">
+            </MenuItem>
+            <MenuItem x:Name="miLogOut"
+                      Visibility="Collapsed"
+                      Header="Logout"
+                      Cursor="Hand"
+                      Margin="0 0 2 0"
+                      Command="{Binding LogOutCommand, Source={StaticResource PhoneBookWindowViewModel}}"
+                      CommandParameter="">
+            </MenuItem>
+        </Menu>
+
+        <StackPanel Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Background="MediumPurple">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400*" MinWidth="400"></ColumnDefinition>
+                    <ColumnDefinition Width="205*" MinWidth="205"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <ContentControl x:Name="ccLeftPartPage"
+                            Content="{Binding LeftCurrentView, Source={StaticResource PhoneBookWindowViewModel}, UpdateSourceTrigger=PropertyChanged}">
+                </ContentControl>
+                <ContentControl x:Name="ccRightPartPage"
+                            Grid.Column="1"
+                            Content="{Binding RightCurrentView, Source={StaticResource PhoneBookWindowViewModel}, UpdateSourceTrigger=PropertyChanged}">
+
+                </ContentControl>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

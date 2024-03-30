@@ -1,0 +1,68 @@
+﻿@model List<PhoneBookRecord>
+@inject UserRoles UserRoles
+@{
+    ViewData["Title"] = "Список контактов";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (UserRoles.Roles.Contains("User") || UserRoles.Roles.Contains("Admin"))
+{
+    <div>
+        <a class="btn btn-primary" asp-controller="CreateRecord" asp-action="CreateRecord" title="Создать запись">Создать</a>
+    </div>
+    <div>
+        <p>&nbsp;</p>
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>FathresName</th>
+            @if (UserRoles.Roles.Contains("Admin"))
+            {
+                <th class="text-center" width="150px"><i>Edit</i></th>
+                <th class="text-center" width="100px"><i>Delete</i></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Details"
+                           asp-action="DetailsShow"
+                           asp-route-id="@item.Id"
+                           title="Просмотреть"
+                           class="linkDetails">@item.Id</a>
+                    </td>
+                    <td>@item.LastName</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.FathersName</td>
+                    @if (UserRoles.Roles.Contains("Admin"))
+                    {
+                        <td width="150px">
+                            <a class="btn btn-dark" asp-controller="EditRecord"
+                               asp-action="EditRecord"
+                               asp-route-id="@item.Id"
+                               title="Редактировать">Редактировать</a>
+                        </td>
+                        <td width="100px">
+                            <a class="btn btn-dark" asp-controller="DeleteRecord"
+                               asp-action="DeleteRecord"
+                               asp-route-id="@item.Id"
+                               title="Удалить">Удалить</a>
+                        </td>
+                    }
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
