@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PhoneBookAPI.Domain.Entities
 {
-    public class UserRoles
+    public class UserRolesModel
     {
         public static string EMail { get; set; } = "";
 

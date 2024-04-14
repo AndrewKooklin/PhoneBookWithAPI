@@ -88,8 +88,8 @@ namespace PhoneBookAPI.Domain.Repositories.EF
             {
                 List<string> roles = new List<string>();
                 var rolesFromDb = await _userManager.GetRolesAsync(user);
-                UserRoles.Roles = rolesFromDb.ToList();
-                return UserRoles.Roles;
+                UserRolesModel.Roles = rolesFromDb.ToList();
+                return UserRolesModel.Roles;
             }
         }
 
